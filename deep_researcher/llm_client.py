@@ -3,24 +3,25 @@ from typing import Union
 from openai import AsyncOpenAI
 from agents import OpenAIChatCompletionsModel, OpenAIResponsesModel, set_tracing_export_api_key, set_tracing_disabled
 from dotenv import load_dotenv
+from utils.os import get_env_with_prefix
 
 load_dotenv(override=True)
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-PERPLEXITY_API_KEY = os.getenv("PERPLEXITY_API_KEY")
-HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
-LOCAL_MODEL_URL = os.getenv("LOCAL_MODEL_URL")  # e.g. "http://localhost:11434/v1"
+OPENAI_API_KEY = get_env_with_prefix("OPENAI_API_KEY")
+DEEPSEEK_API_KEY = get_env_with_prefix("DEEPSEEK_API_KEY")
+OPENROUTER_API_KEY = get_env_with_prefix("OPENROUTER_API_KEY")
+GEMINI_API_KEY = get_env_with_prefix("GEMINI_API_KEY")
+ANTHROPIC_API_KEY = get_env_with_prefix("ANTHROPIC_API_KEY")
+PERPLEXITY_API_KEY = get_env_with_prefix("PERPLEXITY_API_KEY")
+HUGGINGFACE_API_KEY = get_env_with_prefix("HUGGINGFACE_API_KEY")
+LOCAL_MODEL_URL = get_env_with_prefix("LOCAL_MODEL_URL")  # e.g. "http://localhost:11434/v1"
 
-REASONING_MODEL_PROVIDER=os.getenv("REASONING_MODEL_PROVIDER", "openai")
-REASONING_MODEL=os.getenv("REASONING_MODEL", "o3-mini")
-MAIN_MODEL_PROVIDER=os.getenv("MAIN_MODEL_PROVIDER", "openai")
-MAIN_MODEL=os.getenv("MAIN_MODEL", "gpt-4o")
-FAST_MODEL_PROVIDER=os.getenv("FAST_MODEL_PROVIDER", "openai")
-FAST_MODEL=os.getenv("FAST_MODEL", "gpt-4o-mini")
+REASONING_MODEL_PROVIDER = get_env_with_prefix("REASONING_MODEL_PROVIDER", "openai")
+REASONING_MODEL = get_env_with_prefix("REASONING_MODEL", "o3-mini")
+MAIN_MODEL_PROVIDER = get_env_with_prefix("MAIN_MODEL_PROVIDER", "openai")
+MAIN_MODEL = get_env_with_prefix("MAIN_MODEL", "gpt-4o")
+FAST_MODEL_PROVIDER = get_env_with_prefix("FAST_MODEL_PROVIDER", "openai")
+FAST_MODEL = get_env_with_prefix("FAST_MODEL", "gpt-4o-mini")
 
 supported_providers = ["openai", "deepseek", "openrouter", "gemini", "anthropic", "perplexity", "huggingface", "local"]
 

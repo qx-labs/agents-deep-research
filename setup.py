@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-LATEST_VERSION = "0.0.6"
+LATEST_VERSION = "0.0.7"
 
 exclude_packages = []
 
