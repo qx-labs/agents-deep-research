@@ -3,7 +3,7 @@ from typing import Union
 from openai import AsyncOpenAI
 from agents import OpenAIChatCompletionsModel, OpenAIResponsesModel, set_tracing_export_api_key, set_tracing_disabled
 from dotenv import load_dotenv
-from utils.os import get_env_with_prefix
+from .utils.os import get_env_with_prefix
 
 load_dotenv(override=True)
 
