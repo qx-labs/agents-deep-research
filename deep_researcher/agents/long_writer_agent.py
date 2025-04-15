@@ -50,7 +50,7 @@ OBJECTIVE:
 CITATIONS/REFERENCES:
 The citations should be in numerical order, written in numbered square brackets in the body of the report.
 Separately, a list of all URLs and their corresponding reference numbers will be included at the end of the report.
-Follow the example below for fomartting.
+Follow the example below for formatting.
 
 LongWriterOutput(
     next_section_markdown="The company specializes in IT consulting [1](https://example.com/first-source-url). It operates in the software services market which is expected to grow at 10% per year [2](https://example.com/second-source-url).",
