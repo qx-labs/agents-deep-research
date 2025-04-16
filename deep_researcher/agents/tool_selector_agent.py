@@ -19,7 +19,7 @@ The available agents are:
 
 from pydantic import BaseModel, Field
 from typing import List, Optional
-from ..llm_client import fast_model, model_supports_structured_output
+from ..llm_config import LLMConfig, model_supports_structured_output
 from datetime import datetime
 from .baseclass import ResearchAgent
 from .utils.parse_output import create_type_parser
@@ -67,12 +67,13 @@ Only output JSON. Follow the JSON schema below. Do not output anything else. I w
 {AgentSelectionPlan.model_json_schema()}
 """
 
-selected_model = fast_model
+def init_tool_selector_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
 
-tool_selector_agent = ResearchAgent(
-    name="ToolSelectorAgent",
-    instructions=INSTRUCTIONS,
-    model=selected_model,
-    output_type=AgentSelectionPlan if model_supports_structured_output(selected_model) else None,
-    output_parser=create_type_parser(AgentSelectionPlan) if not model_supports_structured_output(selected_model) else None
-)
+    return ResearchAgent(
+        name="ToolSelectorAgent",
+        instructions=INSTRUCTIONS,
+        model=selected_model,
+        output_type=AgentSelectionPlan if model_supports_structured_output(selected_model) else None,
+        output_parser=create_type_parser(AgentSelectionPlan) if not model_supports_structured_output(selected_model) else None
+    )

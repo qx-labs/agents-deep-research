@@ -12,7 +12,7 @@ The Agent then:
 
 from ...tools import crawl_website
 from . import ToolAgentOutput
-from ...llm_client import fast_model, model_supports_structured_output
+from ...llm_config import LLMConfig, model_supports_structured_output
 from ..baseclass import ResearchAgent
 from ..utils.parse_output import create_type_parser
 
@@ -33,13 +33,14 @@ Only output JSON. Follow the JSON schema below. Do not output anything else. I w
 {ToolAgentOutput.model_json_schema()}
 """
 
-selected_model = fast_model
+def init_crawl_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
 
-crawl_agent = ResearchAgent(
-    name="SiteCrawlerAgent",
-    instructions=INSTRUCTIONS,
-    tools=[crawl_website],
-    model=selected_model,
-    output_type=ToolAgentOutput if model_supports_structured_output(selected_model) else None,
-    output_parser=create_type_parser(ToolAgentOutput) if not model_supports_structured_output(selected_model) else None
-)
+    return ResearchAgent(
+        name="SiteCrawlerAgent",
+        instructions=INSTRUCTIONS,
+        tools=[crawl_website],
+        model=selected_model,
+        output_type=ToolAgentOutput if model_supports_structured_output(selected_model) else None,
+        output_parser=create_type_parser(ToolAgentOutput) if not model_supports_structured_output(selected_model) else None
+    )

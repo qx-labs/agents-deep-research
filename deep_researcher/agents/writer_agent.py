@@ -21,7 +21,7 @@ The Agent then:
 The WriterAgent defined here generates the final structured report in markdown format.
 """
 from .baseclass import ResearchAgent
-from ..llm_client import main_model
+from ..llm_config import LLMConfig
 from datetime import datetime
 
 INSTRUCTIONS = f"""
@@ -47,8 +47,11 @@ GUIDELINES:
 * If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.
 """
 
-writer_agent = ResearchAgent(
-    name="WriterAgent",
-    instructions=INSTRUCTIONS,
-    model=main_model,
-)
+def init_writer_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.main_model
+
+    return ResearchAgent(
+        name="WriterAgent",
+        instructions=INSTRUCTIONS,
+        model=selected_model,
+    )

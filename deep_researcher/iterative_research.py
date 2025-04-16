@@ -4,12 +4,13 @@ import time
 from typing import Dict, List, Optional
 from agents import custom_span, gen_trace_id, trace
 from .agents.baseclass import ResearchRunner
-from .agents.writer_agent import writer_agent
-from .agents.knowledge_gap_agent import KnowledgeGapOutput, knowledge_gap_agent
-from .agents.tool_selector_agent import AgentTask, AgentSelectionPlan, tool_selector_agent
-from .agents.thinking_agent import thinking_agent
-from .agents.tool_agents import TOOL_AGENTS, ToolAgentOutput
+from .agents.writer_agent import init_writer_agent
+from .agents.knowledge_gap_agent import KnowledgeGapOutput, init_knowledge_gap_agent
+from .agents.tool_selector_agent import AgentTask, AgentSelectionPlan, init_tool_selector_agent
+from .agents.thinking_agent import init_thinking_agent
+from .agents.tool_agents import init_tool_agents, ToolAgentOutput
 from pydantic import BaseModel, Field
+from .llm_config import LLMConfig, create_default_config
 
 
 class IterationData(BaseModel):
@@ -126,7 +127,8 @@ class IterativeResearcher:
         max_iterations: int = 5,
         max_time_minutes: int = 10,
         verbose: bool = True,
-        tracing: bool = False
+        tracing: bool = False,
+        config: Optional[LLMConfig] = None
     ):
         self.max_iterations: int = max_iterations
         self.max_time_minutes: int = max_time_minutes
@@ -136,6 +138,12 @@ class IterativeResearcher:
         self.should_continue: bool = True
         self.verbose: bool = verbose
         self.tracing: bool = tracing
+        self.config: LLMConfig = create_default_config() if not config else config
+        self.knowledge_gap_agent = init_knowledge_gap_agent(self.config)
+        self.tool_selector_agent = init_tool_selector_agent(self.config)
+        self.thinking_agent = init_thinking_agent(self.config)
+        self.writer_agent = init_writer_agent(self.config)
+        self.tool_agents = init_tool_agents(self.config)
         
     async def run(
             self, 
@@ -231,7 +239,7 @@ class IterativeResearcher:
         """
 
         result = await ResearchRunner.run(
-            knowledge_gap_agent,
+            self.knowledge_gap_agent,
             input_str,
         )
         
@@ -268,7 +276,7 @@ class IterativeResearcher:
         """
         
         result = await ResearchRunner.run(
-            tool_selector_agent,
+            self.tool_selector_agent,
             input_str,
         )
         
@@ -311,7 +319,7 @@ class IterativeResearcher:
         """Run a single agent task and return the result."""
         try:
             agent_name = task.agent
-            agent = TOOL_AGENTS.get(agent_name)
+            agent = self.tool_agents.get(agent_name)
             if agent:
                 result = await ResearchRunner.run(
                     agent,
@@ -348,7 +356,7 @@ class IterativeResearcher:
         {self.conversation.compile_conversation_history() or "No previous actions, findings or thoughts available."}
         """
         result = await ResearchRunner.run(
-            thinking_agent,
+            self.thinking_agent,
             input_str,
         )
 
@@ -383,7 +391,7 @@ class IterativeResearcher:
         """
 
         result = await ResearchRunner.run(
-            writer_agent,
+            self.writer_agent,
             input_str,
         )
         

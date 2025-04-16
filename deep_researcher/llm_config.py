@@ -1,4 +1,3 @@
-import os
 from typing import Union
 from openai import AsyncOpenAI
 from agents import OpenAIChatCompletionsModel, OpenAIResponsesModel, set_tracing_export_api_key, set_tracing_disabled
@@ -22,6 +21,8 @@ MAIN_MODEL_PROVIDER = get_env_with_prefix("MAIN_MODEL_PROVIDER", "openai")
 MAIN_MODEL = get_env_with_prefix("MAIN_MODEL", "gpt-4o")
 FAST_MODEL_PROVIDER = get_env_with_prefix("FAST_MODEL_PROVIDER", "openai")
 FAST_MODEL = get_env_with_prefix("FAST_MODEL", "gpt-4o-mini")
+
+SEARCH_PROVIDER = get_env_with_prefix("SEARCH_PROVIDER", "serper")
 
 supported_providers = ["openai", "deepseek", "openrouter", "gemini", "anthropic", "perplexity", "huggingface", "local"]
 
@@ -68,54 +69,78 @@ provider_mapping = {
     }
 }
 
-if REASONING_MODEL_PROVIDER not in supported_providers:
-    raise ValueError(f"Invalid model provider: {REASONING_MODEL_PROVIDER}")
-if MAIN_MODEL_PROVIDER not in supported_providers:
-    raise ValueError(f"Invalid model provider: {MAIN_MODEL_PROVIDER}")
-if FAST_MODEL_PROVIDER not in supported_providers:
-    raise ValueError(f"Invalid model provider: {FAST_MODEL_PROVIDER}")
-
 if OPENAI_API_KEY:
     set_tracing_export_api_key(OPENAI_API_KEY)
 else:
     # If no OpenAI API key is provided, disable tracing
     set_tracing_disabled(True)
 
-# ------- SET UP REASONING MODEL -------
 
-reasoning_client = AsyncOpenAI(
-    api_key=provider_mapping[REASONING_MODEL_PROVIDER]["api_key"],
-    base_url=provider_mapping[REASONING_MODEL_PROVIDER]["base_url"],
-)
+class LLMConfig:
 
-reasoning_model = provider_mapping[REASONING_MODEL_PROVIDER]["model"](
-    model=REASONING_MODEL,
-    openai_client=reasoning_client
-)
+    def __init__(
+        self,
+        search_provider: str,
+        reasoning_model_provider: str,
+        reasoning_model: str,
+        main_model_provider: str,
+        main_model: str,
+        fast_model_provider: str,
+        fast_model: str,
+    ):
+        self.search_provider = search_provider
 
-# ------- SET UP MAIN MODEL -------
+        if reasoning_model_provider not in supported_providers:
+            raise ValueError(f"Invalid model provider: {reasoning_model_provider}")
+        if main_model_provider not in supported_providers:
+            raise ValueError(f"Invalid model provider: {main_model_provider}")
+        if fast_model_provider not in supported_providers:
+            raise ValueError(f"Invalid model provider: {fast_model_provider}")
 
-main_client = AsyncOpenAI(
-    api_key=provider_mapping[MAIN_MODEL_PROVIDER]["api_key"],
-    base_url=provider_mapping[MAIN_MODEL_PROVIDER]["base_url"],
-)
+        # Set up reasoning model
+        reasoning_client = AsyncOpenAI(
+            api_key=provider_mapping[reasoning_model_provider]["api_key"],
+            base_url=provider_mapping[reasoning_model_provider]["base_url"],
+        )
 
-main_model = provider_mapping[MAIN_MODEL_PROVIDER]["model"](
-    model=MAIN_MODEL,
-    openai_client=main_client
-)
+        self.reasoning_model = provider_mapping[reasoning_model_provider]["model"](
+            model=reasoning_model,
+            openai_client=reasoning_client
+        )
 
-# ------- SET UP FAST MODEL -------
+        # Set up main model
+        main_client = AsyncOpenAI(
+            api_key=provider_mapping[main_model_provider]["api_key"],
+            base_url=provider_mapping[main_model_provider]["base_url"],
+        )
 
-fast_client = AsyncOpenAI(
-    api_key=provider_mapping[FAST_MODEL_PROVIDER]["api_key"],
-    base_url=provider_mapping[FAST_MODEL_PROVIDER]["base_url"],
-)
+        self.main_model = provider_mapping[main_model_provider]["model"](
+            model=main_model,
+            openai_client=main_client
+        )
 
-fast_model = provider_mapping[FAST_MODEL_PROVIDER]["model"](
-    model=FAST_MODEL,
-    openai_client=fast_client
-)
+        # Set up fast model
+        fast_client = AsyncOpenAI(
+            api_key=provider_mapping[fast_model_provider]["api_key"],
+            base_url=provider_mapping[fast_model_provider]["base_url"],
+        )
+
+        self.fast_model = provider_mapping[fast_model_provider]["model"](
+            model=fast_model,
+            openai_client=fast_client
+        )
+
+
+def create_default_config() -> LLMConfig:
+    return LLMConfig(
+        search_provider=SEARCH_PROVIDER,
+        reasoning_model_provider=REASONING_MODEL_PROVIDER,
+        reasoning_model=REASONING_MODEL,
+        main_model_provider=MAIN_MODEL_PROVIDER,
+        main_model=MAIN_MODEL,
+        fast_model_provider=FAST_MODEL_PROVIDER,
+        fast_model=FAST_MODEL,
+    )
 
 
 def get_base_url(model: Union[OpenAIChatCompletionsModel, OpenAIResponsesModel]) -> str:
@@ -127,6 +152,3 @@ def model_supports_structured_output(model: Union[OpenAIChatCompletionsModel, Op
     """Utility function to check if a model supports structured output"""
     structured_output_providers = ["openai.com", "anthropic.com"]
     return any(provider in get_base_url(model) for provider in structured_output_providers)
-
-
-__all__ = ["reasoning_model", "main_model", "fast_model", "get_base_url", "model_supports_structured_output"]

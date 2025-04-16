@@ -21,7 +21,7 @@ The Agent then:
 4. Returns the updated draft of the new section along with references/citations
 """
 from .baseclass import ResearchAgent, ResearchRunner
-from ..llm_client import fast_model, model_supports_structured_output
+from ..llm_config import LLMConfig, model_supports_structured_output
 from .utils.parse_output import create_type_parser
 from datetime import datetime
 from pydantic import BaseModel, Field
@@ -68,18 +68,20 @@ Only output JSON. Follow the JSON schema below. Do not output anything else. I w
 {LongWriterOutput.model_json_schema()}
 """
 
-selected_model = fast_model
+def init_long_writer_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
 
-long_writer_agent = ResearchAgent(
-    name="LongWriterAgent",
-    instructions=INSTRUCTIONS,
-    model=selected_model,
-    output_type=LongWriterOutput if model_supports_structured_output(selected_model) else None,
-    output_parser=create_type_parser(LongWriterOutput) if not model_supports_structured_output(selected_model) else None
-)
+    return ResearchAgent(
+        name="LongWriterAgent",
+        instructions=INSTRUCTIONS,
+        model=selected_model,
+        output_type=LongWriterOutput if model_supports_structured_output(selected_model) else None,
+        output_parser=create_type_parser(LongWriterOutput) if not model_supports_structured_output(selected_model) else None
+    )
 
 
 async def write_next_section(
+    long_writer_agent: ResearchAgent,
     original_query: str,
     report_draft: str,
     next_section_title: str,
@@ -114,6 +116,7 @@ async def write_next_section(
 
 
 async def write_report(
+    long_writer_agent: ResearchAgent,
     original_query: str,
     report_title: str,
     report_draft: ReportDraft,
@@ -126,7 +129,7 @@ async def write_report(
 
     for section in report_draft.sections:
         # Produce the final draft of each section and add it to the report with corresponding references
-        next_section_draft = await write_next_section(original_query, final_draft, section.section_title, section.section_content)
+        next_section_draft = await write_next_section(long_writer_agent, original_query, final_draft, section.section_title, section.section_content)
         section_markdown, all_references = reformat_references(
             next_section_draft.next_section_markdown, 
             next_section_draft.references,

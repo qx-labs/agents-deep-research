@@ -1,5 +1,5 @@
 from .baseclass import ResearchAgent
-from ..llm_client import reasoning_model
+from ..llm_config import LLMConfig
 from datetime import datetime
 
 INSTRUCTIONS = f"""
@@ -27,9 +27,11 @@ Guidelines:
 - If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started
 """
 
+def init_thinking_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.reasoning_model
 
-thinking_agent = ResearchAgent(
-    name="ThinkingAgent",
-    instructions=INSTRUCTIONS,
-    model=reasoning_model,
-)
+    return ResearchAgent(
+        name="ThinkingAgent",
+        instructions=INSTRUCTIONS,
+        model=selected_model,
+    )

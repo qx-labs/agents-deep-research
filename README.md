@@ -146,6 +146,29 @@ report = asyncio.run(
 print(report)
 ```
 
+### Custom Configuration at Runtime
+
+When running the deep researcher in Python, you have the option to set custom configuration variables at runtime. This gives you flexibility to dynamically change the model choice within your code.
+
+```python
+from deep_researcher import DeepResearcher, LLMConfig
+
+# These configuration options will take precedence over the environment variables
+llm_config = LLMConfig(
+    search_provider="serper",
+    reasoning_model_provider="openai",
+    reasoning_model="o3-mini",
+    main_model_provider="openai",
+    main_model="gpt-4o",
+    fast_model_provider="openai",
+    fast_model="gpt-4o-mini"
+)
+researcher = DeepResearcher(max_iterations=3, max_time_minutes=5, config=llm_config)
+report = asyncio.run(
+    researcher.run(query)
+)
+```
+
 ### Command Line
 
 Run the research assistant from the command line.
@@ -213,16 +236,16 @@ The Deep Research Assistant is built with the following components:
 ### Implementing Custom Tool Agents
 
 Tool agents are agents specialized in carrying out specific tasks using one or more tools (e.g. web searches, fetching and interpreting data from an API, etc). To implement a custom tool agent:
-* Create any tools that the agent will use in the `app/tools` folder
-* Create a new tool agent that calls this tool in the `app/agents/tool_agents` folder
-* Add the tool agent definition to the `TOOL_AGENTS` variable in `app/agents/tool_agents/__init__.py`
-* Update the system prompt of `app/agents/tool_selector_agent.py` to include the name and description of the new agent, so that the ToolSelectorAgent knows of its existence
+* Create any tools that the agent will use in the `deep_researcher/tools` folder
+* Create a new tool agent that calls this tool in the `deep_researcher/agents/tool_agents` folder
+* Add the tool agent definition to the `init_tool_agents` function in `deep_researcher/agents/tool_agents/__init__.py`
+* Update the system prompt of `deep_researcher/agents/tool_selector_agent.py` to include the name and description of the new agent, so that the ToolSelectorAgent knows of its existence
 
 ### Configuring Custom LLMs
 
 This repository is in theory compatible with any LLMs that follow the OpenAI API specs. This includes the likes of DeepSeek as well as models served through OpenRouter. However, the models need to be compatible with [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs) in the OpenAI API spec (i.e. being able to set `response_format: {type: "json_schema", ...}`).
 
-LLMs are configured and managed in the `app/llm_client.py` file 
+LLMs are configured and managed in the `deep_researcher/llm_config.py` file.
 
 ## Trace Monitoring
 

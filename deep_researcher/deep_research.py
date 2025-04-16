@@ -1,12 +1,14 @@
 import asyncio
 import time
 from .iterative_research import IterativeResearcher
-from .agents.planner_agent import planner_agent, ReportPlan, ReportPlanSection
-from .agents.proofreader_agent import ReportDraftSection, ReportDraft, proofreader_agent
-from .agents.long_writer_agent import write_report
+from .agents.planner_agent import init_planner_agent, ReportPlan, ReportPlanSection
+from .agents.proofreader_agent import ReportDraftSection, ReportDraft, init_proofreader_agent
+from .agents.long_writer_agent import init_long_writer_agent, write_report
 from .agents.baseclass import ResearchRunner
-from typing import List
+from typing import List, Optional
 from agents.tracing import trace, gen_trace_id, custom_span
+from .llm_config import LLMConfig, create_default_config
+
 
 class DeepResearcher:
     """
@@ -17,16 +19,17 @@ class DeepResearcher:
             max_iterations: int = 5,
             max_time_minutes: int = 10,
             verbose: bool = True,
-            tracing: bool = False
+            tracing: bool = False,
+            config: Optional[LLMConfig] = None
         ):
         self.max_iterations = max_iterations
         self.max_time_minutes = max_time_minutes
         self.verbose = verbose
         self.tracing = tracing
-
-        if not self.tracing:
-            from agents import set_tracing_disabled
-            set_tracing_disabled(True)
+        self.config = create_default_config() if not config else config
+        self.planner_agent = init_planner_agent(self.config)
+        self.proofreader_agent = init_proofreader_agent(self.config)
+        self.long_writer_agent = init_long_writer_agent(self.config)
 
     async def run(self, query: str) -> str:
         """Run the deep research workflow"""
@@ -64,7 +67,7 @@ class DeepResearcher:
         self._log_message("=== Building Report Plan ===")
         user_message = f"QUERY: {query}"
         result = await ResearchRunner.run(
-            planner_agent,
+            self.planner_agent,
             user_message
         )
         report_plan = result.final_output_as(ReportPlan)
@@ -93,7 +96,8 @@ class DeepResearcher:
                 max_iterations=self.max_iterations,
                 max_time_minutes=self.max_time_minutes,
                 verbose=self.verbose,
-                tracing=False  # Do not trace as this will conflict with the tracing we already have set up for the deep researcher
+                tracing=False,  # Do not trace as this will conflict with the tracing we already have set up for the deep researcher
+                config=self.config
             )
             args = {
                 "query": section.key_question,
@@ -147,12 +151,12 @@ class DeepResearcher:
         self._log_message("\n=== Building Final Report ===")
 
         if use_long_writer:
-            final_output = await write_report(query, report_plan.report_title, report_draft)
+            final_output = await write_report(self.long_writer_agent, query, report_plan.report_title, report_draft)
         else:
             user_prompt = f"QUERY:\n{query}\n\nREPORT DRAFT:\n{report_draft.model_dump_json()}"
             # Run the proofreader agent to produce the final report
             final_report = await ResearchRunner.run(
-                proofreader_agent,
+                self.proofreader_agent,
                 user_prompt
             )
             final_output = final_report.final_output

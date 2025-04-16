@@ -15,8 +15,8 @@ web search implementation based on environment configuration.
 """
 
 from agents import WebSearchTool
-from ...tools.web_search import web_search, SEARCH_PROVIDER
-from ...llm_client import fast_model, model_supports_structured_output, get_base_url
+from ...tools.web_search import create_web_search_tool
+from ...llm_config import LLMConfig, model_supports_structured_output, get_base_url
 from . import ToolAgentOutput
 from ..baseclass import ResearchAgent
 from ..utils.parse_output import create_type_parser
@@ -42,21 +42,22 @@ Only output JSON. Follow the JSON schema below. Do not output anything else. I w
 {ToolAgentOutput.model_json_schema()}
 """
 
-selected_model = fast_model
-provider_base_url = get_base_url(selected_model)
+def init_search_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
+    provider_base_url = get_base_url(selected_model)
 
-if SEARCH_PROVIDER == "openai" and 'openai.com' not in provider_base_url:
-    raise ValueError(f"You have set the SEARCH_PROVIDER to 'openai', but are using the model {str(selected_model.model)} which is not an OpenAI model")
-elif SEARCH_PROVIDER == "openai":
-    web_search_tool = WebSearchTool()
-else:
-    web_search_tool = web_search
+    if config.search_provider == "openai" and 'openai.com' not in provider_base_url:
+        raise ValueError(f"You have set the SEARCH_PROVIDER to 'openai', but are using the model {str(selected_model.model)} which is not an OpenAI model")
+    elif config.search_provider == "openai":
+        web_search_tool = WebSearchTool()
+    else:
+        web_search_tool = create_web_search_tool(config)
 
-search_agent = ResearchAgent(
-    name="WebSearchAgent",
-    instructions=INSTRUCTIONS,
-    tools=[web_search_tool],
-    model=selected_model,
-    output_type=ToolAgentOutput if model_supports_structured_output(selected_model) else None,
-    output_parser=create_type_parser(ToolAgentOutput) if not model_supports_structured_output(selected_model) else None
-)
+    return ResearchAgent(
+        name="WebSearchAgent",
+        instructions=INSTRUCTIONS,
+        tools=[web_search_tool],
+        model=selected_model,
+        output_type=ToolAgentOutput if model_supports_structured_output(selected_model) else None,
+        output_parser=create_type_parser(ToolAgentOutput) if not model_supports_structured_output(selected_model) else None
+    )

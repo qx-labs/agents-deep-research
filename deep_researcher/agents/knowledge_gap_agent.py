@@ -20,7 +20,7 @@ The Agent then:
 from pydantic import BaseModel, Field
 from typing import List
 from .baseclass import ResearchAgent
-from ..llm_client import fast_model, model_supports_structured_output
+from ..llm_config import LLMConfig, model_supports_structured_output
 from datetime import datetime
 from .utils.parse_output import create_type_parser
 
@@ -50,12 +50,13 @@ Only output JSON and follow the JSON schema below. Do not output anything else. 
 {KnowledgeGapOutput.model_json_schema()}
 """
 
-selected_model = fast_model
+def init_knowledge_gap_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
 
-knowledge_gap_agent = ResearchAgent(
-    name="KnowledgeGapAgent",
-    instructions=INSTRUCTIONS,
-    model=selected_model,
-    output_type=KnowledgeGapOutput if model_supports_structured_output(selected_model) else None,
-    output_parser=create_type_parser(KnowledgeGapOutput) if not model_supports_structured_output(selected_model) else None
-)
+    return ResearchAgent(
+        name="KnowledgeGapAgent",
+        instructions=INSTRUCTIONS,
+        model=selected_model,
+        output_type=KnowledgeGapOutput if model_supports_structured_output(selected_model) else None,
+        output_parser=create_type_parser(KnowledgeGapOutput) if not model_supports_structured_output(selected_model) else None
+    )

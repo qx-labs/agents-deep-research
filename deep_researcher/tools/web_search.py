@@ -10,11 +10,10 @@ from typing import List, Union, Optional
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
-from ..llm_client import fast_model, model_supports_structured_output
+from ..llm_config import LLMConfig, model_supports_structured_output
 
 load_dotenv()
 CONTENT_LENGTH_LIMIT = 10000  # Trim scraped content to this length to avoid large context / token limit issues
-SEARCH_PROVIDER = os.getenv("SEARCH_PROVIDER", "serper").lower()
 
 # ------- DEFINE TYPES -------
 
@@ -35,43 +34,33 @@ class SearchResults(BaseModel):
 
 # ------- DEFINE TOOL -------
 
-# Add a module-level variable to store the singleton instance
-_serper_client = None
+def create_web_search_tool(config: LLMConfig) -> function_tool:
+    filter_agent = init_filter_agent(config)
+    serper_client = SerperClient(filter_agent)
 
-
-@function_tool
-async def web_search(query: str) -> Union[List[ScrapeResult], str]:
-    """Perform a web search for a given query and get back the URLs along with their titles, descriptions and text contents.
-    
-    Args:
-        query: The search query
+    @function_tool
+    async def web_search(query: str) -> Union[List[ScrapeResult], str]:
+        """Perform a web search for a given query and get back the URLs along with their titles, descriptions and text contents.
         
-    Returns:
-        List of ScrapeResult objects which have the following fields:
-            - url: The URL of the search result
-            - title: The title of the search result
-            - description: The description of the search result
-            - text: The full text content of the search result
-    """
-    # Only use SerperClient if search provider is serper
-    if SEARCH_PROVIDER == "openai":
-        # For OpenAI search provider, this function should not be called directly
-        # The WebSearchTool from the agents module will be used instead
-        return f"The web_search function is not used when SEARCH_PROVIDER is set to 'openai'. Please check your configuration."
-    else:
+        Args:
+            query: The search query
+            
+        Returns:
+            List of ScrapeResult objects which have the following fields:
+                - url: The URL of the search result
+                - title: The title of the search result
+                - description: The description of the search result
+                - text: The full text content of the search result
+        """
         try:
-            # Lazy initialization of SerperClient
-            global _serper_client
-            if _serper_client is None:
-                _serper_client = SerperClient()
-
-            search_results = await _serper_client.search(query, filter_for_relevance=True, max_results=5)
+            search_results = await serper_client.search(query, filter_for_relevance=True, max_results=5)
             results = await scrape_urls(search_results)
             return results
         except Exception as e:
             # Return a user-friendly error message
             return f"Sorry, I encountered an error while searching: {str(e)}"
 
+    return web_search
 
 # ------- DEFINE AGENT FOR FILTERING SEARCH RESULTS BY RELEVANCE -------
 
@@ -86,15 +75,16 @@ Only output JSON. Follow the JSON schema below. Do not output anything else. I w
 {SearchResults.model_json_schema()}
 """
 
-selected_model = fast_model
+def init_filter_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
 
-filter_agent = ResearchAgent(
-    name="SearchFilterAgent",
-    instructions=FILTER_AGENT_INSTRUCTIONS,
-    model=selected_model,
-    output_type=SearchResults if model_supports_structured_output(selected_model) else None,
-    output_parser=create_type_parser(SearchResults) if not model_supports_structured_output(selected_model) else None
-)
+    return ResearchAgent(
+        name="SearchFilterAgent",
+        instructions=FILTER_AGENT_INSTRUCTIONS,
+        model=selected_model,
+        output_type=SearchResults if model_supports_structured_output(selected_model) else None,
+        output_parser=create_type_parser(SearchResults) if not model_supports_structured_output(selected_model) else None
+    )
 
 # ------- DEFINE UNDERLYING TOOL LOGIC -------
 
@@ -108,7 +98,8 @@ ssl_context.set_ciphers('DEFAULT:@SECLEVEL=1')  # Add this line to allow older c
 class SerperClient:
     """A client for the Serper API to perform Google searches."""
 
-    def __init__(self, api_key: str = None):
+    def __init__(self, filter_agent: ResearchAgent, api_key: str = None):
+        self.filter_agent = filter_agent
         self.api_key = api_key or os.getenv("SERPER_API_KEY")
         if not self.api_key:
             raise ValueError("No API key provided. Set SERPER_API_KEY environment variable.")
@@ -168,7 +159,7 @@ class SerperClient:
         """
         
         try:
-            result = await ResearchRunner.run(filter_agent, user_prompt)
+            result = await ResearchRunner.run(self.filter_agent, user_prompt)
             output = result.final_output_as(SearchResults)
             return output.results_list
         except Exception as e:

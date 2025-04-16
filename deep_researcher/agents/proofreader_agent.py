@@ -17,7 +17,7 @@ The Agent then outputs the final markdown for the report.
 from pydantic import BaseModel, Field
 from typing import List
 from .baseclass import ResearchAgent
-from ..llm_client import fast_model
+from ..llm_config import LLMConfig
 from datetime import datetime
 
 
@@ -59,9 +59,11 @@ Guidelines:
 - Include all sources and references that are present in the final report
 """
 
-    
-proofreader_agent = ResearchAgent(
-    name="ProofreaderAgent",
-    instructions=INSTRUCTIONS,
-    model=fast_model
-)
+def init_proofreader_agent(config: LLMConfig) -> ResearchAgent:
+    selected_model = config.fast_model
+
+    return ResearchAgent(
+        name="ProofreaderAgent",
+        instructions=INSTRUCTIONS,
+        model=selected_model
+    )
