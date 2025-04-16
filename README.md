@@ -146,9 +146,9 @@ report = asyncio.run(
 print(report)
 ```
 
-### Custom Configuration at Runtime
+#### Custom LLM Configuration at Runtime
 
-When running the deep researcher in Python, you have the option to set custom configuration variables at runtime. This gives you flexibility to dynamically change the model choice within your code.
+When running the deep researcher in Python, you have the option to set custom LLM configuration variables at runtime. This gives you flexibility to dynamically change the model choice within your code.
 
 ```python
 from deep_researcher import DeepResearcher, LLMConfig
@@ -205,7 +205,7 @@ The deep researcher is designed to run any model compatible with the OpenAI API 
 However, in order for the deep researcher to be run without errors it relies on models that are highly performant at tool calling.
 
 - If using OpenAI models, we find that the `gpt-4o-mini` is as good if not better at tool selection than `o3-mini` (which is consistent with [this leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)). Given the speed and cost benefits we therefore advise using `gpt-4o-mini` as the model for the majority of agents in our workflow, with `o3-mini` for planning tasks and `gpt-4o` for final writing.
-- If using Gemini models, note that only Gemini 2.5 Pro (currently `gemini-2.5-pro-preview-03-25`) works well. Gemini 2.0 Flash (`gemini-2.0-flash	`), despite being listed as compatible with tool calling, very frequently fails to call any tools.
+- If using Gemini models, note that only Gemini 2.5 Pro (currently `gemini-2.5-pro-preview-03-25`) works well. Gemini 2.0 Flash (`gemini-2.0-flash`), despite being listed as compatible with tool calling, very frequently fails to call any tools.
 
 ## Architecture
 
@@ -215,7 +215,7 @@ The Deep Research Assistant is built with the following components:
 
 - **IterativeResearcher**: Orchestrates the iterative research workflow on a single topic or subtopic
 - **DeepResearcher**: Orchestrates a deeper and broader workflow that includes an initial report outline, calling of multiple parallel `IterativeResearch` instances, and final proofreading step
-- **LLM Client**: Manages interactions with language models so that these can be swapped out as needed
+- **LLMConfig**: Manages interactions with language models so that these can be swapped out as needed
 
 ### Agent System
 
