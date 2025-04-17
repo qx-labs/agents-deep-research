@@ -200,7 +200,7 @@ Boolean Flags:
 
 ## Compatible Models
 
-The deep researcher is designed to run any model compatible with the OpenAI API spec, and does so by adjusting the `base_url` parameter to the relevant model provider. Compatible providers include OpenAI, Anthropic, Gemini, DeepSeek, Hugging Face and OpenRouter as well as locally hosted models via Ollama and LM Studio.
+The deep researcher is designed to run any model compatible with the OpenAI API spec, and does so by adjusting the `base_url` parameter to the relevant model provider. Compatible providers include AzureOpenAI, OpenAI, Anthropic, Gemini, DeepSeek, Hugging Face and OpenRouter as well as locally hosted models via Ollama and LM Studio.
 
 However, in order for the deep researcher to be run without errors it relies on models that are highly performant at tool calling.
 
