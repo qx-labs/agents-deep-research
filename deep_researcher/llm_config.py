@@ -32,46 +32,55 @@ supported_providers = ["openai", "deepseek", "openrouter", "gemini", "anthropic"
 
 provider_mapping = {
     "openai": {
+        "client": AsyncOpenAI,
         "model": OpenAIResponsesModel,
         "base_url": None,
         "api_key": OPENAI_API_KEY,
     },
     "deepseek": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": "https://api.deepseek.com/v1",
         "api_key": DEEPSEEK_API_KEY,
     },
     "openrouter": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": "https://openrouter.ai/api/v1",
         "api_key": OPENROUTER_API_KEY,
     },
     "gemini": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
         "api_key": GEMINI_API_KEY,
     },
     "anthropic": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": "https://api.anthropic.com/v1/",
         "api_key": ANTHROPIC_API_KEY,
     },
     "perplexity": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": "https://api.perplexity.ai/chat/completions",
         "api_key": PERPLEXITY_API_KEY,
     },
     "huggingface": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
         "api_key": HUGGINGFACE_API_KEY,
     },
     "local": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
         "base_url": LOCAL_MODEL_URL,
         "api_key": "ollama",  # Required by OpenAI client but not used
     },
     "azureopenai": {
+        "client": AsyncAzureOpenAI,
         "model": OpenAIChatCompletionsModel,
         "api_key": AZURE_OPENAI_API_KEY,
         "azure_endpoint": AZURE_OPENAI_ENDPOINT,
@@ -108,65 +117,17 @@ class LLMConfig:
         if fast_model_provider not in supported_providers:
             raise ValueError(f"Invalid model provider: {fast_model_provider}")
 
-        # Set up reasoning model
-        mapping = provider_mapping[reasoning_model_provider]
-        if reasoning_model_provider == "azureopenai":
-            reasoning_client = AsyncAzureOpenAI(
-                api_key=mapping["api_key"],
-                azure_endpoint=mapping["azure_endpoint"],
-                azure_deployment=mapping["azure_deployment"],
-                api_version=mapping["api_version"],
-            )
-        else:
-            reasoning_client = AsyncOpenAI(
-                api_key=mapping["api_key"],
-                base_url=mapping["base_url"],
-            )
+        # Helper to init any provider model
+        def _init_model(provider_key: str, model_name: str):
+            m = provider_mapping[provider_key]
+            client_cls = m["client"]
+            kwargs = {k: v for k, v in m.items() if k not in ("model", "client")}
+            client = client_cls(**kwargs)
+            return m["model"](model=model_name, openai_client=client)
 
-        self.reasoning_model = provider_mapping[reasoning_model_provider]["model"](
-            model=reasoning_model,
-            openai_client=reasoning_client
-        )
-
-        # Set up main model
-        mapping = provider_mapping[main_model_provider]
-        if main_model_provider == "azureopenai":
-            main_client = AsyncAzureOpenAI(
-                api_key=mapping["api_key"],
-                azure_endpoint=mapping["azure_endpoint"],
-                azure_deployment=mapping["azure_deployment"],
-                api_version=mapping["api_version"],
-            )
-        else:
-            main_client = AsyncOpenAI(
-                api_key=mapping["api_key"],
-                base_url=mapping["base_url"],
-            )
-
-        self.main_model = provider_mapping[main_model_provider]["model"](
-            model=main_model,
-            openai_client=main_client
-        )
-
-        # Set up fast model
-        mapping = provider_mapping[fast_model_provider]
-        if fast_model_provider == "azureopenai":
-            fast_client = AsyncAzureOpenAI(
-                api_key=mapping["api_key"],
-                azure_endpoint=mapping["azure_endpoint"],
-                azure_deployment=mapping["azure_deployment"],
-                api_version=mapping["api_version"],
-            )
-        else:
-            fast_client = AsyncOpenAI(
-                api_key=mapping["api_key"],
-                base_url=mapping["base_url"],
-            )
-
-        self.fast_model = provider_mapping[fast_model_provider]["model"](
-            model=fast_model,
-            openai_client=fast_client
-        )
+        self.reasoning_model = _init_model(reasoning_model_provider, reasoning_model)
+        self.main_model = _init_model(main_model_provider, main_model)
+        self.fast_model = _init_model(fast_model_provider, fast_model)
 
 
 def create_default_config() -> LLMConfig:
