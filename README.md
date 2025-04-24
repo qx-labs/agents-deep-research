@@ -11,7 +11,7 @@
 
 # Agentic Deep Research using the OpenAI Agents SDK
 
-A powerful deep research assistant built using the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), designed to perform in-depth research on any given topic. Compatible with OpenAI, Anthropic, Gemini, DeepSeek, Perplexity, OpenRouter, Hugging Face and local models such as Ollama.
+A powerful deep research assistant built using the [OpenAI Agents SDK](https://github.com/openai/openai-agents-python), designed to perform in-depth research on any given topic. Compatible with AzureOpenAI, OpenAI, Anthropic, Gemini, DeepSeek, Perplexity, OpenRouter, Hugging Face and local models such as Ollama.
 
 It uses a multi-agent architecture that works iteratively, continually refining its understanding of a topic and producing increasingly detailed insights that feed the final report.
 
@@ -254,7 +254,7 @@ The Deep Research assistant integrates with OpenAI's trace monitoring system. Ea
 ## Observations and Limitations
 
 ### Rate Limits
-- The `DeepResearcher` runs a lot of searches and API calls in parallel (at any given point in time it could be ingesting 50-60 different web pages). As a result you may find that yourself hitting rate limits for OpenAI, Gemini, Anthropic and other model providers particularly if you are on lower or free tiers. 
+- The `DeepResearcher` runs a lot of searches and API calls in parallel (at any given point in time it could be ingesting 50-60 different web pages). As a result you may find that yourself hitting rate limits for AzureOpenAI, OpenAI, Gemini, Anthropic and other model providers particularly if you are on lower or free tiers. 
 - If you run into these errors, you may wish to use the `IterativeResearcher` instead which is less consumptive of API calls.
 
 ### **Output Length:** 
