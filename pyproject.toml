@@ -1,12 +1,7 @@
 [build-system]
 requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta" 
-[project.optional-dependencies]
-dev = [
-    "pytest",
-    "pytest-asyncio",
-    # other test dependencies...
-]
+
 [tool.pytest.ini_options]
-asyncio_mode = "auto" # Often needed as well
+asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"

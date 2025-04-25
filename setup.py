@@ -32,9 +32,15 @@ setup(
     ],
     python_requires=">=3.10",
     install_requires=reqs,
+    extras_require={
+        'dev': [
+            'pytest',
+            'pytest-asyncio'
+        ]
+    },
     entry_points={
         'console_scripts': [
             'deep-researcher=deep_researcher.main:cli_entry',
         ],
     },
-) 
+)
