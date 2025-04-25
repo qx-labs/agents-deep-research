@@ -6,9 +6,7 @@ The Agent takes as input a string in the following format:
 ===========================================================
 ORIGINAL QUERY: <original user query>
 
-CURRENT DRAFT: <most recent draft of the research output>
-
-PREVIOUS EVALUATION: <the KnowledgeGapOutput from the previous iteration>
+HISTORY OF ACTIONS, FINDINGS AND THOUGHTS: <breakdown of activities and findings carried out so far>
 ===========================================================
 
 The Agent then:

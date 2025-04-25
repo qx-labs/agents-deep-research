@@ -6,6 +6,10 @@ The Agent takes as input a string in the following format:
 ORIGINAL QUERY: <original user query>
 
 KNOWLEDGE GAP TO ADDRESS: <knowledge gap that needs to be addressed>
+
+BACKGROUND CONTEXT: <supporting background context related to the original query>
+
+HISTORY OF ACTIONS, FINDINGS AND THOUGHTS: <a log of prior iterations of the research process>
 ===========================================================
 
 The Agent then:

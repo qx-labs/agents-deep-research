@@ -4,14 +4,12 @@ Agent used to produce the final draft of a report given initial drafts of each s
 The Agent takes as input the original user query and a stringified object of type ReportDraft.model_dump_json() (defined below).
 
 ====
-QUERY:
-{query}
+QUERY: <original user query>
 
-REPORT DRAFT:
-{report_draft}
+REPORT DRAFT: <stringified ReportDraft object containing all draft sections>
 ====
 
-The Agent then outputs the final markdown for the report.
+The Agent then outputs the final markdown for the report as a string.
 """
 
 from pydantic import BaseModel, Field

@@ -151,6 +151,7 @@ print(report)
 When running the deep researcher in Python, you have the option to set custom LLM configuration variables at runtime. This gives you flexibility to dynamically change the model choice within your code.
 
 ```python
+import asyncio
 from deep_researcher import DeepResearcher, LLMConfig
 
 # These configuration options will take precedence over the environment variables

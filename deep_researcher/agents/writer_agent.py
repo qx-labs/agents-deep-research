@@ -1,24 +1,17 @@
 """
-Agent used to synthesize a final report using the summaries produced from the previous steps and agents.
+Agent used to synthesize a final report based on provided findings.
 
 The WriterAgent takes as input a string in the following format:
 ===========================================================
-ORIGINAL QUERY: <original user query>
+QUERY: <original user query>
 
-CURRENT DRAFT: <findings from initial research or drafted content>
-
-KNOWLEDGE GAPS BEING ADDRESSED: <knowledge gaps being addressed>
-
-NEW INFORMATION: <any additional information gathered from specialized agents>
+FINDINGS: <findings from the iterative research process>
 ===========================================================
 
 The Agent then:
-1. Creates an outline for the report structure
-2. Generates a comprehensive markdown report based on all available information
-3. Includes proper citations for sources in the format [1], [2], etc.
-4. Returns a string containing the markdown formatted report
-
-The WriterAgent defined here generates the final structured report in markdown format.
+1. Generates a comprehensive markdown report based on all available information
+2. Includes proper citations for sources in the format [1], [2], etc.
+3. Returns a string containing the markdown formatted report
 """
 from .baseclass import ResearchAgent
 from ..llm_config import LLMConfig

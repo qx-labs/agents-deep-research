@@ -343,7 +343,7 @@ class IterativeResearcher:
         
     async def _generate_observations(self, query: str, background_context: str = "") -> str:
         """Generate observations from the current state of the research."""
-                
+        
         background = f"BACKGROUND CONTEXT:\n{background_context}" if background_context else ""
 
         input_str = f"""
