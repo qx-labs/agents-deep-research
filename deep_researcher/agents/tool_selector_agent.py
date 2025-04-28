@@ -72,7 +72,7 @@ Only output JSON. Follow the JSON schema below. Do not output anything else. I w
 """
 
 def init_tool_selector_agent(config: LLMConfig) -> ResearchAgent:
-    selected_model = config.fast_model
+    selected_model = config.reasoning_model
 
     return ResearchAgent(
         name="ToolSelectorAgent",
