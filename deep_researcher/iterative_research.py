@@ -347,6 +347,8 @@ class IterativeResearcher:
         background = f"BACKGROUND CONTEXT:\n{background_context}" if background_context else ""
 
         input_str = f"""
+        You are starting iteration {self.iteration} of your research process.
+
         ORIGINAL QUERY:
         {query}
 
