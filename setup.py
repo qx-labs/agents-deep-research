@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-LATEST_VERSION = "0.0.9"
+LATEST_VERSION = "0.0.10"
 
 exclude_packages = []
 
@@ -15,11 +15,11 @@ setup(
     version=LATEST_VERSION,
     author="Jai Juneja",
     author_email="jai@qxlabs.com",
-    description="A package for performing deep research using agents, implemented using the OpenAI Agents SDK",
+    description="A package for performing deep research using AI agents, implemented using the OpenAI Agents SDK",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/qx-labs/agents-deep-research",
-    package_dir={'deep_research': 'deep_research'},
+    package_dir={'deep_researcher': 'deep_researcher'},
     packages=find_packages(),
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
