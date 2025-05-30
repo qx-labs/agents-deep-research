@@ -1,7 +1,14 @@
 from typing import Union
-from openai import AsyncOpenAI, AsyncAzureOpenAI
-from agents import OpenAIChatCompletionsModel, OpenAIResponsesModel, set_tracing_export_api_key, set_tracing_disabled
+
+from agents import (
+    OpenAIChatCompletionsModel,
+    OpenAIResponsesModel,
+    set_tracing_disabled,
+    set_tracing_export_api_key,
+)
 from dotenv import load_dotenv
+from openai import AsyncAzureOpenAI, AsyncOpenAI
+
 from .utils.os import get_env_with_prefix
 
 load_dotenv(override=True)
@@ -13,7 +20,9 @@ GEMINI_API_KEY = get_env_with_prefix("GEMINI_API_KEY")
 ANTHROPIC_API_KEY = get_env_with_prefix("ANTHROPIC_API_KEY")
 PERPLEXITY_API_KEY = get_env_with_prefix("PERPLEXITY_API_KEY")
 HUGGINGFACE_API_KEY = get_env_with_prefix("HUGGINGFACE_API_KEY")
-LOCAL_MODEL_URL = get_env_with_prefix("LOCAL_MODEL_URL")  # e.g. "http://localhost:11434/v1"
+LOCAL_MODEL_URL = get_env_with_prefix(
+    "LOCAL_MODEL_URL"
+)  # e.g. "http://localhost:11434/v1"
 AZURE_OPENAI_ENDPOINT = get_env_with_prefix("AZURE_OPENAI_ENDPOINT")
 AZURE_OPENAI_DEPLOYMENT = get_env_with_prefix("AZURE_OPENAI_DEPLOYMENT")
 AZURE_OPENAI_API_KEY = get_env_with_prefix("AZURE_OPENAI_API_KEY")
@@ -27,8 +36,19 @@ FAST_MODEL_PROVIDER = get_env_with_prefix("FAST_MODEL_PROVIDER", "openai")
 FAST_MODEL = get_env_with_prefix("FAST_MODEL", "gpt-4o-mini")
 
 SEARCH_PROVIDER = get_env_with_prefix("SEARCH_PROVIDER", "serper")
+SEARCHXNG_HOST = get_env_with_prefix("SEARCHXNG_HOST")
 
-supported_providers = ["openai", "deepseek", "openrouter", "gemini", "anthropic", "perplexity", "huggingface", "local", "azureopenai"]
+supported_providers = [
+    "openai",
+    "deepseek",
+    "openrouter",
+    "gemini",
+    "anthropic",
+    "perplexity",
+    "huggingface",
+    "local",
+    "azureopenai",
+]
 
 provider_mapping = {
     "openai": {
@@ -86,7 +106,7 @@ provider_mapping = {
         "azure_endpoint": AZURE_OPENAI_ENDPOINT,
         "azure_deployment": AZURE_OPENAI_DEPLOYMENT,
         "api_version": AZURE_OPENAI_API_VERSION,
-    }
+    },
 }
 
 if OPENAI_API_KEY:
@@ -94,6 +114,8 @@ if OPENAI_API_KEY:
 else:
     # If no OpenAI API key is provided, disable tracing
     set_tracing_disabled(True)
+
+supported_search_providers = ["serper", "searchxng", "openai"]
 
 
 class LLMConfig:
@@ -108,6 +130,9 @@ class LLMConfig:
         fast_model_provider: str,
         fast_model: str,
     ):
+        if search_provider not in supported_search_providers:
+            raise ValueError(f"Invalid search provider: {search_provider}")
+
         self.search_provider = search_provider
 
         if reasoning_model_provider not in supported_providers:
@@ -147,7 +172,11 @@ def get_base_url(model: Union[OpenAIChatCompletionsModel, OpenAIResponsesModel])
     return str(model._client._base_url)
 
 
-def model_supports_structured_output(model: Union[OpenAIChatCompletionsModel, OpenAIResponsesModel]) -> bool:
+def model_supports_structured_output(
+    model: Union[OpenAIChatCompletionsModel, OpenAIResponsesModel],
+) -> bool:
     """Utility function to check if a model supports structured output"""
     structured_output_providers = ["openai.com", "anthropic.com"]
-    return any(provider in get_base_url(model) for provider in structured_output_providers)
+    return any(
+        provider in get_base_url(model) for provider in structured_output_providers
+    )
