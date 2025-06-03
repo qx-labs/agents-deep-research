@@ -11,6 +11,8 @@ from .agents.thinking_agent import init_thinking_agent
 from .agents.tool_agents import init_tool_agents, ToolAgentOutput
 from pydantic import BaseModel, Field
 from .llm_config import LLMConfig, create_default_config
+from .utils.citation_manager import CitationManager, CitationFormat
+from datetime import datetime
 
 
 class IterationData(BaseModel):
@@ -123,27 +125,32 @@ class IterativeResearcher:
     """Manager for the iterative research workflow that conducts research on a topic or subtopic by running a continuous research loop."""
 
     def __init__(
-        self, 
+        self,
         max_iterations: int = 5,
         max_time_minutes: int = 10,
-        verbose: bool = True,
+        verbose: bool = False,
         tracing: bool = False,
-        config: Optional[LLMConfig] = None
+        config: Optional[LLMConfig] = None,
+        citation_format: CitationFormat = CitationFormat.APA
     ):
-        self.max_iterations: int = max_iterations
-        self.max_time_minutes: int = max_time_minutes
+        self.max_iterations = max_iterations
+        self.max_time_minutes = max_time_minutes
         self.start_time: float = None
         self.iteration: int = 0
-        self.conversation: Conversation = Conversation()
+        self.conversation = Conversation()
         self.should_continue: bool = True
-        self.verbose: bool = verbose
-        self.tracing: bool = tracing
-        self.config: LLMConfig = create_default_config() if not config else config
+        self.verbose = verbose
+        self.tracing = tracing
+        self.config = config or create_default_config()
+        self.citation_manager = CitationManager()
+        self.citation_manager.citation_format = citation_format
+        
+        # Initialize agents
         self.knowledge_gap_agent = init_knowledge_gap_agent(self.config)
         self.tool_selector_agent = init_tool_selector_agent(self.config)
+        self.tool_agents = init_tool_agents(self.config)
         self.thinking_agent = init_thinking_agent(self.config)
         self.writer_agent = init_writer_agent(self.config)
-        self.tool_agents = init_tool_agents(self.config)
         
     async def run(
             self, 
@@ -307,10 +314,17 @@ class IterativeResearcher:
                 num_completed += 1
                 self._log_message(f"<processing>\nTool execution progress: {num_completed}/{len(async_tasks)}\n</processing>")
 
-            # Add findings from the tool outputs to the conversation
+            # Add findings from the tool outputs to the conversation and track sources
             findings = []
             for tool_output in results.values():
                 findings.append(tool_output.output)
+                # Add sources to citation manager
+                for source in tool_output.sources:
+                    self.citation_manager.add_source(
+                        url=source,
+                        title=f"Source from {agent_name}",
+                        publication_date=datetime.now()
+                    )
             self.conversation.set_latest_findings(findings)
 
             return results
@@ -397,9 +411,15 @@ class IterativeResearcher:
             input_str,
         )
         
+        # Add bibliography and credibility summary to the report
+        bibliography = self.citation_manager.generate_bibliography()
+        credibility_summary = self.citation_manager.get_source_credibility_summary()
+        
+        final_report = f"{result.final_output}\n\n## Bibliography\n\n{bibliography}\n\n## Source Credibility Summary\n\n{credibility_summary}"
+        
         self._log_message("Final response from IterativeResearcher created successfully")
         
-        return result.final_output
+        return final_report
     
     def _log_message(self, message: str) -> None:
         """Log a message if verbose is True"""

@@ -1,9 +1,11 @@
+from typing import List
 from pydantic import BaseModel, Field
 
 class ToolAgentOutput(BaseModel):
-    """Standard output for all tool agents"""
-    output: str
-    sources: list[str] = Field(default_factory=list)
+    """Output from a tool agent"""
+    output: str = Field(description="The output from the tool agent")
+    sources: List[str] = Field(description="List of source URLs used by the tool agent", default_factory=list)
+    metadata: dict = Field(description="Additional metadata about the tool execution", default_factory=dict)
 
 from .search_agent import init_search_agent
 from .crawl_agent import init_crawl_agent
