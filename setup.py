@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     
 with open("requirements.txt", "r") as f:
     reqs = [line.strip() for line in f if not any(pkg in line for pkg in exclude_packages)]
-
+        
 setup(
     name="deep-researcher",
     version=LATEST_VERSION,

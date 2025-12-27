@@ -11,8 +11,8 @@ Note: The appropriate environment variables need to be set up for each provider/
 # Note that this list of models is only used for basic testing
 PROVIDERS_TO_TEST = {
     'openai': 'gpt-4o-mini',
-    'azureopenai': 'gpt-4o-mini',
-    'anthropic': 'claude-3-5-sonnet-latest',
+    'azure_openai': 'gpt-5-mini',
+    'anthropic': 'claude-sonnet-4-5',
     'gemini': 'gemini-2.0-flash',
     'deepseek': 'deepseek-chat',
     'openrouter': 'google/gemma-3-4b-it:free',

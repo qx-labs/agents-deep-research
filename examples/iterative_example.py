@@ -11,7 +11,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from deep_researcher import IterativeResearcher
 
 manager = IterativeResearcher(
-    max_iterations=5,
+    max_iterations=1,
     max_time_minutes=10,
     verbose=True,
     tracing=True

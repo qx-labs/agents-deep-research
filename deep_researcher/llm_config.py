@@ -7,7 +7,7 @@ from agents import (
     set_tracing_export_api_key,
 )
 from dotenv import load_dotenv
-from openai import AsyncAzureOpenAI, AsyncOpenAI
+from openai import AsyncOpenAI
 
 from .utils.os import get_env_with_prefix
 
@@ -24,9 +24,7 @@ LOCAL_MODEL_URL = get_env_with_prefix(
     "LOCAL_MODEL_URL"
 )  # e.g. "http://localhost:11434/v1"
 AZURE_OPENAI_ENDPOINT = get_env_with_prefix("AZURE_OPENAI_ENDPOINT")
-AZURE_OPENAI_DEPLOYMENT = get_env_with_prefix("AZURE_OPENAI_DEPLOYMENT")
 AZURE_OPENAI_API_KEY = get_env_with_prefix("AZURE_OPENAI_API_KEY")
-AZURE_OPENAI_API_VERSION = get_env_with_prefix("AZURE_OPENAI_API_VERSION")
 
 REASONING_MODEL_PROVIDER = get_env_with_prefix("REASONING_MODEL_PROVIDER", "openai")
 REASONING_MODEL = get_env_with_prefix("REASONING_MODEL", "o3-mini")
@@ -47,7 +45,7 @@ supported_providers = [
     "perplexity",
     "huggingface",
     "local",
-    "azureopenai",
+    "azure_openai",
 ]
 
 provider_mapping = {
@@ -99,13 +97,11 @@ provider_mapping = {
         "base_url": LOCAL_MODEL_URL,
         "api_key": "ollama",  # Required by OpenAI client but not used
     },
-    "azureopenai": {
-        "client": AsyncAzureOpenAI,
+    "azure_openai": {
+        "client": AsyncOpenAI,
         "model": OpenAIChatCompletionsModel,
+        "base_url": AZURE_OPENAI_ENDPOINT,
         "api_key": AZURE_OPENAI_API_KEY,
-        "azure_endpoint": AZURE_OPENAI_ENDPOINT,
-        "azure_deployment": AZURE_OPENAI_DEPLOYMENT,
-        "api_version": AZURE_OPENAI_API_VERSION,
     },
 }
 

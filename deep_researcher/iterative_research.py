@@ -15,10 +15,10 @@ from .llm_config import LLMConfig, create_default_config
 
 class IterationData(BaseModel):
     """Data for a single iteration of the research loop."""
-    gap: str = Field(description="The gap addressed in the iteration", default_factory=list)
+    gap: str = Field(description="The gap addressed in the iteration", default="")
     tool_calls: List[str] = Field(description="The tool calls made", default_factory=list)
     findings: List[str] = Field(description="The findings collected from tool calls", default_factory=list)
-    thought: List[str] = Field(description="The thinking done to reflect on the success of the iteration and next steps", default_factory=list)
+    thought: str = Field(description="The thinking done to reflect on the success of the iteration and next steps", default="")
 
 
 class Conversation(BaseModel):
