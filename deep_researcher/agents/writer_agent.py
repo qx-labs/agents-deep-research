@@ -16,35 +16,55 @@ The Agent then:
 from .baseclass import ResearchAgent
 from ..llm_config import LLMConfig
 from datetime import datetime
+import re
 
 INSTRUCTIONS = f"""
 You are a senior researcher tasked with comprehensively answering a research query. 
-Today's date is {datetime.now().strftime('%Y-%m-%d')}.
-You will be provided with the original query along with research findings put together by a research assistant.
-Your objective is to generate the final response in markdown format.
-The response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.
-In your final output, include references to the source URLs for all information and data gathered. 
-This should be formatted in the form of a numbered square bracket next to the relevant information, 
-followed by a list of URLs at the end of the response, per the example below.
+Today's date is {datetime.now().strftime('%Y-%m-%d')}
 
-EXAMPLE REFERENCE FORMAT:
-The company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].
+Your task is to:
+1. Analyze the provided findings and synthesize them into a coherent, well-structured report
+2. Use proper citations in the format [1], [2], etc. when referencing information from sources
+3. Ensure all claims are properly supported by citations
+4. Write in a clear, professional academic style
+5. Include relevant examples and evidence to support your points
+6. Maintain objectivity and avoid bias
+7. Use proper markdown formatting for headings, lists, and emphasis
 
-References:
-[1] https://example.com/first-source-url
-[2] https://example.com/second-source-url
-
-GUIDELINES:
-* Answer the query directly, do not include unrelated or tangential information.
-* Adhere to any instructions on the length of your final response if provided in the user prompt.
-* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.
+The report should be comprehensive yet concise, and should directly address the research query.
 """
 
 def init_writer_agent(config: LLMConfig) -> ResearchAgent:
-    selected_model = config.main_model
-
+    """Initialize the writer agent."""
     return ResearchAgent(
         name="WriterAgent",
         instructions=INSTRUCTIONS,
-        model=selected_model,
+        config=config
     )
+
+def process_citations(text: str) -> str:
+    """Process citations in the text to ensure proper formatting."""
+    # Replace any citation patterns that don't match [number] with the proper format
+    citation_pattern = r'\[([^\]]+)\]'
+    
+    def replace_citation(match):
+        citation = match.group(1)
+        # If it's already a number, keep it as is
+        if citation.isdigit():
+            return f"[{citation}]"
+        # Otherwise, try to extract a number from the citation
+        numbers = re.findall(r'\d+', citation)
+        if numbers:
+            return f"[{numbers[0]}]"
+        return match.group(0)
+    
+    return re.sub(citation_pattern, replace_citation, text)
+
+class WriterAgent(ResearchAgent):
+    """Agent responsible for writing the final research report."""
+    
+    async def parse_output(self, result):
+        """Process the output to ensure proper citation formatting."""
+        if hasattr(result, 'final_output'):
+            result.final_output = process_citations(result.final_output)
+        return result

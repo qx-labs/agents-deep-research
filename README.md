@@ -19,6 +19,45 @@ Designed to be extendable to use custom tools and any other 3rd party LLMs compa
 
 Some background reading [here](https://www.j2.gg/thoughts/deep-research-how-it-works).
 
+## Major Updates
+
+### Enhanced Citation Management System
+
+The repository now includes a sophisticated citation management system that significantly enhances research quality and credibility:
+
+#### 1. Multi-Format Citation Support
+- APA, MLA, Chicago, Harvard, BibTeX, IEEE, and Vancouver citation styles
+- Automatic bibliography generation
+- Industry-specific citation formatting
+- Export capabilities in multiple formats (JSON, BibTeX, CSV)
+
+#### 2. Advanced Source Credibility Scoring
+- Domain-based reliability scoring (.edu, .gov, .org, etc.)
+- Industry-specific credibility weights
+- Source type classification (academic, legal, medical, etc.)
+- Recency and authority scoring
+- Verification status tracking
+
+#### 3. Source Verification System
+- Content hashing for verification
+- Verification status tracking
+- Verification notes and dates
+- Automatic credibility score adjustment for verified sources
+
+#### 4. Industry-Specific Features
+- Industry classification
+- Industry-specific credibility weights
+- Source type categorization
+- Metadata support for industry-specific information
+
+#### 5. Advanced Analytics
+- Source statistics and distribution
+- Credibility tracking
+- Industry distribution analysis
+- Source type distribution
+- Verification status tracking
+- Recency analysis
+
 ## Overview
 
 This package has two modes of research:
@@ -128,19 +167,40 @@ SERPER_API_KEY=<your_key>
 ```python
 # See the /examples folder for working examples
 import asyncio
-from deep_researcher import IterativeResearcher, DeepResearcher
+from deep_researcher import IterativeResearcher, DeepResearcher, CitationFormat
 
-# Run the IterativeResearcher for simple queries
-researcher = IterativeResearcher(max_iterations=5, max_time_minutes=5)
+# Run the IterativeResearcher with enhanced citation management
+researcher = IterativeResearcher(
+    max_iterations=5,
+    max_time_minutes=5,
+    citation_format=CitationFormat.APA  # Choose from APA, MLA, Chicago, Harvard, BibTeX, IEEE, Vancouver
+)
 query = "Provide a comprehensive overview of quantum computing"
 report = asyncio.run(
     researcher.run(query, output_length="5 pages")
 )
 
-# Run the DeepResearcher for more lengthy and structured reports
-researcher = DeepResearcher(max_iterations=3, max_time_minutes=5)
-report = asyncio.run(
-    researcher.run(query)
+# Access citation management features
+citation_manager = researcher.citation_manager
+
+# Get source statistics
+stats = citation_manager.get_source_statistics()
+print(f"Total sources: {stats['total_sources']}")
+print(f"Verified sources: {stats['verified_sources']}")
+print(f"Average credibility: {stats['average_credibility']:.2f}")
+
+# Export sources in different formats
+bibtex = citation_manager.export_sources(format="bibtex")
+csv = citation_manager.export_sources(format="csv")
+
+# Get industry-specific sources
+academic_sources = citation_manager.get_sources_by_type(SourceType.ACADEMIC)
+cs_sources = citation_manager.get_sources_by_industry("computer_science")
+
+# Verify sources
+citation_manager.verify_source(
+    citation_id=1,
+    verification_notes="Verified by expert review"
 )
 
 print(report)
@@ -172,17 +232,10 @@ report = asyncio.run(
 
 ### Command Line
 
-Run the research assistant from the command line.
-
-If you've installed via `pip`:
-```sh
-deep-researcher --mode deep --query "Provide a comprehensive overview of quantum computing" --max-iterations 3 --max-time 10 --verbose
-```
-
-Or if you've cloned the GitHub repo:
+Run the research assistant from the command line with enhanced citation features:
 
 ```sh
-python -m deep_researcher.main --mode deep --query "Provide a comprehensive overview of quantum computing" --max-iterations 3 --max-time 10 --verbose
+deep-researcher --mode deep --query "Provide a comprehensive overview of quantum computing" --max-iterations 3 --max-time 10 --verbose --citation-format apa
 ```
 
 Parameters:
@@ -193,6 +246,7 @@ Parameters:
 - `--max-time`: Maximum time in minutes before the research loop auto-exits to produce a final output (default: 10)
 - `--output-length`: Desired output length for the report (default: "5 pages")
 - `--output-instructions`: Additional formatting instructions for the final report
+- `--citation-format`: Citation format to use (default: apa, options: apa, mla, chicago, harvard, bibtex, ieee, vancouver)
 
 Boolean Flags:
 
@@ -217,6 +271,7 @@ The Deep Research Assistant is built with the following components:
 - **IterativeResearcher**: Orchestrates the iterative research workflow on a single topic or subtopic
 - **DeepResearcher**: Orchestrates a deeper and broader workflow that includes an initial report outline, calling of multiple parallel `IterativeResearch` instances, and final proofreading step
 - **LLMConfig**: Manages interactions with language models so that these can be swapped out as needed
+- **CitationManager**: Manages citations, sources, and credibility scoring
 
 ### Agent System
 
@@ -276,6 +331,12 @@ We include an `output_length` parameter for the `IterativeResearcher` to give th
 - [ ] Add more specialized research tools (e.g. Wikipedia, arXiv, data analysis etc.)
 - [ ] Add PDF parser
 - [ ] Add integration / RAG for local files
+- [ ] Add more citation formats
+- [ ] Enhance source verification system
+- [ ] Add more industry-specific features
+- [ ] Implement source deduplication
+- [ ] Add source relationship tracking
+- [ ] Implement source version control
 
 ## Author
 
