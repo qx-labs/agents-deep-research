@@ -1,0 +1,580 @@
+manifest:
+  version: "0.1.2"
+  schema: https://a2as.org/cert/schema
+  subject:
+    name: qx-labs/agents-deep-research
+    source: https://github.com/qx-labs/agents-deep-research
+    branch: main
+    commit: "5e7f4b23"
+    scope: [deep_researcher/agents/baseclass.py, deep_researcher/agents/knowledge_gap_agent.py, deep_researcher/agents/long_writer_agent.py,
+      deep_researcher/agents/planner_agent.py, deep_researcher/agents/proofreader_agent.py, deep_researcher/agents/thinking_agent.py,
+      deep_researcher/agents/tool_agents/crawl_agent.py, deep_researcher/agents/tool_agents/search_agent.py, deep_researcher/agents/tool_selector_agent.py,
+      deep_researcher/agents/utils/parse_output.py, deep_researcher/agents/writer_agent.py, deep_researcher/iterative_research.py,
+      deep_researcher/tools/crawl_website.py, deep_researcher/tools/web_search.py]
+  issued:
+    by: A2AS.org
+    at: '2026-01-26T16:12:22Z'
+  signatures:
+    digest: sha256:tnt0AJoLTUjAV0rUO3CWwPZm_jDYnHK8IVWMt68GH5A
+    key: ed25519:wpeBOIzt_e_TS051OJvieYO4v71ryHz7AlRl9YDbS-I
+    sig: ed25519:m5129ecFhL4ACkO1YNopwg4uWnj1FqW46yOR79lAbzhvKcpPqFHh-z6NF9_pUrjCm3Ws4BLGZPwQTCBNs53BDw
+
+agents:
+  agent.init_knowledge_gap_agent:
+    type: factory
+    models: [selected_model]
+    params:
+      function: init_knowledge_gap_agent
+      name: KnowledgeGapAgent
+      instructions: [INSTRUCTIONS]
+  agent.init_thinking_agent:
+    type: factory
+    models: [selected_model]
+    params:
+      function: init_thinking_agent
+      name: ThinkingAgent
+      instructions: [INSTRUCTIONS]
+  filter_agent:
+    type: instance
+    params:
+      class: ResearchAgent
+      base: Agent
+      function: init_filter_agent
+
+models:
+  selected_model:
+    type: variable
+    agents: [agent.init_thinking_agent, agent.init_knowledge_gap_agent]
+
+tools:
+  crawl_website:
+    type: decorator
+    params:
+      description: "Crawls the pages of a website starting with the starting_url and then descending into the pages linked\
+        \ from there.\nPrioritizes links found in headers/navigation, then body links, then subsequent pages.\n\nArgs:\n \
+        \   starting_url: Starting URL to scrape\n    \nReturns:\n    List of ScrapeResult objects which have the following\
+        \ fields:\n        - url: The URL of the web page\n        - title: The title of the web page\n        - description:\
+        \ The description of the web page\n        - text: The text content of the web page"
+  web_search:
+    type: decorator
+    params:
+      description: |-
+        Perform a web search for a given query and get back the URLs along with their titles, descriptions and text contents.
+
+        Args:
+            query: The search query
+
+        Returns:
+            List of ScrapeResult objects which have the following fields:
+                - url: The URL of the search result
+                - title: The title of the search result
+                - description: The description of the search result
+                - text: The full text content of the search result
+  web_search_tool:
+    type: wrapper
+
+imports:
+  Agent: agents.Agent
+  AgentSelectionPlan: agents.tool_selector_agent.AgentSelectionPlan
+  AgentTask: agents.tool_selector_agent.AgentTask
+  aiohttp: aiohttp
+  annotations: __future__.annotations
+  Any: typing.Any
+  asyncio: asyncio
+  AsyncOpenAI: openai.AsyncOpenAI
+  BaseModel: pydantic.BaseModel
+  BeautifulSoup: bs4.BeautifulSoup
+  Callable: typing.Callable
+  crawl_website: crawl_website.crawl_website
+  create_default_config: llm_config.create_default_config
+  create_type_parser: utils.parse_output.create_type_parser
+  create_web_search_tool: web_search.create_web_search_tool
+  custom_span: agents.custom_span
+  datetime: datetime.datetime
+  Dict: typing.Dict
+  Field: pydantic.Field
+  function_tool: agents.function_tool
+  gen_trace_id: agents.gen_trace_id
+  get_base_url: llm_config.get_base_url
+  get_env_with_prefix: utils.os.get_env_with_prefix
+  init_crawl_agent: tool_agents.crawl_agent.init_crawl_agent
+  init_knowledge_gap_agent: agents.knowledge_gap_agent.init_knowledge_gap_agent
+  init_long_writer_agent: agents.long_writer_agent.init_long_writer_agent
+  init_planner_agent: agents.planner_agent.init_planner_agent
+  init_proofreader_agent: agents.proofreader_agent.init_proofreader_agent
+  init_search_agent: tool_agents.search_agent.init_search_agent
+  init_thinking_agent: agents.thinking_agent.init_thinking_agent
+  init_tool_agents: agents.tool_agents.init_tool_agents
+  init_tool_selector_agent: agents.tool_selector_agent.init_tool_selector_agent
+  init_writer_agent: agents.writer_agent.init_writer_agent
+  IterativeResearcher: iterative_research.IterativeResearcher
+  json: json
+  KnowledgeGapOutput: agents.knowledge_gap_agent.KnowledgeGapOutput
+  List: typing.List
+  LLMConfig: llm_config.LLMConfig
+  load_dotenv: dotenv.load_dotenv
+  model_supports_structured_output: llm_config.model_supports_structured_output
+  OpenAIChatCompletionsModel: agents.OpenAIChatCompletionsModel
+  OpenAIResponsesModel: agents.OpenAIResponsesModel
+  Optional: typing.Optional
+  os: os
+  re: re
+  ReportDraft: proofreader_agent.ReportDraft
+  ReportDraftSection: agents.proofreader_agent.ReportDraftSection
+  ReportPlan: agents.planner_agent.ReportPlan
+  ReportPlanSection: agents.planner_agent.ReportPlanSection
+  ResearchAgent: baseclass.ResearchAgent
+  ResearchRunner: agents.baseclass.ResearchRunner
+  Runner: agents.Runner
+  RunResult: agents.RunResult
+  scrape_urls: web_search.scrape_urls
+  ScrapeResult: web_search.ScrapeResult
+  Set: typing.Set
+  set_tracing_disabled: agents.set_tracing_disabled
+  set_tracing_export_api_key: agents.set_tracing_export_api_key
+  ssl: ssl
+  ssl_context: web_search.ssl_context
+  TContext: agents.run_context.TContext
+  time: time
+  ToolAgentOutput: agents.tool_agents.ToolAgentOutput
+  trace: agents.trace
+  Tuple: typing.Tuple
+  Union: typing.Union
+  urljoin: urllib.parse.urljoin
+  urlparse: urllib.parse.urlparse
+  WebpageSnippet: web_search.WebpageSnippet
+  WebSearchTool: agents.WebSearchTool
+  write_report: agents.long_writer_agent.write_report
+
+functions:
+  __init__:
+    type: sync
+    module: deep_researcher.agents.baseclass
+    args: [self]
+  __str__:
+    type: sync
+    module: deep_researcher.agents.utils.parse_output
+    args: [self]
+  _build_report_plan:
+    type: async
+    module: deep_researcher.deep_research
+    args: [self, query]
+    params:
+      returns: ReportPlan
+  _check_constraints:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: bool
+  _create_final_report:
+    type: async
+    module: deep_researcher.iterative_research
+    args: [self, query, length, instructions]
+    params:
+      returns: str
+  _evaluate_gaps:
+    type: async
+    module: deep_researcher.iterative_research
+    args: [self, query, background_context]
+    params:
+      returns: KnowledgeGapOutput
+  _execute_tools:
+    type: async
+    module: deep_researcher.iterative_research
+    args: [self, tasks]
+    params:
+      returns: Dict
+  _filter_results:
+    type: async
+    module: deep_researcher.tools.web_search
+    args: [self, results, query, max_results]
+    params:
+      returns: List[WebpageSnippet]
+  _generate_observations:
+    type: async
+    module: deep_researcher.iterative_research
+    args: [self, query, background_context]
+    params:
+      returns: str
+  _init_model:
+    type: sync
+    module: deep_researcher.llm_config
+    args: [provider_key, model_name]
+  _log_message:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, message]
+    params:
+      returns: None
+  _run_agent_task:
+    type: async
+    module: deep_researcher.iterative_research
+    args: [self, task]
+    params:
+      returns: tuple
+  _run_research_loops:
+    type: async
+    module: deep_researcher.deep_research
+    args: [self, report_plan]
+    params:
+      returns: List[str]
+  _select_agents:
+    type: async
+    module: deep_researcher.iterative_research
+    args: [self, gap, query, background_context]
+    params:
+      returns: AgentSelectionPlan
+  add_iteration:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, iteration_data]
+  adjust_heading_level:
+    type: sync
+    module: deep_researcher.agents.long_writer_agent
+    args: [match]
+  compile_conversation_history:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  convert_json_string_to_type:
+    type: sync
+    module: deep_researcher.agents.utils.parse_output
+    args: [output]
+    params:
+      returns: BaseModel
+  convert_ref_list_to_map:
+    type: sync
+    module: deep_researcher.agents.long_writer_agent
+    args: [ref_list]
+    params:
+      returns: Dict
+  crawl_website:
+    type: tool
+    module: deep_researcher.tools.crawl_website
+    args: [starting_url]
+    params:
+      returns: Union
+  create_default_config:
+    type: sync
+    module: deep_researcher.llm_config
+    params:
+      returns: LLMConfig
+  create_type_parser:
+    type: sync
+    module: deep_researcher.agents.utils.parse_output
+    args: [type]
+    params:
+      returns: Callable
+  create_web_search_tool:
+    type: sync
+    module: deep_researcher.tools.web_search
+    args: [config]
+    params:
+      returns: function_tool
+  extract_links:
+    type: async
+    module: deep_researcher.tools.crawl_website
+    args: [html, current_url]
+    params:
+      returns: tuple
+  fetch_and_process_url:
+    type: async
+    module: deep_researcher.tools.web_search
+    args: [session, item]
+    params:
+      returns: ScrapeResult
+  fetch_page:
+    type: async
+    module: deep_researcher.tools.crawl_website
+    args: [url]
+    params:
+      returns: str
+  find_json_in_string:
+    type: sync
+    module: deep_researcher.agents.utils.parse_output
+    args: [string]
+    params:
+      returns: str
+  get_action_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, iteration_num]
+    params:
+      returns: str
+  get_all_findings:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: List[str]
+  get_base_url:
+    type: sync
+    module: deep_researcher.llm_config
+    args: [model]
+    params:
+      returns: str
+  get_env_with_prefix:
+    type: sync
+    module: deep_researcher.utils.os
+    args: [base_name, prefix, default]
+    params:
+      returns: Optional[str]
+  get_findings_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, iteration_num]
+    params:
+      returns: str
+  get_latest_findings:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: List[str]
+  get_latest_gap:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  get_latest_thought:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  get_latest_tool_calls:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: List[str]
+  get_task_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, iteration_num]
+    params:
+      returns: str
+  get_thought_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, iteration_num]
+    params:
+      returns: str
+  html_to_text:
+    type: sync
+    module: deep_researcher.tools.web_search
+    args: [html_content]
+    params:
+      returns: str
+  init_crawl_agent:
+    type: sync
+    module: deep_researcher.agents.tool_agents.crawl_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_filter_agent:
+    type: sync
+    module: deep_researcher.tools.web_search
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_knowledge_gap_agent:
+    type: sync
+    module: deep_researcher.agents.knowledge_gap_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_long_writer_agent:
+    type: sync
+    module: deep_researcher.agents.long_writer_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_planner_agent:
+    type: sync
+    module: deep_researcher.agents.planner_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_proofreader_agent:
+    type: sync
+    module: deep_researcher.agents.proofreader_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_search_agent:
+    type: sync
+    module: deep_researcher.agents.tool_agents.search_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_thinking_agent:
+    type: sync
+    module: deep_researcher.agents.thinking_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_tool_agents:
+    type: sync
+    module: deep_researcher.agents.tool_agents
+    args: [config]
+    params:
+      returns: dict
+  init_tool_selector_agent:
+    type: sync
+    module: deep_researcher.agents.tool_selector_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  init_writer_agent:
+    type: sync
+    module: deep_researcher.agents.writer_agent
+    args: [config]
+    params:
+      returns: ResearchAgent
+  is_valid_url:
+    type: sync
+    module: deep_researcher.tools.web_search
+    args: [url]
+    params:
+      returns: bool
+  latest_action_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  latest_findings_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  latest_task_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  latest_thought_string:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self]
+    params:
+      returns: str
+  model_supports_structured_output:
+    type: sync
+    module: deep_researcher.llm_config
+    args: [model]
+    params:
+      returns: bool
+  parse_json_output:
+    type: sync
+    module: deep_researcher.agents.utils.parse_output
+    args: [output]
+    params:
+      returns: Any
+  parse_output:
+    type: async
+    module: deep_researcher.agents.baseclass
+    args: [self, run_result]
+    params:
+      returns: RunResult
+  reformat_references:
+    type: sync
+    module: deep_researcher.agents.long_writer_agent
+    args: [section_markdown, section_references, all_references]
+    params:
+      returns: Tuple
+  reformat_section_headings:
+    type: sync
+    module: deep_researcher.agents.long_writer_agent
+    args: [section_markdown]
+    params:
+      returns: str
+  replace_reference:
+    type: sync
+    module: deep_researcher.agents.long_writer_agent
+    args: [match]
+  run:
+    type: async
+    module: deep_researcher.agents.baseclass
+    args: [cls]
+    params:
+      returns: RunResult
+  run_research_for_section:
+    type: async
+    module: deep_researcher.deep_research
+    args: [section]
+  scrape_urls:
+    type: async
+    module: deep_researcher.tools.web_search
+    args: [items]
+    params:
+      returns: List[ScrapeResult]
+  search:
+    type: async
+    module: deep_researcher.tools.web_search
+    args: [self, query, filter_for_relevance, max_results]
+    params:
+      returns: List[WebpageSnippet]
+  set_latest_findings:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, findings]
+  set_latest_gap:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, gap]
+  set_latest_thought:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, thought]
+  set_latest_tool_calls:
+    type: sync
+    module: deep_researcher.iterative_research
+    args: [self, tool_calls]
+  web_search:
+    type: tool
+    module: deep_researcher.tools.web_search
+    args: [query]
+    params:
+      returns: Union
+  write_next_section:
+    type: async
+    module: deep_researcher.agents.long_writer_agent
+    args: [long_writer_agent, original_query, report_draft, next_section_title, next_section_draft]
+    params:
+      returns: LongWriterOutput
+  write_report:
+    type: async
+    module: deep_researcher.agents.long_writer_agent
+    args: [long_writer_agent, original_query, report_title, report_draft]
+    params:
+      returns: str
+
+variables:
+  base_name:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [deep_researcher.utils.os]
+  prefixed_name:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [deep_researcher.utils.os]
+  SEARCHXNG_HOST:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [deep_researcher.tools.web_search]
+  SERPER_API_KEY:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [deep_researcher.tools.web_search]
