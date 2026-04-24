@@ -267,6 +267,71 @@ LLMs are not good at following guidelines on output length. You typically run in
 
 We include an `output_length` parameter for the `IterativeResearcher` to give the user control but bear in mind the above limitations.
 
+## FAQ & Troubleshooting
+
+### Getting Started
+
+**Q: How do I set up API keys?**
+
+You need at least one LLM API key and a search provider key. Copy `.env.example` to `.env` and fill in:
+```sh
+# Required: At least one LLM API key
+OPENAI_API_KEY=sk-...
+# or ANTHROPIC_API_KEY, GOOGLE_API_KEY, etc.
+
+# Required: Search provider key (Serper recommended)
+SERPER_API_KEY=your-serper-key
+SEARCH_PROVIDER=serper  # or 'openai' for OpenAI's native search
+```
+
+**Q: Which models work best?**
+
+For OpenAI models, `gpt-4o-mini` performs excellently for tool selection (often better than `o3-mini`), while `o3-mini` is ideal for planning and `gpt-4o` for final writing. For Gemini, only **Gemini 2.5 Pro** (`gemini-2.5-pro-preview-03-25`) works reliably — Gemini 2.0 Flash frequently fails at tool calling.
+
+**Q: Can I use local models via Ollama?**
+
+Yes. Set the `base_url` in your LLM configuration to point to your Ollama instance (typically `http://localhost:11434/v1`). Note that local models must support [Structured Outputs](https://platform.openai.com/docs/guides/structured-outputs) for the agent workflow to function correctly.
+
+### Common Issues
+
+**Q: I'm getting rate limit errors. What should I do?**
+
+The `DeepResearcher` makes 50-60 parallel API calls at peak. If you're hitting rate limits:
+- Switch to `IterativeResearcher` mode (`--mode simple`) which is less API-intensive
+- Upgrade to a higher tier with your LLM provider
+- Increase `--max-time` to allow more time between retries
+
+**Q: The output is shorter than expected. Why?**
+
+LLMs struggle with precise word counts. Instead of specifying "5000 words", use familiar references like "length of a blog post" or "a few paragraphs" via `--output-instructions`. Also, most models cap at 1-2,000 words per response — for longer reports, use `--mode deep` which generates section-by-section.
+
+**Q: Tool calling fails with non-OpenAI models.**
+
+Ensure your model provider supports the OpenAI API spec with Structured Outputs (`response_format: {type: "json_schema", ...}`). Models like DeepSeek via OpenRouter work well. Test with a simple query first before running full research.
+
+**Q: How do I enable trace monitoring?**
+
+Add `--tracing` to your CLI command or set `tracing=True` in the Python API. Note: tracing only works with OpenAI models and requires an OpenAI account.
+
+### Advanced Usage
+
+**Q: How do I add custom search providers?**
+
+Set `SEARCH_PROVIDER=openai` to use OpenAI's native web search, or implement a custom search tool by adding it to `deep_researcher/tools/` and registering it in the tool agents `__init__.py`.
+
+**Q: Can I run multiple research tasks in parallel?**
+
+Yes. Each `IterativeResearcher` or `DeepResearcher` instance is independent. Just ensure you have sufficient API rate limits for concurrent execution.
+
+**Q: How do I implement a custom tool agent?**
+
+1. Create your tool in `deep_researcher/tools/`
+2. Create a tool agent in `deep_researcher/agents/tool_agents/`
+3. Register it in `deep_researcher/agents/tool_agents/__init__.py`
+4. Update the system prompt in `deep_researcher/agents/tool_selector_agent.py`
+
+See the "Implementing Custom Tool Agents" section above for details.
+
 ## TODOs:
 
 - [ ] Add unit tests for different model providers
