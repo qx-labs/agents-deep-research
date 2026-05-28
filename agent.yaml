@@ -1,0 +1,45 @@
+spec_version: "0.1.0"
+name: agents-deep-research
+version: 1.0.0
+description: >
+  A multi-agent deep research assistant built on the OpenAI Agents SDK. Given
+  any research query, it iteratively identifies knowledge gaps, selects the
+  right research tools (web search, crawler), gathers findings in parallel, and
+  synthesises everything into a comprehensive, cited Markdown report. Supports
+  two modes: IterativeResearcher for shorter reports and DeepResearcher for
+  long-form, structured reports with parallel section research. Compatible with
+  OpenAI, Anthropic, Gemini, DeepSeek, Perplexity, OpenRouter, Azure OpenAI,
+  Hugging Face, and local models (Ollama/LM Studio).
+author: qx-labs
+license: Apache-2.0
+
+model:
+  preferred: openai:gpt-4o
+  fallback:
+    - anthropic:claude-opus-4-7
+    - openai:gpt-4o-mini
+  constraints:
+    temperature: 0.3
+    max_tokens: 8192
+
+skills:
+  - knowledge-gap-analysis
+  - tool-selection
+  - web-search
+  - website-crawling
+  - report-writing
+  - parallel-section-research
+
+runtime:
+  max_turns: 50
+  timeout: 600
+
+compliance:
+  risk_tier: standard
+  supervision:
+    human_in_the_loop: none
+    kill_switch: true
+  recordkeeping:
+    audit_logging: true
+  data_governance:
+    pii_handling: redact
