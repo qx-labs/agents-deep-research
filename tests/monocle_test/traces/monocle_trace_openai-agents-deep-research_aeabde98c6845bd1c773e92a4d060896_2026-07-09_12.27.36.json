@@ -1,0 +1,1029 @@
+[{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "d5d36342511e7d60",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "c3b2611eec7d728d",
+    "start_time": "2026-07-09T19:27:31.836080Z",
+    "end_time": "2026-07-09T19:27:36.125983Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "4e2859965a425ddf512984d23b703661",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:31.836169Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a research expert who is managing a research process in iterations. Today's date is 2026-07-09.\\n\\nYou are given:\\n1. The original research query along with some supporting background context\\n2. A history of the tasks, actions, findings and thoughts you've made up until this point in the research process (on iteration 1 you will be at the start of the research process, so this will be empty)\\n\\nYour objective is to reflect on the research process so far and share your latest thoughts.\\n\\nSpecifically, your thoughts should include reflections on questions such as:\\n- What have you learned from the last iteration?\\n- What new areas would you like to explore next, or existing topics you'd like to go deeper into?\\n- Were you able to retrieve the information you were looking for in the last iteration?\\n- If not, should we change our approach or move to the next topic?\\n- Is there any info that is contradictory or conflicting?\\n\\nGuidelines:\\n- Share you stream of consciousness on the above questions as raw text\\n- Keep your response concise and informal\\n- Focus most of your thoughts on the most recent iteration and how that influences this next iteration\\n- Our aim is to do very deep and thorough research - bear this in mind when reflecting on the research process\\n- DO NOT produce a draft of the final report. This is not your job.\\n- If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started\\n\"}",
+                    "{\"user\": \"\\n        You are starting iteration 1 of your research process.\\n\\n        ORIGINAL QUERY:\\n        What is the current state of quantum computing?\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:36.125920Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"Alright, starting fresh on quantum computing! Here's what I'm thinking for our first iteration:\\n\\n1. **Overview of Current Developments**: We need to gather info on the latest advances in quantum computing. This includes any breakthroughs in quantum algorithms, hardware improvements, or scalability solutions.\\n\\n2. **Key Players and Collaborations**: Identifying the major organizations and companies pushing the field forward. Understanding any significant partnerships between academic institutions and tech companies.\\n\\n3. **Practical Applications**: Exploring what real-world applications have emerged recently and what industries are starting to make use of quantum technologies.\\n\\n4. **Challenges and Limitations**: Gathering insights into the current hurdles faced, such as error rates, decoherence, and operational challenges. This helps in understanding the maturity of the field.\\n\\n5. **Government and Funding Initiatives**: Looking into how governments are supporting quantum research and any large-scale funding initiatives or international collaborations.\\n\\n6. **Roadmaps and Future Prospects**: What are experts saying about the timeline for quantum computing's integration into mainstream technology?\\n\\nBy focusing on these areas, we'll get a comprehensive view of where quantum computing stands today. I'll dive into academic journals, news articles, company press releases, and government reports for this initial round of data gathering. Excited to see what we uncover!\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:36.125947Z",
+            "attributes": {
+                "completion_tokens": 261,
+                "prompt_tokens": 372,
+                "total_tokens": 633
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "c3b2611eec7d728d",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:31.832737Z",
+    "end_time": "2026-07-09T19:27:36.126659Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "ThinkingAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a research expert who is managing a research process in iterations. Today's date is 2026-07-09.\n\nYou are given:\n1. The original research query along with some supporting background context\n2. A history of the tasks, actions, findings and thoughts you've made up until this point in the research process (on iteration 1 you will be at the start of the research process, so this will be empty)\n\nYour objective is to reflect on the research process so far and share your latest thoughts.\n\nSpecifically, your thoughts should include reflections on questions such as:\n- What have you learned from the last iteration?\n- What new areas would you like to explore next, or existing topics you'd like to go deeper into?\n- Were you able to retrieve the information you were looking for in the last iteration?\n- If not, should we change our approach or move to the next topic?\n- Is there any info that is contradictory or conflicting?\n\nGuidelines:\n- Share you stream of consciousness on the above questions as raw text\n- Keep your response concise and informal\n- Focus most of your thoughts on the most recent iteration and how that influences this next iteration\n- Our aim is to do very deep and thorough research - bear this in mind when reflecting on the research process\n- DO NOT produce a draft of the final report. This is not your job.\n- If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started\n",
+        "last.inference": "d5d36342511e7d60:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "4e2859965a425ddf512984d23b703661",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": ""
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:31.832794Z",
+            "attributes": {
+                "input": [
+                    "\n        You are starting iteration 1 of your research process.\n\n        ORIGINAL QUERY:\n        What is the current state of quantum computing?\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:36.126633Z",
+            "attributes": {
+                "response": "Alright, starting fresh on quantum computing! Here's what I'm thinking for our first iteration:\n\n1. **Overview of Current Developments**: We need to gather info on the latest advances in quantum computing. This includes any breakthroughs in quantum algorithms, hardware improvements, or scalability solutions.\n\n2. **Key Players and Collaborations**: Identifying the major organizations and companies pushing the field forward. Understanding any significant partnerships between academic institutions and tech companies.\n\n3. **Practical Applications**: Exploring what real-world applications have emerged recently and what industries are starting to make use of quantum technologies.\n\n4. **Challenges and Limitations**: Gathering insights into the current hurdles faced, such as error rates, decoherence, and operational challenges. This helps in understanding the maturity of the field.\n\n5. **Government and Funding Initiatives**: Looking into how governments are supporting quantum research and any large-scale funding initiatives or international collaborations.\n\n6. **Roadmaps and Future Prospects**: What are experts saying about the timeline for quantum computing's integration into mainstream technology?\n\nBy focusing on these areas, we'll get a comprehensive view of where quantum computing stands today. I'll dive into academic journals, news articles, company press releases, and government reports for this initial round of data gathering. Excited to see what we uncover!"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:36.126639Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "7e3b7677d88cd0a2",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "22ad8ed687dd18a3",
+    "start_time": "2026-07-09T19:27:36.128315Z",
+    "end_time": "2026-07-09T19:27:37.376694Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "d2138accd07cda8555fb06e072238770",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:36.128375Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a Research State Evaluator. Today's date is 2026-07-09.\\nYour job is to critically analyze the current state of a research report, \\nidentify what knowledge gaps still exist and determine the best next step to take.\\n\\nYou will be given:\\n1. The original user query and any relevant background context to the query\\n2. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\\n\\nYour task is to:\\n1. Carefully review the findings and thoughts, particularly from the latest iteration, and assess their completeness in answering the original query\\n2. Determine if the findings are sufficiently complete to end the research loop\\n3. If not, identify up to 3 knowledge gaps that need to be addressed in sequence in order to continue with research - these should be relevant to the original query\\n\\nBe specific in the gaps you identify and include relevant information as this will be passed onto another agent to process without additional context.\\n\\nOnly output JSON and follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Output from the Knowledge Gap Agent', 'properties': {'research_complete': {'description': 'Whether the research and findings are complete enough to end the research loop', 'title': 'Research Complete', 'type': 'boolean'}, 'outstanding_gaps': {'description': 'List of knowledge gaps that still need to be addressed', 'items': {'type': 'string'}, 'title': 'Outstanding Gaps', 'type': 'array'}}, 'required': ['research_complete', 'outstanding_gaps'], 'title': 'KnowledgeGapOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"\\n        Current Iteration Number: 1\\n        Time Elapsed: 0.07 minutes of maximum 3 minutes\\n\\n        ORIGINAL QUERY:\\n        What is the current state of quantum computing?\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n<thought>\\nAlright, starting fresh on quantum computing! Here's what I'm thinking for our first iteration:\\n\\n1. **Overview of Current Developments**: We need to gather info on the latest advances in quantum computing. This includes any breakthroughs in quantum algorithms, hardware improvements, or scalability solutions.\\n\\n2. **Key Players and Collaborations**: Identifying the major organizations and companies pushing the field forward. Understanding any significant partnerships between academic institutions and tech companies.\\n\\n3. **Practical Applications**: Exploring what real-world applications have emerged recently and what industries are starting to make use of quantum technologies.\\n\\n4. **Challenges and Limitations**: Gathering insights into the current hurdles faced, such as error rates, decoherence, and operational challenges. This helps in understanding the maturity of the field.\\n\\n5. **Government and Funding Initiatives**: Looking into how governments are supporting quantum research and any large-scale funding initiatives or international collaborations.\\n\\n6. **Roadmaps and Future Prospects**: What are experts saying about the timeline for quantum computing's integration into mainstream technology?\\n\\nBy focusing on these areas, we'll get a comprehensive view of where quantum computing stands today. I'll dive into academic journals, news articles, company press releases, and government reports for this initial round of data gathering. Excited to see what we uncover!\\n</thought>\\n\\n        \\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:37.376637Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"research_complete\\\":false,\\\"outstanding_gaps\\\":[\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"Identifying significant partnerships and collaborations in quantum computing\\\",\\\"Recent real-world applications and industries utilizing quantum technologies\\\"]}\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:37.376667Z",
+            "attributes": {
+                "completion_tokens": 43,
+                "prompt_tokens": 789,
+                "total_tokens": 832
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "22ad8ed687dd18a3",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:36.127752Z",
+    "end_time": "2026-07-09T19:27:37.378757Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "KnowledgeGapAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a Research State Evaluator. Today's date is 2026-07-09.\nYour job is to critically analyze the current state of a research report, \nidentify what knowledge gaps still exist and determine the best next step to take.\n\nYou will be given:\n1. The original user query and any relevant background context to the query\n2. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\n\nYour task is to:\n1. Carefully review the findings and thoughts, particularly from the latest iteration, and assess their completeness in answering the original query\n2. Determine if the findings are sufficiently complete to end the research loop\n3. If not, identify up to 3 knowledge gaps that need to be addressed in sequence in order to continue with research - these should be relevant to the original query\n\nBe specific in the gaps you identify and include relevant information as this will be passed onto another agent to process without additional context.\n\nOnly output JSON and follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Output from the Knowledge Gap Agent', 'properties': {'research_complete': {'description': 'Whether the research and findings are complete enough to end the research loop', 'title': 'Research Complete', 'type': 'boolean'}, 'outstanding_gaps': {'description': 'List of knowledge gaps that still need to be addressed', 'items': {'type': 'string'}, 'title': 'Outstanding Gaps', 'type': 'array'}}, 'required': ['research_complete', 'outstanding_gaps'], 'title': 'KnowledgeGapOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ThinkingAgent",
+        "entity.1.from_agent_span_id": "c3b2611eec7d728d",
+        "last.inference": "7e3b7677d88cd0a2:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "d2138accd07cda8555fb06e072238770",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "d5d36342511e7d60"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:36.127797Z",
+            "attributes": {
+                "input": [
+                    "\n        Current Iteration Number: 1\n        Time Elapsed: 0.07 minutes of maximum 3 minutes\n\n        ORIGINAL QUERY:\n        What is the current state of quantum computing?\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n<thought>\nAlright, starting fresh on quantum computing! Here's what I'm thinking for our first iteration:\n\n1. **Overview of Current Developments**: We need to gather info on the latest advances in quantum computing. This includes any breakthroughs in quantum algorithms, hardware improvements, or scalability solutions.\n\n2. **Key Players and Collaborations**: Identifying the major organizations and companies pushing the field forward. Understanding any significant partnerships between academic institutions and tech companies.\n\n3. **Practical Applications**: Exploring what real-world applications have emerged recently and what industries are starting to make use of quantum technologies.\n\n4. **Challenges and Limitations**: Gathering insights into the current hurdles faced, such as error rates, decoherence, and operational challenges. This helps in understanding the maturity of the field.\n\n5. **Government and Funding Initiatives**: Looking into how governments are supporting quantum research and any large-scale funding initiatives or international collaborations.\n\n6. **Roadmaps and Future Prospects**: What are experts saying about the timeline for quantum computing's integration into mainstream technology?\n\nBy focusing on these areas, we'll get a comprehensive view of where quantum computing stands today. I'll dive into academic journals, news articles, company press releases, and government reports for this initial round of data gathering. Excited to see what we uncover!\n</thought>\n\n        \n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:37.378721Z",
+            "attributes": {
+                "response": "research_complete=False outstanding_gaps=['Latest breakthroughs in quantum algorithms over the past year', 'Identifying significant partnerships and collaborations in quantum computing', 'Recent real-world applications and industries utilizing quantum technologies']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:37.378728Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "cb530035951ba703",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "718c151ab0a77bac",
+    "start_time": "2026-07-09T19:27:37.381500Z",
+    "end_time": "2026-07-09T19:27:39.981572Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "6fc9a6827b5963cde9cffb4126a1dd76",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:37.381594Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are an Tool Selector responsible for determining which specialized agents should address a knowledge gap in a research project.\\nToday's date is 2026-07-09.\\n\\nYou will be given:\\n1. The original user query\\n2. A knowledge gap identified in the research\\n3. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\\n\\nYour task is to decide:\\n1. Which specialized agents are best suited to address the gap\\n2. What specific queries should be given to the agents (keep this short - 3-6 words)\\n\\nAvailable specialized agents:\\n- WebSearchAgent: General web search for broad topics (can be called multiple times with different queries)\\n- SiteCrawlerAgent: Crawl the pages of a specific website to retrieve information about it - use this if you want to find out something about a particular company, entity or product\\n\\nGuidelines:\\n- Aim to call at most 3 agents at a time in your final output\\n- You can list the WebSearchAgent multiple times with different queries if needed to cover the full scope of the knowledge gap\\n- Be specific and concise (3-6 words) with the agent queries - they should target exactly what information is needed\\n- If you know the website or domain name of an entity being researched, always include it in the query\\n- If a gap doesn't clearly match any agent's capability, default to the WebSearchAgent\\n- Use the history of actions / tool calls as a guide - try not to repeat yourself if an approach didn't work previously\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'$defs': {'AgentTask': {'description': 'A task for a specific agent to address knowledge gaps', 'properties': {'gap': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The knowledge gap being addressed', 'title': 'Gap'}, 'agent': {'description': 'The name of the agent to use', 'title': 'Agent', 'type': 'string'}, 'query': {'description': 'The specific query for the agent', 'title': 'Query', 'type': 'string'}, 'entity_website': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The website of the entity being researched, if known', 'title': 'Entity Website'}}, 'required': ['agent', 'query'], 'title': 'AgentTask', 'type': 'object'}}, 'description': 'Plan for which agents to use for knowledge gaps', 'properties': {'tasks': {'description': 'List of agent tasks to address knowledge gaps', 'items': {'$ref': '#/$defs/AgentTask'}, 'title': 'Tasks', 'type': 'array'}}, 'required': ['tasks'], 'title': 'AgentSelectionPlan', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"\\n        ORIGINAL QUERY:\\n        What is the current state of quantum computing?\\n\\n        KNOWLEDGE GAP TO ADDRESS:\\n        Latest breakthroughs in quantum algorithms over the past year\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n<thought>\\nAlright, starting fresh on quantum computing! Here's what I'm thinking for our first iteration:\\n\\n1. **Overview of Current Developments**: We need to gather info on the latest advances in quantum computing. This includes any breakthroughs in quantum algorithms, hardware improvements, or scalability solutions.\\n\\n2. **Key Players and Collaborations**: Identifying the major organizations and companies pushing the field forward. Understanding any significant partnerships between academic institutions and tech companies.\\n\\n3. **Practical Applications**: Exploring what real-world applications have emerged recently and what industries are starting to make use of quantum technologies.\\n\\n4. **Challenges and Limitations**: Gathering insights into the current hurdles faced, such as error rates, decoherence, and operational challenges. This helps in understanding the maturity of the field.\\n\\n5. **Government and Funding Initiatives**: Looking into how governments are supporting quantum research and any large-scale funding initiatives or international collaborations.\\n\\n6. **Roadmaps and Future Prospects**: What are experts saying about the timeline for quantum computing's integration into mainstream technology?\\n\\nBy focusing on these areas, we'll get a comprehensive view of where quantum computing stands today. I'll dive into academic journals, news articles, company press releases, and government reports for this initial round of data gathering. Excited to see what we uncover!\\n</thought>\\n\\n<task>\\nAddress this knowledge gap: Latest breakthroughs in quantum algorithms over the past year\\n</task>\\n\\n\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:39.981535Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"tasks\\\":[{\\\"gap\\\":\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Recent breakthroughs quantum algorithms\\\",\\\"entity_website\\\":null},{\\\"gap\\\":\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"2026 quantum algorithm advancements\\\",\\\"entity_website\\\":null},{\\\"gap\\\":\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Quantum computing algorithm updates\\\",\\\"entity_website\\\":null}]}\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:39.981553Z",
+            "attributes": {
+                "completion_tokens": 100,
+                "prompt_tokens": 1182,
+                "total_tokens": 1282
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "718c151ab0a77bac",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:37.380472Z",
+    "end_time": "2026-07-09T19:27:39.981979Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "ToolSelectorAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are an Tool Selector responsible for determining which specialized agents should address a knowledge gap in a research project.\nToday's date is 2026-07-09.\n\nYou will be given:\n1. The original user query\n2. A knowledge gap identified in the research\n3. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\n\nYour task is to decide:\n1. Which specialized agents are best suited to address the gap\n2. What specific queries should be given to the agents (keep this short - 3-6 words)\n\nAvailable specialized agents:\n- WebSearchAgent: General web search for broad topics (can be called multiple times with different queries)\n- SiteCrawlerAgent: Crawl the pages of a specific website to retrieve information about it - use this if you want to find out something about a particular company, entity or product\n\nGuidelines:\n- Aim to call at most 3 agents at a time in your final output\n- You can list the WebSearchAgent multiple times with different queries if needed to cover the full scope of the knowledge gap\n- Be specific and concise (3-6 words) with the agent queries - they should target exactly what information is needed\n- If you know the website or domain name of an entity being researched, always include it in the query\n- If a gap doesn't clearly match any agent's capability, default to the WebSearchAgent\n- Use the history of actions / tool calls as a guide - try not to repeat yourself if an approach didn't work previously\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'$defs': {'AgentTask': {'description': 'A task for a specific agent to address knowledge gaps', 'properties': {'gap': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The knowledge gap being addressed', 'title': 'Gap'}, 'agent': {'description': 'The name of the agent to use', 'title': 'Agent', 'type': 'string'}, 'query': {'description': 'The specific query for the agent', 'title': 'Query', 'type': 'string'}, 'entity_website': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The website of the entity being researched, if known', 'title': 'Entity Website'}}, 'required': ['agent', 'query'], 'title': 'AgentTask', 'type': 'object'}}, 'description': 'Plan for which agents to use for knowledge gaps', 'properties': {'tasks': {'description': 'List of agent tasks to address knowledge gaps', 'items': {'$ref': '#/$defs/AgentTask'}, 'title': 'Tasks', 'type': 'array'}}, 'required': ['tasks'], 'title': 'AgentSelectionPlan', 'type': 'object'}\n",
+        "entity.1.from_agent": "KnowledgeGapAgent",
+        "entity.1.from_agent_span_id": "22ad8ed687dd18a3",
+        "last.inference": "cb530035951ba703:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "6fc9a6827b5963cde9cffb4126a1dd76",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "7e3b7677d88cd0a2"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:37.380530Z",
+            "attributes": {
+                "input": [
+                    "\n        ORIGINAL QUERY:\n        What is the current state of quantum computing?\n\n        KNOWLEDGE GAP TO ADDRESS:\n        Latest breakthroughs in quantum algorithms over the past year\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n<thought>\nAlright, starting fresh on quantum computing! Here's what I'm thinking for our first iteration:\n\n1. **Overview of Current Developments**: We need to gather info on the latest advances in quantum computing. This includes any breakthroughs in quantum algorithms, hardware improvements, or scalability solutions.\n\n2. **Key Players and Collaborations**: Identifying the major organizations and companies pushing the field forward. Understanding any significant partnerships between academic institutions and tech companies.\n\n3. **Practical Applications**: Exploring what real-world applications have emerged recently and what industries are starting to make use of quantum technologies.\n\n4. **Challenges and Limitations**: Gathering insights into the current hurdles faced, such as error rates, decoherence, and operational challenges. This helps in understanding the maturity of the field.\n\n5. **Government and Funding Initiatives**: Looking into how governments are supporting quantum research and any large-scale funding initiatives or international collaborations.\n\n6. **Roadmaps and Future Prospects**: What are experts saying about the timeline for quantum computing's integration into mainstream technology?\n\nBy focusing on these areas, we'll get a comprehensive view of where quantum computing stands today. I'll dive into academic journals, news articles, company press releases, and government reports for this initial round of data gathering. Excited to see what we uncover!\n</thought>\n\n<task>\nAddress this knowledge gap: Latest breakthroughs in quantum algorithms over the past year\n</task>\n\n\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:39.981955Z",
+            "attributes": {
+                "response": "tasks=[AgentTask(gap='Latest breakthroughs in quantum algorithms over the past year', agent='WebSearchAgent', query='Recent breakthroughs quantum algorithms', entity_website=None), AgentTask(gap='Latest breakthroughs in quantum algorithms over the past year', agent='WebSearchAgent', query='2026 quantum algorithm advancements', entity_website=None), AgentTask(gap='Latest breakthroughs in quantum algorithms over the past year', agent='WebSearchAgent', query='Quantum computing algorithm updates', entity_website=None)]"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:39.981959Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "74374a1293f040f7",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "6cadef8027d83fe6",
+    "start_time": "2026-07-09T19:27:39.986693Z",
+    "end_time": "2026-07-09T19:27:46.661763Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "dc7a389e941ce16213f883cb3e12dbfe",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:39.986749Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"2026 quantum algorithm advancements\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:46.661711Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Over the past year, several significant advancements in quantum algorithms have been reported, highlighting the rapid progress in the field.\\\\n\\\\n**Distributed Quantum Computing**\\\\n\\\\nIn February 2025, researchers at Oxford University demonstrated the first instance of distributed quantum computing. By linking two separate quantum processors using a photonic network interface, they formed a single, fully connected quantum computer. This breakthrough addresses the scalability problem in quantum computing, moving the technology closer to practical, large-scale applications. ([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\\\n\\\\n**Error-Resistant Quantum Gates**\\\\n\\\\nIn July 2025, a collaboration between Cornell University and IBM achieved a significant milestone by demonstrating error-resistant implementations of universal quantum gates. Utilizing exotic anyons\\u2014quasi-particles with unique properties\\u2014they successfully encoded information through the braiding of Fibonacci string-net condensate anyons. This approach enhances the stability and reliability of quantum computations, addressing a critical challenge in the field. ([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\\\n\\\\n**Practical Quantum Computing Applications**\\\\n\\\\nIn October 2025, Google showcased a practical application of quantum computing with its Willow 105-qubit chip. The chip executed the \\\\\\\"Quantum Echo\\\\\\\" algorithm, completing a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world's fastest supercomputer. This achievement marks a significant step toward real-world applications of quantum computing. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\\\n\\\\n**Advancements in Quantum Hardware**\\\\n\\\\nIn November 2025, IBM unveiled new quantum processors, software, and algorithm breakthroughs, aiming to achieve quantum advantage by the end of 2026 and fault-tolerant quantum computing by 2029. These developments include the introduction of the Quantum Nighthawk chip and the Quantum Loon chip, representing significant progress in quantum hardware and software integration. ([prnewswire.com](https://www.prnewswire.com/news-releases/ibm-delivers-new-quantum-processors-software-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance-302612409.html?utm_source=openai))\\\\n\\\\nThese advancements collectively contribute to the rapid evolution of quantum algorithms, bringing the promise of practical quantum computing applications closer to reality.\\\",\\\"sources\\\":[\\\"([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\\",\\\"([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\\",\\\"([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\\",\\\"([prnewswire.com](https://www.prnewswire.com/news-releases/ibm-delivers-new-quantum-processors-software-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance-302612409.html?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:46.661737Z",
+            "attributes": {
+                "completion_tokens": 775,
+                "prompt_tokens": 8174,
+                "total_tokens": 8949
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "6cadef8027d83fe6",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:39.984084Z",
+    "end_time": "2026-07-09T19:27:46.662561Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "718c151ab0a77bac",
+        "last.inference": "74374a1293f040f7:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "dc7a389e941ce16213f883cb3e12dbfe",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "cb530035951ba703"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:39.984225Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Latest breakthroughs in quantum algorithms over the past year\",\"agent\":\"WebSearchAgent\",\"query\":\"2026 quantum algorithm advancements\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:46.662523Z",
+            "attributes": {
+                "response": "output='Over the past year, several significant advancements in quantum algorithms have been reported, highlighting the rapid progress in the field.\\n\\n**Distributed Quantum Computing**\\n\\nIn February 2025, researchers at Oxford University demonstrated the first instance of distributed quantum computing. By linking two separate quantum processors using a photonic network interface, they formed a single, fully connected quantum computer. This breakthrough addresses the scalability problem in quantum computing, moving the technology closer to practical, large-scale applications. ([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\n\\n**Error-Resistant Quantum Gates**\\n\\nIn July 2025, a collaboration between Cornell University and IBM achieved a significant milestone by demonstrating error-resistant implementations of universal quantum gates. Utilizing exotic anyons\u2014quasi-particles with unique properties\u2014they successfully encoded information through the braiding of Fibonacci string-net condensate anyons. This approach enhances the stability and reliability of quantum computations, addressing a critical challenge in the field. ([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\n\\n**Practical Quantum Computing Applications**\\n\\nIn October 2025, Google showcased a practical application of quantum computing with its Willow 105-qubit chip. The chip executed the \"Quantum Echo\" algorithm, completing a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world\\'s fastest supercomputer. This achievement marks a significant step toward real-world applications of quantum computing. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\n\\n**Advancements in Quantum Hardware**\\n\\nIn November 2025, IBM unveiled new quantum processors, software, and algorithm breakthroughs, aiming to achieve quantum advantage by the end of 2026 and fault-tolerant quantum computing by 2029. These developments include the introduction of the Quantum Nighthawk chip and the Quantum Loon chip, representing significant progress in quantum hardware and software integration. ([prnewswire.com](https://www.prnewswire.com/news-releases/ibm-delivers-new-quantum-processors-software-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance-302612409.html?utm_source=openai))\\n\\nThese advancements collectively contribute to the rapid evolution of quantum algorithms, bringing the promise of practical quantum computing applications closer to reality.' sources=['([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))', '([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))', '([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))', '([prnewswire.com](https://www.prnewswire.com/news-releases/ibm-delivers-new-quantum-processors-software-and-algorithm-breakthroughs-on-path-to-advantage-and-fault-tolerance-302612409.html?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:46.662529Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "c52a8af6a61ff6be",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "48e8d303483e6695",
+    "start_time": "2026-07-09T19:27:39.987422Z",
+    "end_time": "2026-07-09T19:27:46.898738Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "222ae5e1ef183d3ca4c0e23118b14fa3",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:39.987466Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Recent breakthroughs quantum algorithms\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:46.898659Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Over the past year, several significant advancements have been made in quantum algorithms, highlighting the rapid progress in the field.\\\\n\\\\n**Google's Quantum Echoes Algorithm**\\\\n\\\\nIn October 2025, Google Quantum AI demonstrated a verifiable quantum advantage by running its \\\\\\\"Quantum Echoes\\\\\\\" algorithm on the Willow 105-qubit chip. This algorithm completed a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world's fastest supercomputer. This achievement marks the first practical, verifiable use case of quantum computing, with potential applications in computational chemistry, molecular modeling, and materials engineering. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\\\n\\\\n**IBM's Quantum-Centric Supercomputing Blueprint**\\\\n\\\\nIn March 2026, IBM unveiled a quantum-centric supercomputing reference architecture, outlining a practical, scalable path for integrating quantum and classical computing. This architecture demonstrates how quantum processors (QPUs) can work alongside GPUs and CPUs to tackle scientific challenges that no single computing approach can solve on its own. ([newsroom.ibm.com](https://newsroom.ibm.com/2026-03-12-ibm-releases-a-new-blueprint-for-quantum-centric-supercomputing?utm_source=openai))\\\\n\\\\n**Cisco's Universal Quantum Switch**\\\\n\\\\nIn April 2026, Cisco introduced the Universal Quantum Switch, a critical milestone in quantum networking. This device is designed to route quantum information between systems while preserving it, with a Cisco-patented conversion engine that translates between all encoding and entanglement modalities at input and output. In proof-of-concept experiments, the switch preserved quantum information with an average of less than or equal to 4% degradation in encoding and entanglement fidelity. ([newsroom.cisco.com](https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m04/cisco-introduces-universal-quantum-switch-advancing-the-path-to-a-quantum-network.html?utm_source=openai))\\\\n\\\\n**Advancements in Quantum Optimization Algorithms**\\\\n\\\\nIn February 2026, researchers at Quantinuum and QuSoft developed a quantum algorithm that solves a specific sampling task\\u2014known as complement sampling\\u2014dramatically more efficiently than any classical algorithm. This advancement demonstrates the potential of quantum computing to outperform classical systems on certain tasks, marking a significant step toward practical quantum applications. ([phys.org](https://phys.org/news/2026-02-quantum-algorithm-classical-tools-complement.html?utm_source=openai))\\\\n\\\\nThese developments underscore the rapid progress in quantum algorithms, bringing us closer to realizing the full potential of quantum computing in various scientific and industrial applications.\\\",\\\"sources\\\":[\\\"([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\\",\\\"([newsroom.ibm.com](https://newsroom.ibm.com/2026-03-12-ibm-releases-a-new-blueprint-for-quantum-centric-supercomputing?utm_source=openai))\\\",\\\"([newsroom.cisco.com](https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m04/cisco-introduces-universal-quantum-switch-advancing-the-path-to-a-quantum-network.html?utm_source=openai))\\\",\\\"([phys.org](https://phys.org/news/2026-02-quantum-algorithm-classical-tools-complement.html?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:46.898693Z",
+            "attributes": {
+                "completion_tokens": 795,
+                "prompt_tokens": 8174,
+                "total_tokens": 8969
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "48e8d303483e6695",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:39.984255Z",
+    "end_time": "2026-07-09T19:27:46.899552Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "718c151ab0a77bac",
+        "last.inference": "c52a8af6a61ff6be:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "222ae5e1ef183d3ca4c0e23118b14fa3",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "74374a1293f040f7"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:39.984277Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Latest breakthroughs in quantum algorithms over the past year\",\"agent\":\"WebSearchAgent\",\"query\":\"Recent breakthroughs quantum algorithms\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:46.899513Z",
+            "attributes": {
+                "response": "output='Over the past year, several significant advancements have been made in quantum algorithms, highlighting the rapid progress in the field.\\n\\n**Google\\'s Quantum Echoes Algorithm**\\n\\nIn October 2025, Google Quantum AI demonstrated a verifiable quantum advantage by running its \"Quantum Echoes\" algorithm on the Willow 105-qubit chip. This algorithm completed a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world\\'s fastest supercomputer. This achievement marks the first practical, verifiable use case of quantum computing, with potential applications in computational chemistry, molecular modeling, and materials engineering. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\n\\n**IBM\\'s Quantum-Centric Supercomputing Blueprint**\\n\\nIn March 2026, IBM unveiled a quantum-centric supercomputing reference architecture, outlining a practical, scalable path for integrating quantum and classical computing. This architecture demonstrates how quantum processors (QPUs) can work alongside GPUs and CPUs to tackle scientific challenges that no single computing approach can solve on its own. ([newsroom.ibm.com](https://newsroom.ibm.com/2026-03-12-ibm-releases-a-new-blueprint-for-quantum-centric-supercomputing?utm_source=openai))\\n\\n**Cisco\\'s Universal Quantum Switch**\\n\\nIn April 2026, Cisco introduced the Universal Quantum Switch, a critical milestone in quantum networking. This device is designed to route quantum information between systems while preserving it, with a Cisco-patented conversion engine that translates between all encoding and entanglement modalities at input and output. In proof-of-concept experiments, the switch preserved quantum information with an average of less than or equal to 4% degradation in encoding and entanglement fidelity. ([newsroom.cisco.com](https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m04/cisco-introduces-universal-quantum-switch-advancing-the-path-to-a-quantum-network.html?utm_source=openai))\\n\\n**Advancements in Quantum Optimization Algorithms**\\n\\nIn February 2026, researchers at Quantinuum and QuSoft developed a quantum algorithm that solves a specific sampling task\u2014known as complement sampling\u2014dramatically more efficiently than any classical algorithm. This advancement demonstrates the potential of quantum computing to outperform classical systems on certain tasks, marking a significant step toward practical quantum applications. ([phys.org](https://phys.org/news/2026-02-quantum-algorithm-classical-tools-complement.html?utm_source=openai))\\n\\nThese developments underscore the rapid progress in quantum algorithms, bringing us closer to realizing the full potential of quantum computing in various scientific and industrial applications.' sources=['([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))', '([newsroom.ibm.com](https://newsroom.ibm.com/2026-03-12-ibm-releases-a-new-blueprint-for-quantum-centric-supercomputing?utm_source=openai))', '([newsroom.cisco.com](https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m04/cisco-introduces-universal-quantum-switch-advancing-the-path-to-a-quantum-network.html?utm_source=openai))', '([phys.org](https://phys.org/news/2026-02-quantum-algorithm-classical-tools-complement.html?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:46.899520Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "82a2815d25220827",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "cfd80c278031db66",
+    "start_time": "2026-07-09T19:27:39.985118Z",
+    "end_time": "2026-07-09T19:27:47.585517Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "ef1596c65660a7a76549d557a7fbad74",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:39.985185Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Latest breakthroughs in quantum algorithms over the past year\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Quantum computing algorithm updates\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:47.585426Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Over the past year, significant advancements have been made in quantum computing algorithms, marking a pivotal shift toward practical applications.\\\\n\\\\n**Distributed Quantum Computing**\\\\n\\\\nIn February 2025, researchers at Oxford University demonstrated the first instance of distributed quantum computing. By linking two separate quantum processors via a photonic network interface, they formed a single, fully connected quantum computer. This breakthrough addresses the scalability challenge in quantum computing, paving the way for systems capable of processing millions of qubits. ([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\\\n\\\\n**Error-Resistant Quantum Gates**\\\\n\\\\nIn July 2025, a collaboration between Cornell University and IBM achieved a significant milestone by demonstrating error-resistant universal quantum gates. Utilizing Fibonacci anyons\\u2014exotic quasi-particles\\u2014they successfully encoded information through braiding these anyons in two-dimensional space. This method enhances the stability and reliability of quantum computations, moving closer to practical quantum computing applications. ([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\\\n\\\\n**Quantum Algorithm Performance**\\\\n\\\\nIn October 2025, Google Quantum AI showcased a verifiable quantum advantage with its Willow 105-qubit chip. The chip executed the Quantum Echoes algorithm, completing a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world's fastest supercomputer. This achievement signifies a substantial leap toward practical quantum computing applications in fields like computational chemistry and materials engineering. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\\\n\\\\n**Quantum Computing Security**\\\\n\\\\nIn response to rapid advancements in quantum computing, Microsoft announced an acceleration of its Quantum Safe Program. The initiative aims to implement post-quantum cryptographic algorithms, enhance crypto agility, modernize trust chains, and adopt updated standards like TLS 1.3 by the end of 2029. This proactive approach addresses the growing cybersecurity risks posed by emerging quantum technologies. ([techradar.com](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai))\\\\n\\\\nThese developments collectively signify a transformative period in quantum computing, moving from theoretical research to tangible, real-world applications.\\\\n\\\\n\\\\n## Highlights:\\\\n- ['Advances in quantum research and development have shifted the risk horizon': Microsoft says it is ramping up its quantum computing security work](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai), Published on Saturday, July 04\\\\n- [Google's Quantum Echo algorithm shows world's first practical application of Quantum Computing - Willow 105-qubit chip runs algorithm 13,000x faster than a supercomputer](https://www.tomshardware.com/tech-industry/quantum-computing/googles-quantum-echo-algorithm-shows-worlds-first-practical-application-of-quantum-computing-willow-105-qubit-chip-runs-algorithm-13-000x-faster-than-a-supercomputer?utm_source=openai), Published on Thursday, October 23\\\\n- [IBM goes all-in on quantum chips - new Nighthawk and Loon hardware look to bring the dream to life at last](https://www.techradar.com/pro/ibm-goes-all-in-on-quantum-chips-new-nighthawk-and-loon-hardware-look-to-bring-the-dream-to-life-at-last?utm_source=openai), Published on Friday, November 14\\\",\\\"sources\\\":[\\\"([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\\",\\\"([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\\",\\\"([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\\",\\\"([techradar.com](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai))\\\",\\\"\\\\n## Highlights:\\\\n- ['Advances in quantum research and development have shifted the risk horizon': Microsoft says it is ramping up its quantum computing security work](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai), Published on Saturday, July 04\\\\n- [Google's Quantum Echo algorithm shows world's first practical application of Quantum Computing - Willow 105-qubit chip runs algorithm 13,000x faster than a supercomputer](https://www.tomshardware.com/tech-industry/quantum-computing/googles-quantum-echo-algorithm-shows-worlds-first-practical-application-of-quantum-computing-willow-105-qubit-chip-runs-algorithm-13-000x-faster-than-a-supercomputer?utm_source=openai), Published on Thursday, October 23\\\\n- [IBM goes all-in on quantum chips - new Nighthawk and Loon hardware look to bring the dream to life at last](https://www.techradar.com/pro/ibm-goes-all-in-on-quantum-chips-new-nighthawk-and-loon-hardware-look-to-bring-the-dream-to-life-at-last?utm_source=openai), Published on Friday, November 14\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:47.585472Z",
+            "attributes": {
+                "completion_tokens": 1367,
+                "prompt_tokens": 8174,
+                "total_tokens": 9541
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "cfd80c278031db66",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:39.983996Z",
+    "end_time": "2026-07-09T19:27:47.586404Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "718c151ab0a77bac",
+        "last.inference": "82a2815d25220827:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "ef1596c65660a7a76549d557a7fbad74",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "c52a8af6a61ff6be"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:39.984044Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Latest breakthroughs in quantum algorithms over the past year\",\"agent\":\"WebSearchAgent\",\"query\":\"Quantum computing algorithm updates\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:47.586350Z",
+            "attributes": {
+                "response": "output=\"Over the past year, significant advancements have been made in quantum computing algorithms, marking a pivotal shift toward practical applications.\\n\\n**Distributed Quantum Computing**\\n\\nIn February 2025, researchers at Oxford University demonstrated the first instance of distributed quantum computing. By linking two separate quantum processors via a photonic network interface, they formed a single, fully connected quantum computer. This breakthrough addresses the scalability challenge in quantum computing, paving the way for systems capable of processing millions of qubits. ([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\n\\n**Error-Resistant Quantum Gates**\\n\\nIn July 2025, a collaboration between Cornell University and IBM achieved a significant milestone by demonstrating error-resistant universal quantum gates. Utilizing Fibonacci anyons\u2014exotic quasi-particles\u2014they successfully encoded information through braiding these anyons in two-dimensional space. This method enhances the stability and reliability of quantum computations, moving closer to practical quantum computing applications. ([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\n\\n**Quantum Algorithm Performance**\\n\\nIn October 2025, Google Quantum AI showcased a verifiable quantum advantage with its Willow 105-qubit chip. The chip executed the Quantum Echoes algorithm, completing a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world's fastest supercomputer. This achievement signifies a substantial leap toward practical quantum computing applications in fields like computational chemistry and materials engineering. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\n\\n**Quantum Computing Security**\\n\\nIn response to rapid advancements in quantum computing, Microsoft announced an acceleration of its Quantum Safe Program. The initiative aims to implement post-quantum cryptographic algorithms, enhance crypto agility, modernize trust chains, and adopt updated standards like TLS 1.3 by the end of 2029. This proactive approach addresses the growing cybersecurity risks posed by emerging quantum technologies. ([techradar.com](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai))\\n\\nThese developments collectively signify a transformative period in quantum computing, moving from theoretical research to tangible, real-world applications.\\n\\n\\n## Highlights:\\n- ['Advances in quantum research and development have shifted the risk horizon': Microsoft says it is ramping up its quantum computing security work](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai), Published on Saturday, July 04\\n- [Google's Quantum Echo algorithm shows world's first practical application of Quantum Computing - Willow 105-qubit chip runs algorithm 13,000x faster than a supercomputer](https://www.tomshardware.com/tech-industry/quantum-computing/googles-quantum-echo-algorithm-shows-worlds-first-practical-application-of-quantum-computing-willow-105-qubit-chip-runs-algorithm-13-000x-faster-than-a-supercomputer?utm_source=openai), Published on Thursday, October 23\\n- [IBM goes all-in on quantum chips - new Nighthawk and Loon hardware look to bring the dream to life at last](https://www.techradar.com/pro/ibm-goes-all-in-on-quantum-chips-new-nighthawk-and-loon-hardware-look-to-bring-the-dream-to-life-at-last?utm_source=openai), Published on Friday, November 14\" sources=['([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))', '([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))', '([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))', '([techradar.com](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai))', \"\\n## Highlights:\\n- ['Advances in quantum research and development have shifted the risk horizon': Microsoft says it is ramping up its quantum computing security work](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai), Published on Saturday, July 04\\n- [Google's Quantum Echo algorithm shows world's first practical application of Quantum Computing - Willow 105-qubit chip runs algorithm 13,000x faster than a supercomputer](https://www.tomshardware.com/tech-industry/quantum-computing/googles-quantum-echo-algorithm-shows-worlds-first-practical-application-of-quantum-computing-willow-105-qubit-chip-runs-algorithm-13-000x-faster-than-a-supercomputer?utm_source=openai), Published on Thursday, October 23\\n- [IBM goes all-in on quantum chips - new Nighthawk and Loon hardware look to bring the dream to life at last](https://www.techradar.com/pro/ibm-goes-all-in-on-quantum-chips-new-nighthawk-and-loon-hardware-look-to-bring-the-dream-to-life-at-last?utm_source=openai), Published on Friday, November 14\"]"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:47.586360Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "3b15d8c46e4d8daa",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "cc579c6e42ea5c51",
+    "start_time": "2026-07-09T19:27:47.589077Z",
+    "end_time": "2026-07-09T19:27:52.525236Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "6b1ffcdb7283a62cdfc75511ef42c508",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:47.589213Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a senior researcher tasked with comprehensively answering a research query. \\nToday's date is 2026-07-09.\\nYou will be provided with the original query along with research findings put together by a research assistant.\\nYour objective is to generate the final response in markdown format.\\nThe response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.\\nIn your final output, include references to the source URLs for all information and data gathered. \\nThis should be formatted in the form of a numbered square bracket next to the relevant information, \\nfollowed by a list of URLs at the end of the response, per the example below.\\n\\nEXAMPLE REFERENCE FORMAT:\\nThe company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].\\n\\nReferences:\\n[1] https://example.com/first-source-url\\n[2] https://example.com/second-source-url\\n\\nGUIDELINES:\\n* Answer the query directly, do not include unrelated or tangential information.\\n* Adhere to any instructions on the length of your final response if provided in the user prompt.\\n* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.\\n\"}",
+                    "{\"user\": \"\\n        Provide a response based on the query and findings below with as much detail as possible. GUIDELINES:\\n* The full response should be approximately 2 paragraphs.\\n\\n        QUERY: What is the current state of quantum computing?\\n\\n        FINDINGS:\\n        Over the past year, significant advancements have been made in quantum computing algorithms, marking a pivotal shift toward practical applications.\\n\\n**Distributed Quantum Computing**\\n\\nIn February 2025, researchers at Oxford University demonstrated the first instance of distributed quantum computing. By linking two separate quantum processors via a photonic network interface, they formed a single, fully connected quantum computer. This breakthrough addresses the scalability challenge in quantum computing, paving the way for systems capable of processing millions of qubits. ([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\\n\\n**Error-Resistant Quantum Gates**\\n\\nIn July 2025, a collaboration between Cornell University and IBM achieved a significant milestone by demonstrating error-resistant universal quantum gates. Utilizing Fibonacci anyons\\u2014exotic quasi-particles\\u2014they successfully encoded information through braiding these anyons in two-dimensional space. This method enhances the stability and reliability of quantum computations, moving closer to practical quantum computing applications. ([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\\n\\n**Quantum Algorithm Performance**\\n\\nIn October 2025, Google Quantum AI showcased a verifiable quantum advantage with its Willow 105-qubit chip. The chip executed the Quantum Echoes algorithm, completing a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world's fastest supercomputer. This achievement signifies a substantial leap toward practical quantum computing applications in fields like computational chemistry and materials engineering. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\\n\\n**Quantum Computing Security**\\n\\nIn response to rapid advancements in quantum computing, Microsoft announced an acceleration of its Quantum Safe Program. The initiative aims to implement post-quantum cryptographic algorithms, enhance crypto agility, modernize trust chains, and adopt updated standards like TLS 1.3 by the end of 2029. This proactive approach addresses the growing cybersecurity risks posed by emerging quantum technologies. ([techradar.com](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai))\\n\\nThese developments collectively signify a transformative period in quantum computing, moving from theoretical research to tangible, real-world applications.\\n\\n\\n## Highlights:\\n- ['Advances in quantum research and development have shifted the risk horizon': Microsoft says it is ramping up its quantum computing security work](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai), Published on Saturday, July 04\\n- [Google's Quantum Echo algorithm shows world's first practical application of Quantum Computing - Willow 105-qubit chip runs algorithm 13,000x faster than a supercomputer](https://www.tomshardware.com/tech-industry/quantum-computing/googles-quantum-echo-algorithm-shows-worlds-first-practical-application-of-quantum-computing-willow-105-qubit-chip-runs-algorithm-13-000x-faster-than-a-supercomputer?utm_source=openai), Published on Thursday, October 23\\n- [IBM goes all-in on quantum chips - new Nighthawk and Loon hardware look to bring the dream to life at last](https://www.techradar.com/pro/ibm-goes-all-in-on-quantum-chips-new-nighthawk-and-loon-hardware-look-to-bring-the-dream-to-life-at-last?utm_source=openai), Published on Friday, November 14\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:52.525182Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"The current state of quantum computing is marked by rapid advancements that are transforming the field from theoretical concepts into practical applications. One of the significant breakthroughs in the past year is the successful demonstration of distributed quantum computing by researchers at Oxford University in February 2025. This achievement involved linking two separate quantum processors to form a single, fully connected quantum computer, addressing the scalability challenge and enabling systems that can process millions of qubits [1]. Furthermore, in July 2025, a collaboration between Cornell University and IBM led to the creation of error-resistant quantum gates using Fibonacci anyons. This innovation significantly enhances the stability and reliability of quantum computations, pushing the boundaries towards practical applications [2].\\n\\nMoreover, Google Quantum AI's development of the Willow 105-qubit chip is a testament to the quantum leap in computational capabilities. In October 2025, the chip executed the Quantum Echoes algorithm, completing tasks 13,000 times faster than the most advanced classical supercomputers, highlighting a tangible quantum advantage in fields like computational chemistry and materials engineering [3]. Recognizing the cybersecurity challenges posed by these advancements, Microsoft has accelerated its Quantum Safe Program to adopt post-quantum cryptographic algorithms and updated standards by 2029, ensuring robust security measures [4]. These combined efforts represent a transformative era in quantum computing, bridging the gap between research and real-world impact.\\n\\nReferences:\\n\\n[1] https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai\\n\\n[2] https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai\\n\\n[3] https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai\\n\\n[4] https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:52.525205Z",
+            "attributes": {
+                "completion_tokens": 447,
+                "prompt_tokens": 1156,
+                "total_tokens": 1603
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "cc579c6e42ea5c51",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "80961f91e4e031eb",
+    "start_time": "2026-07-09T19:27:47.588220Z",
+    "end_time": "2026-07-09T19:27:52.525691Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WriterAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a senior researcher tasked with comprehensively answering a research query. \nToday's date is 2026-07-09.\nYou will be provided with the original query along with research findings put together by a research assistant.\nYour objective is to generate the final response in markdown format.\nThe response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.\nIn your final output, include references to the source URLs for all information and data gathered. \nThis should be formatted in the form of a numbered square bracket next to the relevant information, \nfollowed by a list of URLs at the end of the response, per the example below.\n\nEXAMPLE REFERENCE FORMAT:\nThe company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].\n\nReferences:\n[1] https://example.com/first-source-url\n[2] https://example.com/second-source-url\n\nGUIDELINES:\n* Answer the query directly, do not include unrelated or tangential information.\n* Adhere to any instructions on the length of your final response if provided in the user prompt.\n* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.\n",
+        "entity.1.from_agent": "WebSearchAgent",
+        "entity.1.from_agent_span_id": "cfd80c278031db66",
+        "last.inference": "3b15d8c46e4d8daa:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "scope.agentic.invocation": "6b1ffcdb7283a62cdfc75511ef42c508",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "82a2815d25220827"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:47.588314Z",
+            "attributes": {
+                "input": [
+                    "\n        Provide a response based on the query and findings below with as much detail as possible. GUIDELINES:\n* The full response should be approximately 2 paragraphs.\n\n        QUERY: What is the current state of quantum computing?\n\n        FINDINGS:\n        Over the past year, significant advancements have been made in quantum computing algorithms, marking a pivotal shift toward practical applications.\n\n**Distributed Quantum Computing**\n\nIn February 2025, researchers at Oxford University demonstrated the first instance of distributed quantum computing. By linking two separate quantum processors via a photonic network interface, they formed a single, fully connected quantum computer. This breakthrough addresses the scalability challenge in quantum computing, paving the way for systems capable of processing millions of qubits. ([ox.ac.uk](https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai))\n\n**Error-Resistant Quantum Gates**\n\nIn July 2025, a collaboration between Cornell University and IBM achieved a significant milestone by demonstrating error-resistant universal quantum gates. Utilizing Fibonacci anyons\u2014exotic quasi-particles\u2014they successfully encoded information through braiding these anyons in two-dimensional space. This method enhances the stability and reliability of quantum computations, moving closer to practical quantum computing applications. ([phys.org](https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai))\n\n**Quantum Algorithm Performance**\n\nIn October 2025, Google Quantum AI showcased a verifiable quantum advantage with its Willow 105-qubit chip. The chip executed the Quantum Echoes algorithm, completing a complex Nuclear Magnetic Resonance (NMR) modeling task 13,000 times faster than the best classical algorithm on the world's fastest supercomputer. This achievement signifies a substantial leap toward practical quantum computing applications in fields like computational chemistry and materials engineering. ([computerworld.com](https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai))\n\n**Quantum Computing Security**\n\nIn response to rapid advancements in quantum computing, Microsoft announced an acceleration of its Quantum Safe Program. The initiative aims to implement post-quantum cryptographic algorithms, enhance crypto agility, modernize trust chains, and adopt updated standards like TLS 1.3 by the end of 2029. This proactive approach addresses the growing cybersecurity risks posed by emerging quantum technologies. ([techradar.com](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai))\n\nThese developments collectively signify a transformative period in quantum computing, moving from theoretical research to tangible, real-world applications.\n\n\n## Highlights:\n- ['Advances in quantum research and development have shifted the risk horizon': Microsoft says it is ramping up its quantum computing security work](https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai), Published on Saturday, July 04\n- [Google's Quantum Echo algorithm shows world's first practical application of Quantum Computing - Willow 105-qubit chip runs algorithm 13,000x faster than a supercomputer](https://www.tomshardware.com/tech-industry/quantum-computing/googles-quantum-echo-algorithm-shows-worlds-first-practical-application-of-quantum-computing-willow-105-qubit-chip-runs-algorithm-13-000x-faster-than-a-supercomputer?utm_source=openai), Published on Thursday, October 23\n- [IBM goes all-in on quantum chips - new Nighthawk and Loon hardware look to bring the dream to life at last](https://www.techradar.com/pro/ibm-goes-all-in-on-quantum-chips-new-nighthawk-and-loon-hardware-look-to-bring-the-dream-to-life-at-last?utm_source=openai), Published on Friday, November 14\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:52.525662Z",
+            "attributes": {
+                "response": "The current state of quantum computing is marked by rapid advancements that are transforming the field from theoretical concepts into practical applications. One of the significant breakthroughs in the past year is the successful demonstration of distributed quantum computing by researchers at Oxford University in February 2025. This achievement involved linking two separate quantum processors to form a single, fully connected quantum computer, addressing the scalability challenge and enabling systems that can process millions of qubits [1]. Furthermore, in July 2025, a collaboration between Cornell University and IBM led to the creation of error-resistant quantum gates using Fibonacci anyons. This innovation significantly enhances the stability and reliability of quantum computations, pushing the boundaries towards practical applications [2].\n\nMoreover, Google Quantum AI's development of the Willow 105-qubit chip is a testament to the quantum leap in computational capabilities. In October 2025, the chip executed the Quantum Echoes algorithm, completing tasks 13,000 times faster than the most advanced classical supercomputers, highlighting a tangible quantum advantage in fields like computational chemistry and materials engineering [3]. Recognizing the cybersecurity challenges posed by these advancements, Microsoft has accelerated its Quantum Safe Program to adopt post-quantum cryptographic algorithms and updated standards by 2029, ensuring robust security measures [4]. These combined efforts represent a transformative era in quantum computing, bridging the gap between research and real-world impact.\n\nReferences:\n\n[1] https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai\n\n[2] https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai\n\n[3] https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai\n\n[4] https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:27:52.525668Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "research_turn",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "80961f91e4e031eb",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "423d072c55e95eed",
+    "start_time": "2026-07-09T19:27:31.818968Z",
+    "end_time": "2026-07-09T19:27:52.525944Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "scope.agentic.turn": "341bfad95d5859e0deae39d7ae34ba61",
+        "workflow.name": "openai-agents-deep-research",
+        "span.type": "agentic.turn",
+        "entity.1.name": "What is the current state of quantum computing?",
+        "monocle.last.agent.invocation.id": "cc579c6e42ea5c51",
+        "monocle.last.agent.name": "WriterAgent",
+        "last.inference": "3b15d8c46e4d8daa:*"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:27:31.818980Z",
+            "attributes": {
+                "input": "What is the current state of quantum computing?"
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:27:52.525932Z",
+            "attributes": {
+                "response": "The current state of quantum computing is marked by rapid advancements that are transforming the field from theoretical concepts into practical applications. One of the significant breakthroughs in the past year is the successful demonstration of distributed quantum computing by researchers at Oxford University in February 2025. This achievement involved linking two separate quantum processors to form a single, fully connected quantum computer, addressing the scalability challenge and enabling systems that can process millions of qubits [1]. Furthermore, in July 2025, a collaboration between Cornell University and IBM led to the creation of error-resistant quantum gates using Fibonacci anyons. This innovation significantly enhances the stability and reliability of quantum computations, pushing the boundaries towards practical applications [2].\n\nMoreover, Google Quantum AI's development of the Willow 105-qubit chip is a testament to the quantum leap in computational capabilities. In October 2025, the chip executed the Quantum Echoes algorithm, completing tasks 13,000 times faster than the most advanced classical supercomputers, highlighting a tangible quantum advantage in fields like computational chemistry and materials engineering [3]. Recognizing the cybersecurity challenges posed by these advancements, Microsoft has accelerated its Quantum Safe Program to adopt post-quantum cryptographic algorithms and updated standards by 2029, ensuring robust security measures [4]. These combined efforts represent a transformative era in quantum computing, bridging the gap between research and real-world impact.\n\nReferences:\n\n[1] https://www.ox.ac.uk/news/2025-02-06-first-distributed-quantum-algorithm-brings-quantum-supercomputers-closer?utm_source=openai\n\n[2] https://phys.org/news/2025-07-error-resistant-quantum-gates-exotic.html?utm_source=openai\n\n[3] https://www.computerworld.com/article/4077869/googles-quantum-chip-achieves-13000x-speed-advantage-over-supercomputers.html?utm_source=openai\n\n[4] https://www.techradar.com/pro/security/advances-in-quantum-research-and-development-have-shifted-the-risk-horizon-microsoft-reveals-it-is-ramping-up-its-quantum-computing-security-work?utm_source=openai"
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "workflow",
+    "context": {
+        "trace_id": "aeabde98c6845bd1c773e92a4d060896",
+        "span_id": "423d072c55e95eed",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": null,
+    "start_time": "2026-07-09T19:27:31.818896Z",
+    "end_time": "2026-07-09T19:27:52.525960Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "",
+        "scope.agentic.session": "6d20b8af554301139578c685f1898afc",
+        "workflow.name": "openai-agents-deep-research",
+        "span.type": "workflow",
+        "entity.1.name": "openai-agents-deep-research",
+        "entity.1.type": "workflow.generic",
+        "entity.2.type": "app_hosting.generic",
+        "entity.2.name": "generic"
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+]
