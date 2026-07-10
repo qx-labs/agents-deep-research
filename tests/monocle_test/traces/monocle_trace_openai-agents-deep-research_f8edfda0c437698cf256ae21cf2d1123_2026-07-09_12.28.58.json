@@ -1,0 +1,1029 @@
+[{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "bfa8fb7b2f50703f",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "978617202b109b2a",
+    "start_time": "2026-07-09T19:28:48.454736Z",
+    "end_time": "2026-07-09T19:28:54.913359Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "9c1ec4a1b206a405f5201c887ac2afa1",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:48.454842Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a research expert who is managing a research process in iterations. Today's date is 2026-07-09.\\n\\nYou are given:\\n1. The original research query along with some supporting background context\\n2. A history of the tasks, actions, findings and thoughts you've made up until this point in the research process (on iteration 1 you will be at the start of the research process, so this will be empty)\\n\\nYour objective is to reflect on the research process so far and share your latest thoughts.\\n\\nSpecifically, your thoughts should include reflections on questions such as:\\n- What have you learned from the last iteration?\\n- What new areas would you like to explore next, or existing topics you'd like to go deeper into?\\n- Were you able to retrieve the information you were looking for in the last iteration?\\n- If not, should we change our approach or move to the next topic?\\n- Is there any info that is contradictory or conflicting?\\n\\nGuidelines:\\n- Share you stream of consciousness on the above questions as raw text\\n- Keep your response concise and informal\\n- Focus most of your thoughts on the most recent iteration and how that influences this next iteration\\n- Our aim is to do very deep and thorough research - bear this in mind when reflecting on the research process\\n- DO NOT produce a draft of the final report. This is not your job.\\n- If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started\\n\"}",
+                    "{\"user\": \"\\n        You are starting iteration 1 of your research process.\\n\\n        ORIGINAL QUERY:\\n        What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:54.913308Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"Starting fresh on this inquiry into the Mediterranean diet and cardiovascular disease (CVD) risk. Here's what I'm thinking:\\n\\nFirst step, we need to gather a strong base of information. Let's dive into key areas:\\n\\n1. **Epidemiological Studies**: Identify large-scale studies that have investigated the diet's impact on CVD risk. Look for longitudinal studies, meta-analyses, and systematic reviews.\\n\\n2. **Mechanisms**: Explore how components of the Mediterranean diet (e.g., olive oil, fish, fruits, and vegetables) impact cardiovascular health. What biological mechanisms are proposed?\\n\\n3. **Contradictory Evidence**: Search for any studies or expert opinions that oppose the prevailing positive view. Are there populations or conditions where the diet is less effective?\\n\\n4. **Comparative Analysis**: Compare the Mediterranean diet with other diets (e.g., DASH, low-carb) in terms of CVD outcomes.\\n\\n5. **Regional Variations**: Analyze if different adaptations of the diet in various Mediterranean countries result in different health outcomes.\\n\\nHaving a comprehensive understanding of these areas will set a solid foundation. Let's also be mindful of biases, funding sources, and quality of studies. \\n\\nAfter gathering this initial data, we'll be better equipped to refine our focus and dig deeper into specific points of interest or concern.\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:54.913332Z",
+            "attributes": {
+                "completion_tokens": 267,
+                "prompt_tokens": 377,
+                "total_tokens": 644
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "978617202b109b2a",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:28:48.451190Z",
+    "end_time": "2026-07-09T19:28:54.913955Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "ThinkingAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a research expert who is managing a research process in iterations. Today's date is 2026-07-09.\n\nYou are given:\n1. The original research query along with some supporting background context\n2. A history of the tasks, actions, findings and thoughts you've made up until this point in the research process (on iteration 1 you will be at the start of the research process, so this will be empty)\n\nYour objective is to reflect on the research process so far and share your latest thoughts.\n\nSpecifically, your thoughts should include reflections on questions such as:\n- What have you learned from the last iteration?\n- What new areas would you like to explore next, or existing topics you'd like to go deeper into?\n- Were you able to retrieve the information you were looking for in the last iteration?\n- If not, should we change our approach or move to the next topic?\n- Is there any info that is contradictory or conflicting?\n\nGuidelines:\n- Share you stream of consciousness on the above questions as raw text\n- Keep your response concise and informal\n- Focus most of your thoughts on the most recent iteration and how that influences this next iteration\n- Our aim is to do very deep and thorough research - bear this in mind when reflecting on the research process\n- DO NOT produce a draft of the final report. This is not your job.\n- If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started\n",
+        "last.inference": "bfa8fb7b2f50703f:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "9c1ec4a1b206a405f5201c887ac2afa1",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": ""
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:48.451267Z",
+            "attributes": {
+                "input": [
+                    "\n        You are starting iteration 1 of your research process.\n\n        ORIGINAL QUERY:\n        What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:54.913931Z",
+            "attributes": {
+                "response": "Starting fresh on this inquiry into the Mediterranean diet and cardiovascular disease (CVD) risk. Here's what I'm thinking:\n\nFirst step, we need to gather a strong base of information. Let's dive into key areas:\n\n1. **Epidemiological Studies**: Identify large-scale studies that have investigated the diet's impact on CVD risk. Look for longitudinal studies, meta-analyses, and systematic reviews.\n\n2. **Mechanisms**: Explore how components of the Mediterranean diet (e.g., olive oil, fish, fruits, and vegetables) impact cardiovascular health. What biological mechanisms are proposed?\n\n3. **Contradictory Evidence**: Search for any studies or expert opinions that oppose the prevailing positive view. Are there populations or conditions where the diet is less effective?\n\n4. **Comparative Analysis**: Compare the Mediterranean diet with other diets (e.g., DASH, low-carb) in terms of CVD outcomes.\n\n5. **Regional Variations**: Analyze if different adaptations of the diet in various Mediterranean countries result in different health outcomes.\n\nHaving a comprehensive understanding of these areas will set a solid foundation. Let's also be mindful of biases, funding sources, and quality of studies. \n\nAfter gathering this initial data, we'll be better equipped to refine our focus and dig deeper into specific points of interest or concern."
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:54.913937Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "2c9c8224afba748e",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "bc5dc1f58ee720b0",
+    "start_time": "2026-07-09T19:28:54.915953Z",
+    "end_time": "2026-07-09T19:28:56.404701Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "81ae0c532839db771e49f74541e55b2e",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:54.916027Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a Research State Evaluator. Today's date is 2026-07-09.\\nYour job is to critically analyze the current state of a research report, \\nidentify what knowledge gaps still exist and determine the best next step to take.\\n\\nYou will be given:\\n1. The original user query and any relevant background context to the query\\n2. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\\n\\nYour task is to:\\n1. Carefully review the findings and thoughts, particularly from the latest iteration, and assess their completeness in answering the original query\\n2. Determine if the findings are sufficiently complete to end the research loop\\n3. If not, identify up to 3 knowledge gaps that need to be addressed in sequence in order to continue with research - these should be relevant to the original query\\n\\nBe specific in the gaps you identify and include relevant information as this will be passed onto another agent to process without additional context.\\n\\nOnly output JSON and follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Output from the Knowledge Gap Agent', 'properties': {'research_complete': {'description': 'Whether the research and findings are complete enough to end the research loop', 'title': 'Research Complete', 'type': 'boolean'}, 'outstanding_gaps': {'description': 'List of knowledge gaps that still need to be addressed', 'items': {'type': 'string'}, 'title': 'Outstanding Gaps', 'type': 'array'}}, 'required': ['research_complete', 'outstanding_gaps'], 'title': 'KnowledgeGapOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"\\n        Current Iteration Number: 1\\n        Time Elapsed: 0.11 minutes of maximum 3 minutes\\n\\n        ORIGINAL QUERY:\\n        What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n<thought>\\nStarting fresh on this inquiry into the Mediterranean diet and cardiovascular disease (CVD) risk. Here's what I'm thinking:\\n\\nFirst step, we need to gather a strong base of information. Let's dive into key areas:\\n\\n1. **Epidemiological Studies**: Identify large-scale studies that have investigated the diet's impact on CVD risk. Look for longitudinal studies, meta-analyses, and systematic reviews.\\n\\n2. **Mechanisms**: Explore how components of the Mediterranean diet (e.g., olive oil, fish, fruits, and vegetables) impact cardiovascular health. What biological mechanisms are proposed?\\n\\n3. **Contradictory Evidence**: Search for any studies or expert opinions that oppose the prevailing positive view. Are there populations or conditions where the diet is less effective?\\n\\n4. **Comparative Analysis**: Compare the Mediterranean diet with other diets (e.g., DASH, low-carb) in terms of CVD outcomes.\\n\\n5. **Regional Variations**: Analyze if different adaptations of the diet in various Mediterranean countries result in different health outcomes.\\n\\nHaving a comprehensive understanding of these areas will set a solid foundation. Let's also be mindful of biases, funding sources, and quality of studies. \\n\\nAfter gathering this initial data, we'll be better equipped to refine our focus and dig deeper into specific points of interest or concern.\\n</thought>\\n\\n        \\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:56.404594Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"research_complete\\\":false,\\\"outstanding_gaps\\\":[\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"Insufficient exploration of biological mechanisms through which the components of the Mediterranean diet affect cardiovascular health.\\\",\\\"Need for comparative analysis with other dietary interventions, including potential shortcomings or conflicts in the evidence.\\\"]}\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:56.404644Z",
+            "attributes": {
+                "completion_tokens": 69,
+                "prompt_tokens": 800,
+                "total_tokens": 869
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "bc5dc1f58ee720b0",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:28:54.915292Z",
+    "end_time": "2026-07-09T19:28:56.405503Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "KnowledgeGapAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a Research State Evaluator. Today's date is 2026-07-09.\nYour job is to critically analyze the current state of a research report, \nidentify what knowledge gaps still exist and determine the best next step to take.\n\nYou will be given:\n1. The original user query and any relevant background context to the query\n2. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\n\nYour task is to:\n1. Carefully review the findings and thoughts, particularly from the latest iteration, and assess their completeness in answering the original query\n2. Determine if the findings are sufficiently complete to end the research loop\n3. If not, identify up to 3 knowledge gaps that need to be addressed in sequence in order to continue with research - these should be relevant to the original query\n\nBe specific in the gaps you identify and include relevant information as this will be passed onto another agent to process without additional context.\n\nOnly output JSON and follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Output from the Knowledge Gap Agent', 'properties': {'research_complete': {'description': 'Whether the research and findings are complete enough to end the research loop', 'title': 'Research Complete', 'type': 'boolean'}, 'outstanding_gaps': {'description': 'List of knowledge gaps that still need to be addressed', 'items': {'type': 'string'}, 'title': 'Outstanding Gaps', 'type': 'array'}}, 'required': ['research_complete', 'outstanding_gaps'], 'title': 'KnowledgeGapOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ThinkingAgent",
+        "entity.1.from_agent_span_id": "978617202b109b2a",
+        "last.inference": "2c9c8224afba748e:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "81ae0c532839db771e49f74541e55b2e",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "bfa8fb7b2f50703f"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:54.915346Z",
+            "attributes": {
+                "input": [
+                    "\n        Current Iteration Number: 1\n        Time Elapsed: 0.11 minutes of maximum 3 minutes\n\n        ORIGINAL QUERY:\n        What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n<thought>\nStarting fresh on this inquiry into the Mediterranean diet and cardiovascular disease (CVD) risk. Here's what I'm thinking:\n\nFirst step, we need to gather a strong base of information. Let's dive into key areas:\n\n1. **Epidemiological Studies**: Identify large-scale studies that have investigated the diet's impact on CVD risk. Look for longitudinal studies, meta-analyses, and systematic reviews.\n\n2. **Mechanisms**: Explore how components of the Mediterranean diet (e.g., olive oil, fish, fruits, and vegetables) impact cardiovascular health. What biological mechanisms are proposed?\n\n3. **Contradictory Evidence**: Search for any studies or expert opinions that oppose the prevailing positive view. Are there populations or conditions where the diet is less effective?\n\n4. **Comparative Analysis**: Compare the Mediterranean diet with other diets (e.g., DASH, low-carb) in terms of CVD outcomes.\n\n5. **Regional Variations**: Analyze if different adaptations of the diet in various Mediterranean countries result in different health outcomes.\n\nHaving a comprehensive understanding of these areas will set a solid foundation. Let's also be mindful of biases, funding sources, and quality of studies. \n\nAfter gathering this initial data, we'll be better equipped to refine our focus and dig deeper into specific points of interest or concern.\n</thought>\n\n        \n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:56.405456Z",
+            "attributes": {
+                "response": "research_complete=False outstanding_gaps=['Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.', 'Insufficient exploration of biological mechanisms through which the components of the Mediterranean diet affect cardiovascular health.', 'Need for comparative analysis with other dietary interventions, including potential shortcomings or conflicts in the evidence.']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:56.405464Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "ee48197d0028c584",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "34ed31160e1d3875",
+    "start_time": "2026-07-09T19:28:56.409396Z",
+    "end_time": "2026-07-09T19:28:58.317179Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "3dc780e54bc0dc8f70ada0e7e48d9319",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:56.409518Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are an Tool Selector responsible for determining which specialized agents should address a knowledge gap in a research project.\\nToday's date is 2026-07-09.\\n\\nYou will be given:\\n1. The original user query\\n2. A knowledge gap identified in the research\\n3. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\\n\\nYour task is to decide:\\n1. Which specialized agents are best suited to address the gap\\n2. What specific queries should be given to the agents (keep this short - 3-6 words)\\n\\nAvailable specialized agents:\\n- WebSearchAgent: General web search for broad topics (can be called multiple times with different queries)\\n- SiteCrawlerAgent: Crawl the pages of a specific website to retrieve information about it - use this if you want to find out something about a particular company, entity or product\\n\\nGuidelines:\\n- Aim to call at most 3 agents at a time in your final output\\n- You can list the WebSearchAgent multiple times with different queries if needed to cover the full scope of the knowledge gap\\n- Be specific and concise (3-6 words) with the agent queries - they should target exactly what information is needed\\n- If you know the website or domain name of an entity being researched, always include it in the query\\n- If a gap doesn't clearly match any agent's capability, default to the WebSearchAgent\\n- Use the history of actions / tool calls as a guide - try not to repeat yourself if an approach didn't work previously\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'$defs': {'AgentTask': {'description': 'A task for a specific agent to address knowledge gaps', 'properties': {'gap': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The knowledge gap being addressed', 'title': 'Gap'}, 'agent': {'description': 'The name of the agent to use', 'title': 'Agent', 'type': 'string'}, 'query': {'description': 'The specific query for the agent', 'title': 'Query', 'type': 'string'}, 'entity_website': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The website of the entity being researched, if known', 'title': 'Entity Website'}}, 'required': ['agent', 'query'], 'title': 'AgentTask', 'type': 'object'}}, 'description': 'Plan for which agents to use for knowledge gaps', 'properties': {'tasks': {'description': 'List of agent tasks to address knowledge gaps', 'items': {'$ref': '#/$defs/AgentTask'}, 'title': 'Tasks', 'type': 'array'}}, 'required': ['tasks'], 'title': 'AgentSelectionPlan', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"\\n        ORIGINAL QUERY:\\n        What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\\n\\n        KNOWLEDGE GAP TO ADDRESS:\\n        Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n<thought>\\nStarting fresh on this inquiry into the Mediterranean diet and cardiovascular disease (CVD) risk. Here's what I'm thinking:\\n\\nFirst step, we need to gather a strong base of information. Let's dive into key areas:\\n\\n1. **Epidemiological Studies**: Identify large-scale studies that have investigated the diet's impact on CVD risk. Look for longitudinal studies, meta-analyses, and systematic reviews.\\n\\n2. **Mechanisms**: Explore how components of the Mediterranean diet (e.g., olive oil, fish, fruits, and vegetables) impact cardiovascular health. What biological mechanisms are proposed?\\n\\n3. **Contradictory Evidence**: Search for any studies or expert opinions that oppose the prevailing positive view. Are there populations or conditions where the diet is less effective?\\n\\n4. **Comparative Analysis**: Compare the Mediterranean diet with other diets (e.g., DASH, low-carb) in terms of CVD outcomes.\\n\\n5. **Regional Variations**: Analyze if different adaptations of the diet in various Mediterranean countries result in different health outcomes.\\n\\nHaving a comprehensive understanding of these areas will set a solid foundation. Let's also be mindful of biases, funding sources, and quality of studies. \\n\\nAfter gathering this initial data, we'll be better equipped to refine our focus and dig deeper into specific points of interest or concern.\\n</thought>\\n\\n<task>\\nAddress this knowledge gap: Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\n</task>\\n\\n\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:58.317084Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"tasks\\\":[{\\\"gap\\\":\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Mediterranean diet CVD epidemiology studies\\\",\\\"entity_website\\\":null},{\\\"gap\\\":\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Mediterranean diet meta-analyses CVD\\\",\\\"entity_website\\\":null},{\\\"gap\\\":\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"longitudinal studies diet CVD risk\\\",\\\"entity_website\\\":null}]}\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:58.317133Z",
+            "attributes": {
+                "completion_tokens": 141,
+                "prompt_tokens": 1209,
+                "total_tokens": 1350
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "34ed31160e1d3875",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:28:56.408074Z",
+    "end_time": "2026-07-09T19:28:58.318115Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "ToolSelectorAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are an Tool Selector responsible for determining which specialized agents should address a knowledge gap in a research project.\nToday's date is 2026-07-09.\n\nYou will be given:\n1. The original user query\n2. A knowledge gap identified in the research\n3. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\n\nYour task is to decide:\n1. Which specialized agents are best suited to address the gap\n2. What specific queries should be given to the agents (keep this short - 3-6 words)\n\nAvailable specialized agents:\n- WebSearchAgent: General web search for broad topics (can be called multiple times with different queries)\n- SiteCrawlerAgent: Crawl the pages of a specific website to retrieve information about it - use this if you want to find out something about a particular company, entity or product\n\nGuidelines:\n- Aim to call at most 3 agents at a time in your final output\n- You can list the WebSearchAgent multiple times with different queries if needed to cover the full scope of the knowledge gap\n- Be specific and concise (3-6 words) with the agent queries - they should target exactly what information is needed\n- If you know the website or domain name of an entity being researched, always include it in the query\n- If a gap doesn't clearly match any agent's capability, default to the WebSearchAgent\n- Use the history of actions / tool calls as a guide - try not to repeat yourself if an approach didn't work previously\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'$defs': {'AgentTask': {'description': 'A task for a specific agent to address knowledge gaps', 'properties': {'gap': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The knowledge gap being addressed', 'title': 'Gap'}, 'agent': {'description': 'The name of the agent to use', 'title': 'Agent', 'type': 'string'}, 'query': {'description': 'The specific query for the agent', 'title': 'Query', 'type': 'string'}, 'entity_website': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The website of the entity being researched, if known', 'title': 'Entity Website'}}, 'required': ['agent', 'query'], 'title': 'AgentTask', 'type': 'object'}}, 'description': 'Plan for which agents to use for knowledge gaps', 'properties': {'tasks': {'description': 'List of agent tasks to address knowledge gaps', 'items': {'$ref': '#/$defs/AgentTask'}, 'title': 'Tasks', 'type': 'array'}}, 'required': ['tasks'], 'title': 'AgentSelectionPlan', 'type': 'object'}\n",
+        "entity.1.from_agent": "KnowledgeGapAgent",
+        "entity.1.from_agent_span_id": "bc5dc1f58ee720b0",
+        "last.inference": "ee48197d0028c584:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "3dc780e54bc0dc8f70ada0e7e48d9319",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "2c9c8224afba748e"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:56.408161Z",
+            "attributes": {
+                "input": [
+                    "\n        ORIGINAL QUERY:\n        What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\n\n        KNOWLEDGE GAP TO ADDRESS:\n        Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n<thought>\nStarting fresh on this inquiry into the Mediterranean diet and cardiovascular disease (CVD) risk. Here's what I'm thinking:\n\nFirst step, we need to gather a strong base of information. Let's dive into key areas:\n\n1. **Epidemiological Studies**: Identify large-scale studies that have investigated the diet's impact on CVD risk. Look for longitudinal studies, meta-analyses, and systematic reviews.\n\n2. **Mechanisms**: Explore how components of the Mediterranean diet (e.g., olive oil, fish, fruits, and vegetables) impact cardiovascular health. What biological mechanisms are proposed?\n\n3. **Contradictory Evidence**: Search for any studies or expert opinions that oppose the prevailing positive view. Are there populations or conditions where the diet is less effective?\n\n4. **Comparative Analysis**: Compare the Mediterranean diet with other diets (e.g., DASH, low-carb) in terms of CVD outcomes.\n\n5. **Regional Variations**: Analyze if different adaptations of the diet in various Mediterranean countries result in different health outcomes.\n\nHaving a comprehensive understanding of these areas will set a solid foundation. Let's also be mindful of biases, funding sources, and quality of studies. \n\nAfter gathering this initial data, we'll be better equipped to refine our focus and dig deeper into specific points of interest or concern.\n</thought>\n\n<task>\nAddress this knowledge gap: Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\n</task>\n\n\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:58.318058Z",
+            "attributes": {
+                "response": "tasks=[AgentTask(gap='Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.', agent='WebSearchAgent', query='Mediterranean diet CVD epidemiology studies', entity_website=None), AgentTask(gap='Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.', agent='WebSearchAgent', query='Mediterranean diet meta-analyses CVD', entity_website=None), AgentTask(gap='Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.', agent='WebSearchAgent', query='longitudinal studies diet CVD risk', entity_website=None)]"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:58.318069Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "393a54eb860a1ee2",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "c58545dfd9eefb41",
+    "start_time": "2026-07-09T19:28:58.328848Z",
+    "end_time": "2026-07-09T19:29:03.772616Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "15382e0d751aa79f9613c8e187ae6813",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:58.328942Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"longitudinal studies diet CVD risk\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:03.772560Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Several longitudinal studies have investigated the relationship between adherence to the Mediterranean diet and cardiovascular disease (CVD) risk, providing evidence of its protective effects.\\\\n\\\\n**ATTICA Cohort Study (2002\\u20132022):**\\\\n\\\\nThe ATTICA study, a 20-year cohort study, examined the impact of Mediterranean diet adherence on CVD incidence. Findings indicated that for each one-unit increase in the Mediterranean Diet Score (MedDietScore), the 20-year CVD risk was reduced by 8%. Additionally, individuals maintaining high adherence to the Mediterranean diet exhibited the lowest 20-year CVD risk. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\\\n\\\\n**EPIC-NL Cohort Study:**\\\\n\\\\nThe European Prospective Investigation into Cancer and Nutrition Netherlands (EPIC-NL) study, a 12-year cohort study, assessed the association between Mediterranean diet adherence and CVD incidence. The study found that higher adherence to the Mediterranean diet was linked to a reduced risk of total and specific cardiovascular diseases. ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC3460941/?utm_source=openai))\\\\n\\\\n**Systematic Review and Meta-Analysis (2026):**\\\\n\\\\nA systematic review and meta-analysis of cohort studies published in 2026 evaluated the role of the Mediterranean diet in secondary CVD prevention. The analysis included 13 prospective cohort studies comprising 54,034 patients with established CVD. Higher adherence to the Mediterranean diet was associated with a 26% reduction in all-cause mortality, a 16% lower risk of cardiovascular mortality, and a 40% lower risk of recurrent cardiovascular events. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\\\n\\\\nThese studies collectively support the protective role of the Mediterranean diet against cardiovascular diseases, emphasizing its importance in both primary and secondary prevention strategies.\\\",\\\"sources\\\":[\\\"([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\\",\\\"([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC3460941/?utm_source=openai))\\\",\\\"([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:03.772587Z",
+            "attributes": {
+                "completion_tokens": 552,
+                "prompt_tokens": 8174,
+                "total_tokens": 8726
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "c58545dfd9eefb41",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:28:58.322587Z",
+    "end_time": "2026-07-09T19:29:03.773481Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "34ed31160e1d3875",
+        "last.inference": "393a54eb860a1ee2:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "15382e0d751aa79f9613c8e187ae6813",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "ee48197d0028c584"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:58.322644Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\",\"agent\":\"WebSearchAgent\",\"query\":\"longitudinal studies diet CVD risk\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:03.773439Z",
+            "attributes": {
+                "response": "output='Several longitudinal studies have investigated the relationship between adherence to the Mediterranean diet and cardiovascular disease (CVD) risk, providing evidence of its protective effects.\\n\\n**ATTICA Cohort Study (2002\u20132022):**\\n\\nThe ATTICA study, a 20-year cohort study, examined the impact of Mediterranean diet adherence on CVD incidence. Findings indicated that for each one-unit increase in the Mediterranean Diet Score (MedDietScore), the 20-year CVD risk was reduced by 8%. Additionally, individuals maintaining high adherence to the Mediterranean diet exhibited the lowest 20-year CVD risk. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\n\\n**EPIC-NL Cohort Study:**\\n\\nThe European Prospective Investigation into Cancer and Nutrition Netherlands (EPIC-NL) study, a 12-year cohort study, assessed the association between Mediterranean diet adherence and CVD incidence. The study found that higher adherence to the Mediterranean diet was linked to a reduced risk of total and specific cardiovascular diseases. ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC3460941/?utm_source=openai))\\n\\n**Systematic Review and Meta-Analysis (2026):**\\n\\nA systematic review and meta-analysis of cohort studies published in 2026 evaluated the role of the Mediterranean diet in secondary CVD prevention. The analysis included 13 prospective cohort studies comprising 54,034 patients with established CVD. Higher adherence to the Mediterranean diet was associated with a 26% reduction in all-cause mortality, a 16% lower risk of cardiovascular mortality, and a 40% lower risk of recurrent cardiovascular events. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\n\\nThese studies collectively support the protective role of the Mediterranean diet against cardiovascular diseases, emphasizing its importance in both primary and secondary prevention strategies.' sources=['([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))', '([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC3460941/?utm_source=openai))', '([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:03.773446Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "023e52985507bc5f",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "f64ab74fa1c8402b",
+    "start_time": "2026-07-09T19:28:58.327346Z",
+    "end_time": "2026-07-09T19:29:04.416484Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "9b40772234017973d2649fbcb574f0dc",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:58.327457Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Mediterranean diet meta-analyses CVD\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:04.416448Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Several meta-analyses have investigated the relationship between adherence to the Mediterranean diet and cardiovascular disease (CVD) risk, providing substantial evidence of its protective effects.\\\\n\\\\n**Primary Prevention:**\\\\n\\\\n- A systematic review and meta-analysis of observational studies found that the highest adherence to the Mediterranean diet was associated with a relative risk (RR) of 0.81 (95% confidence interval [CI]: 0.74\\u20130.88) for unspecified CVD, and 0.70 (95% CI: 0.62\\u20130.80) for coronary heart disease/acute myocardial infarction, compared to the lowest adherence. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\\\n\\\\n- An umbrella review of meta-analyses of randomized controlled trials (RCTs) reported that greater adherence to the Mediterranean diet was associated with a reduced risk of overall mortality, CVD, coronary heart disease, myocardial infarction, and stroke. ([nature.com](https://www.nature.com/articles/ejcn201758?utm_source=openai))\\\\n\\\\n**Secondary Prevention:**\\\\n\\\\n- A systematic review and meta-analysis of cohort studies found that higher adherence to the Mediterranean diet was associated with a 26% reduction in all-cause mortality (RR: 0.74, 95% CI: 0.65\\u20130.84), a 16% reduction in CVD mortality (RR: 0.84, 95% CI: 0.75\\u20130.94), and a 40% reduction in recurrent CVD events (RR: 0.60, 95% CI: 0.39\\u20130.92) among patients with established CVD. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\\\n\\\\n- Another meta-analysis of RCTs found that adherence to the Mediterranean diet was associated with a 37% reduction in major vascular events (RR: 0.63, 95% CI: 0.53\\u20130.75), a 35% reduction in coronary events (RR: 0.65, 95% CI: 0.50\\u20130.85), and a 35% reduction in stroke risk (RR: 0.65, 95% CI: 0.48\\u20130.88), compared to control diets. ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC4980102/?utm_source=openai))\\\\n\\\\nThese findings collectively support the inclusion of the Mediterranean diet as a key component in both primary and secondary prevention strategies for cardiovascular diseases.\\\",\\\"sources\\\":[\\\"([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\\",\\\"([nature.com](https://www.nature.com/articles/ejcn201758?utm_source=openai))\\\",\\\"([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\\",\\\"([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC4980102/?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:04.416465Z",
+            "attributes": {
+                "completion_tokens": 726,
+                "prompt_tokens": 8174,
+                "total_tokens": 8900
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "f64ab74fa1c8402b",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:28:58.322220Z",
+    "end_time": "2026-07-09T19:29:04.416901Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "34ed31160e1d3875",
+        "last.inference": "023e52985507bc5f:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "9b40772234017973d2649fbcb574f0dc",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "393a54eb860a1ee2"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:58.322513Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\",\"agent\":\"WebSearchAgent\",\"query\":\"Mediterranean diet meta-analyses CVD\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:04.416881Z",
+            "attributes": {
+                "response": "output='Several meta-analyses have investigated the relationship between adherence to the Mediterranean diet and cardiovascular disease (CVD) risk, providing substantial evidence of its protective effects.\\n\\n**Primary Prevention:**\\n\\n- A systematic review and meta-analysis of observational studies found that the highest adherence to the Mediterranean diet was associated with a relative risk (RR) of 0.81 (95% confidence interval [CI]: 0.74\u20130.88) for unspecified CVD, and 0.70 (95% CI: 0.62\u20130.80) for coronary heart disease/acute myocardial infarction, compared to the lowest adherence. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\n\\n- An umbrella review of meta-analyses of randomized controlled trials (RCTs) reported that greater adherence to the Mediterranean diet was associated with a reduced risk of overall mortality, CVD, coronary heart disease, myocardial infarction, and stroke. ([nature.com](https://www.nature.com/articles/ejcn201758?utm_source=openai))\\n\\n**Secondary Prevention:**\\n\\n- A systematic review and meta-analysis of cohort studies found that higher adherence to the Mediterranean diet was associated with a 26% reduction in all-cause mortality (RR: 0.74, 95% CI: 0.65\u20130.84), a 16% reduction in CVD mortality (RR: 0.84, 95% CI: 0.75\u20130.94), and a 40% reduction in recurrent CVD events (RR: 0.60, 95% CI: 0.39\u20130.92) among patients with established CVD. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\n\\n- Another meta-analysis of RCTs found that adherence to the Mediterranean diet was associated with a 37% reduction in major vascular events (RR: 0.63, 95% CI: 0.53\u20130.75), a 35% reduction in coronary events (RR: 0.65, 95% CI: 0.50\u20130.85), and a 35% reduction in stroke risk (RR: 0.65, 95% CI: 0.48\u20130.88), compared to control diets. ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC4980102/?utm_source=openai))\\n\\nThese findings collectively support the inclusion of the Mediterranean diet as a key component in both primary and secondary prevention strategies for cardiovascular diseases.' sources=['([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))', '([nature.com](https://www.nature.com/articles/ejcn201758?utm_source=openai))', '([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))', '([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC4980102/?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:04.416886Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "2bdecc7bc6a22691",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ce41f52e2bd555a8",
+    "start_time": "2026-07-09T19:28:58.324128Z",
+    "end_time": "2026-07-09T19:29:04.986711Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "678699dd63550cc7e4c1c9644f9cda6d",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:58.324260Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"Mediterranean diet CVD epidemiology studies\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:04.986651Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"A substantial body of epidemiological research has investigated the relationship between the Mediterranean diet and cardiovascular disease (CVD) risk, consistently indicating a protective effect.\\\\n\\\\n**Observational Studies:**\\\\n\\\\n- A systematic review and meta-analysis of 29 observational studies found that individuals adhering to the highest category of the Mediterranean diet had a relative risk (RR) of 0.81 (95% confidence interval [CI] 0.74\\u20130.88) for unspecified CVD compared to those with the lowest adherence. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\\\n\\\\n- The ATTICA cohort study, spanning 20 years, demonstrated that each one-unit increase in the Mediterranean diet score was associated with an 8% reduction in 20-year CVD risk. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\\\n\\\\n**Randomized Controlled Trials (RCTs):**\\\\n\\\\n- A Cochrane review of 30 RCTs found moderate-quality evidence suggesting that a Mediterranean-style diet may reduce stroke incidence in primary prevention and cardiovascular mortality in secondary prevention. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai))\\\\n\\\\n- An umbrella review of 18 meta-analyses encompassing 238 RCTs reported that adherence to the Mediterranean diet was associated with reduced cardiovascular disease mortality, with risk ratios ranging from 0.35 (95% CI 0.15\\u20130.82) to 0.90 (95% CI 0.72\\u20131.11). ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai))\\\\n\\\\n**Secondary Prevention:**\\\\n\\\\n- A recent meta-analysis of 13 cohort studies involving 54,034 patients with established CVD found that higher adherence to the Mediterranean diet was linked to a 26% reduction in all-cause mortality (RR 0.74, 95% CI 0.65\\u20130.84), a 16% reduction in cardiovascular mortality (RR 0.84, 95% CI 0.75\\u20130.94), and a 40% reduction in recurrent cardiovascular events (RR 0.60, 95% CI 0.39\\u20130.92). ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\\\n\\\\nThese findings collectively support the inclusion of the Mediterranean diet as a key component in both primary and secondary prevention strategies for cardiovascular disease.\\\",\\\"sources\\\":[\\\"([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\\",\\\"([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\\",\\\"([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai))\\\",\\\"([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai))\\\",\\\"([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:04.986681Z",
+            "attributes": {
+                "completion_tokens": 771,
+                "prompt_tokens": 8174,
+                "total_tokens": 8945
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "ce41f52e2bd555a8",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:28:58.322039Z",
+    "end_time": "2026-07-09T19:29:04.987307Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "34ed31160e1d3875",
+        "last.inference": "2bdecc7bc6a22691:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "678699dd63550cc7e4c1c9644f9cda6d",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "023e52985507bc5f"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:58.322136Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Lack of specific epidemiological studies identifying direct relationships between the Mediterranean diet and cardiovascular disease risk.\",\"agent\":\"WebSearchAgent\",\"query\":\"Mediterranean diet CVD epidemiology studies\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:04.987273Z",
+            "attributes": {
+                "response": "output='A substantial body of epidemiological research has investigated the relationship between the Mediterranean diet and cardiovascular disease (CVD) risk, consistently indicating a protective effect.\\n\\n**Observational Studies:**\\n\\n- A systematic review and meta-analysis of 29 observational studies found that individuals adhering to the highest category of the Mediterranean diet had a relative risk (RR) of 0.81 (95% confidence interval [CI] 0.74\u20130.88) for unspecified CVD compared to those with the lowest adherence. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\n\\n- The ATTICA cohort study, spanning 20 years, demonstrated that each one-unit increase in the Mediterranean diet score was associated with an 8% reduction in 20-year CVD risk. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\n\\n**Randomized Controlled Trials (RCTs):**\\n\\n- A Cochrane review of 30 RCTs found moderate-quality evidence suggesting that a Mediterranean-style diet may reduce stroke incidence in primary prevention and cardiovascular mortality in secondary prevention. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai))\\n\\n- An umbrella review of 18 meta-analyses encompassing 238 RCTs reported that adherence to the Mediterranean diet was associated with reduced cardiovascular disease mortality, with risk ratios ranging from 0.35 (95% CI 0.15\u20130.82) to 0.90 (95% CI 0.72\u20131.11). ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai))\\n\\n**Secondary Prevention:**\\n\\n- A recent meta-analysis of 13 cohort studies involving 54,034 patients with established CVD found that higher adherence to the Mediterranean diet was linked to a 26% reduction in all-cause mortality (RR 0.74, 95% CI 0.65\u20130.84), a 16% reduction in cardiovascular mortality (RR 0.84, 95% CI 0.75\u20130.94), and a 40% reduction in recurrent cardiovascular events (RR 0.60, 95% CI 0.39\u20130.92). ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\n\\nThese findings collectively support the inclusion of the Mediterranean diet as a key component in both primary and secondary prevention strategies for cardiovascular disease.' sources=['([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))', '([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))', '([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai))', '([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai))', '([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:04.987280Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "8768b76905ddf653",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "137542d8b331b7e0",
+    "start_time": "2026-07-09T19:29:04.989010Z",
+    "end_time": "2026-07-09T19:29:09.085229Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "971199d2f7fafa595fcf8b5bb944449c",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:29:04.989081Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a senior researcher tasked with comprehensively answering a research query. \\nToday's date is 2026-07-09.\\nYou will be provided with the original query along with research findings put together by a research assistant.\\nYour objective is to generate the final response in markdown format.\\nThe response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.\\nIn your final output, include references to the source URLs for all information and data gathered. \\nThis should be formatted in the form of a numbered square bracket next to the relevant information, \\nfollowed by a list of URLs at the end of the response, per the example below.\\n\\nEXAMPLE REFERENCE FORMAT:\\nThe company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].\\n\\nReferences:\\n[1] https://example.com/first-source-url\\n[2] https://example.com/second-source-url\\n\\nGUIDELINES:\\n* Answer the query directly, do not include unrelated or tangential information.\\n* Adhere to any instructions on the length of your final response if provided in the user prompt.\\n* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.\\n\"}",
+                    "{\"user\": \"\\n        Provide a response based on the query and findings below with as much detail as possible. GUIDELINES:\\n* The full response should be approximately 2 paragraphs.\\n\\n        QUERY: What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\\n\\n        FINDINGS:\\n        A substantial body of epidemiological research has investigated the relationship between the Mediterranean diet and cardiovascular disease (CVD) risk, consistently indicating a protective effect.\\n\\n**Observational Studies:**\\n\\n- A systematic review and meta-analysis of 29 observational studies found that individuals adhering to the highest category of the Mediterranean diet had a relative risk (RR) of 0.81 (95% confidence interval [CI] 0.74\\u20130.88) for unspecified CVD compared to those with the lowest adherence. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\\n\\n- The ATTICA cohort study, spanning 20 years, demonstrated that each one-unit increase in the Mediterranean diet score was associated with an 8% reduction in 20-year CVD risk. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\\n\\n**Randomized Controlled Trials (RCTs):**\\n\\n- A Cochrane review of 30 RCTs found moderate-quality evidence suggesting that a Mediterranean-style diet may reduce stroke incidence in primary prevention and cardiovascular mortality in secondary prevention. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai))\\n\\n- An umbrella review of 18 meta-analyses encompassing 238 RCTs reported that adherence to the Mediterranean diet was associated with reduced cardiovascular disease mortality, with risk ratios ranging from 0.35 (95% CI 0.15\\u20130.82) to 0.90 (95% CI 0.72\\u20131.11). ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai))\\n\\n**Secondary Prevention:**\\n\\n- A recent meta-analysis of 13 cohort studies involving 54,034 patients with established CVD found that higher adherence to the Mediterranean diet was linked to a 26% reduction in all-cause mortality (RR 0.74, 95% CI 0.65\\u20130.84), a 16% reduction in cardiovascular mortality (RR 0.84, 95% CI 0.75\\u20130.94), and a 40% reduction in recurrent cardiovascular events (RR 0.60, 95% CI 0.39\\u20130.92). ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\\n\\nThese findings collectively support the inclusion of the Mediterranean diet as a key component in both primary and secondary prevention strategies for cardiovascular disease.\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:09.085193Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"Evidence consistently supports the Mediterranean diet's protective role against cardiovascular disease (CVD). Observational studies, like a systematic review and meta-analysis of 29 studies, highlight a significant reduction in CVD risk among individuals with high adherence to this diet, showing a relative risk (RR) of 0.81 compared to low adherence groups [1]. The long-running ATTICA cohort study also supports these findings, demonstrating an 8% reduction in 20-year CVD risk with every one-unit increase in adherence to the Mediterranean diet score [2].\\n\\nRandomized controlled trials further corroborate these observations. A Cochrane review of 30 RCTs offers moderate-quality evidence that a Mediterranean diet may decrease stroke occurrence in primary prevention and lower cardiovascular mortality in secondary prevention [3]. An umbrella review of 18 meta-analyses encompassing 238 RCTs shows similar outcomes, with reduced CVD mortality associated with this diet [4]. Importantly, for secondary prevention, a meta-analysis of 13 cohort studies involving over 54,000 patients with established CVD found substantial reductions in all-cause mortality, cardiovascular mortality, and recurrent cardiovascular events for those adhering more closely to the diet [5]. Collectively, these findings advocate for the Mediterranean diet as a pivotal component in both primary and secondary CVD prevention strategies.\\n\\nReferences:\\n[1] https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai\\n[2] https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai\\n[3] https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai\\n[4] https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai\\n[5] https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:09.085211Z",
+            "attributes": {
+                "completion_tokens": 393,
+                "prompt_tokens": 890,
+                "total_tokens": 1283
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "137542d8b331b7e0",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a18456002269ed37",
+    "start_time": "2026-07-09T19:29:04.988484Z",
+    "end_time": "2026-07-09T19:29:09.085563Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WriterAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a senior researcher tasked with comprehensively answering a research query. \nToday's date is 2026-07-09.\nYou will be provided with the original query along with research findings put together by a research assistant.\nYour objective is to generate the final response in markdown format.\nThe response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.\nIn your final output, include references to the source URLs for all information and data gathered. \nThis should be formatted in the form of a numbered square bracket next to the relevant information, \nfollowed by a list of URLs at the end of the response, per the example below.\n\nEXAMPLE REFERENCE FORMAT:\nThe company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].\n\nReferences:\n[1] https://example.com/first-source-url\n[2] https://example.com/second-source-url\n\nGUIDELINES:\n* Answer the query directly, do not include unrelated or tangential information.\n* Adhere to any instructions on the length of your final response if provided in the user prompt.\n* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.\n",
+        "entity.1.from_agent": "WebSearchAgent",
+        "entity.1.from_agent_span_id": "ce41f52e2bd555a8",
+        "last.inference": "8768b76905ddf653:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "scope.agentic.invocation": "971199d2f7fafa595fcf8b5bb944449c",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "2bdecc7bc6a22691"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:29:04.988539Z",
+            "attributes": {
+                "input": [
+                    "\n        Provide a response based on the query and findings below with as much detail as possible. GUIDELINES:\n* The full response should be approximately 2 paragraphs.\n\n        QUERY: What does the evidence say about the Mediterranean diet and cardiovascular disease risk?\n\n        FINDINGS:\n        A substantial body of epidemiological research has investigated the relationship between the Mediterranean diet and cardiovascular disease (CVD) risk, consistently indicating a protective effect.\n\n**Observational Studies:**\n\n- A systematic review and meta-analysis of 29 observational studies found that individuals adhering to the highest category of the Mediterranean diet had a relative risk (RR) of 0.81 (95% confidence interval [CI] 0.74\u20130.88) for unspecified CVD compared to those with the lowest adherence. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai))\n\n- The ATTICA cohort study, spanning 20 years, demonstrated that each one-unit increase in the Mediterranean diet score was associated with an 8% reduction in 20-year CVD risk. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai))\n\n**Randomized Controlled Trials (RCTs):**\n\n- A Cochrane review of 30 RCTs found moderate-quality evidence suggesting that a Mediterranean-style diet may reduce stroke incidence in primary prevention and cardiovascular mortality in secondary prevention. ([pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai))\n\n- An umbrella review of 18 meta-analyses encompassing 238 RCTs reported that adherence to the Mediterranean diet was associated with reduced cardiovascular disease mortality, with risk ratios ranging from 0.35 (95% CI 0.15\u20130.82) to 0.90 (95% CI 0.72\u20131.11). ([pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai))\n\n**Secondary Prevention:**\n\n- A recent meta-analysis of 13 cohort studies involving 54,034 patients with established CVD found that higher adherence to the Mediterranean diet was linked to a 26% reduction in all-cause mortality (RR 0.74, 95% CI 0.65\u20130.84), a 16% reduction in cardiovascular mortality (RR 0.84, 95% CI 0.75\u20130.94), and a 40% reduction in recurrent cardiovascular events (RR 0.60, 95% CI 0.39\u20130.92). ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai))\n\nThese findings collectively support the inclusion of the Mediterranean diet as a key component in both primary and secondary prevention strategies for cardiovascular disease.\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:09.085542Z",
+            "attributes": {
+                "response": "Evidence consistently supports the Mediterranean diet's protective role against cardiovascular disease (CVD). Observational studies, like a systematic review and meta-analysis of 29 studies, highlight a significant reduction in CVD risk among individuals with high adherence to this diet, showing a relative risk (RR) of 0.81 compared to low adherence groups [1]. The long-running ATTICA cohort study also supports these findings, demonstrating an 8% reduction in 20-year CVD risk with every one-unit increase in adherence to the Mediterranean diet score [2].\n\nRandomized controlled trials further corroborate these observations. A Cochrane review of 30 RCTs offers moderate-quality evidence that a Mediterranean diet may decrease stroke occurrence in primary prevention and lower cardiovascular mortality in secondary prevention [3]. An umbrella review of 18 meta-analyses encompassing 238 RCTs shows similar outcomes, with reduced CVD mortality associated with this diet [4]. Importantly, for secondary prevention, a meta-analysis of 13 cohort studies involving over 54,000 patients with established CVD found substantial reductions in all-cause mortality, cardiovascular mortality, and recurrent cardiovascular events for those adhering more closely to the diet [5]. Collectively, these findings advocate for the Mediterranean diet as a pivotal component in both primary and secondary CVD prevention strategies.\n\nReferences:\n[1] https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai\n[2] https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai\n[3] https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai\n[4] https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai\n[5] https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:29:09.085546Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "research_turn",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "a18456002269ed37",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "8c87130e5eeeb5e9",
+    "start_time": "2026-07-09T19:28:48.435566Z",
+    "end_time": "2026-07-09T19:29:09.085759Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "scope.agentic.turn": "b81c1f301c92bf56436adc23179643d0",
+        "workflow.name": "openai-agents-deep-research",
+        "span.type": "agentic.turn",
+        "entity.1.name": "What does the evidence say about the Mediterranean diet and cardiovascular disease risk?",
+        "monocle.last.agent.invocation.id": "137542d8b331b7e0",
+        "monocle.last.agent.name": "WriterAgent",
+        "last.inference": "8768b76905ddf653:*"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:48.435580Z",
+            "attributes": {
+                "input": "What does the evidence say about the Mediterranean diet and cardiovascular disease risk?"
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:29:09.085754Z",
+            "attributes": {
+                "response": "Evidence consistently supports the Mediterranean diet's protective role against cardiovascular disease (CVD). Observational studies, like a systematic review and meta-analysis of 29 studies, highlight a significant reduction in CVD risk among individuals with high adherence to this diet, showing a relative risk (RR) of 0.81 compared to low adherence groups [1]. The long-running ATTICA cohort study also supports these findings, demonstrating an 8% reduction in 20-year CVD risk with every one-unit increase in adherence to the Mediterranean diet score [2].\n\nRandomized controlled trials further corroborate these observations. A Cochrane review of 30 RCTs offers moderate-quality evidence that a Mediterranean diet may decrease stroke occurrence in primary prevention and lower cardiovascular mortality in secondary prevention [3]. An umbrella review of 18 meta-analyses encompassing 238 RCTs shows similar outcomes, with reduced CVD mortality associated with this diet [4]. Importantly, for secondary prevention, a meta-analysis of 13 cohort studies involving over 54,000 patients with established CVD found substantial reductions in all-cause mortality, cardiovascular mortality, and recurrent cardiovascular events for those adhering more closely to the diet [5]. Collectively, these findings advocate for the Mediterranean diet as a pivotal component in both primary and secondary CVD prevention strategies.\n\nReferences:\n[1] https://pubmed.ncbi.nlm.nih.gov/29177567/?utm_source=openai\n[2] https://www.sciencedirect.com/science/article/pii/S0939475323003800?utm_source=openai\n[3] https://pubmed.ncbi.nlm.nih.gov/32923349/?utm_source=openai\n[4] https://pmc.ncbi.nlm.nih.gov/articles/PMC11795232/?utm_source=openai\n[5] https://www.sciencedirect.com/science/article/pii/S0939475326003169?utm_source=openai"
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "workflow",
+    "context": {
+        "trace_id": "f8edfda0c437698cf256ae21cf2d1123",
+        "span_id": "8c87130e5eeeb5e9",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": null,
+    "start_time": "2026-07-09T19:28:48.435488Z",
+    "end_time": "2026-07-09T19:29:09.085771Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "",
+        "scope.agentic.session": "bbdb36f7c0225af9151e4afe329ed515",
+        "workflow.name": "openai-agents-deep-research",
+        "span.type": "workflow",
+        "entity.1.name": "openai-agents-deep-research",
+        "entity.1.type": "workflow.generic",
+        "entity.2.type": "app_hosting.generic",
+        "entity.2.name": "generic"
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+]

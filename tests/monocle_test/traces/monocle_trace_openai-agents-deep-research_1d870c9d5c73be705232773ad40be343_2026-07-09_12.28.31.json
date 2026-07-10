@@ -1,0 +1,1029 @@
+[{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "82e56e849563dc99",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "52d3b7ac77f89b64",
+    "start_time": "2026-07-09T19:28:21.916101Z",
+    "end_time": "2026-07-09T19:28:27.142909Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "7abe80fafc5a32f4749afca94c6a773f",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:21.916181Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a research expert who is managing a research process in iterations. Today's date is 2026-07-09.\\n\\nYou are given:\\n1. The original research query along with some supporting background context\\n2. A history of the tasks, actions, findings and thoughts you've made up until this point in the research process (on iteration 1 you will be at the start of the research process, so this will be empty)\\n\\nYour objective is to reflect on the research process so far and share your latest thoughts.\\n\\nSpecifically, your thoughts should include reflections on questions such as:\\n- What have you learned from the last iteration?\\n- What new areas would you like to explore next, or existing topics you'd like to go deeper into?\\n- Were you able to retrieve the information you were looking for in the last iteration?\\n- If not, should we change our approach or move to the next topic?\\n- Is there any info that is contradictory or conflicting?\\n\\nGuidelines:\\n- Share you stream of consciousness on the above questions as raw text\\n- Keep your response concise and informal\\n- Focus most of your thoughts on the most recent iteration and how that influences this next iteration\\n- Our aim is to do very deep and thorough research - bear this in mind when reflecting on the research process\\n- DO NOT produce a draft of the final report. This is not your job.\\n- If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started\\n\"}",
+                    "{\"user\": \"\\n        You are starting iteration 1 of your research process.\\n\\n        ORIGINAL QUERY:\\n        What are the latest advances in grid-scale energy storage?\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:27.142849Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"Alright, diving into grid-scale energy storage! First things first, we need to gather a broad range of information to get a solid foundation. Here\\u2019s what I\\u2019m thinking:\\n\\n1. **Technology Overview**: Look into the different types of technologies currently being developed or recently improved for grid-scale energy storage. This would include batteries (like lithium-ion and emerging alternatives), pumped hydro, compressed air, and newer technologies like flow batteries and thermal storage.\\n\\n2. **Recent Breakthroughs**: Pinpoint any recent breakthroughs or innovations. This could be in efficiency, cost reduction, scalability, or sustainability. Checking academic journals, conference papers, and industry reports from the last couple of years should help.\\n\\n3. **Industry Leaders**: Identify key players in the industry. Large companies, startups, or academic institutions pushing the boundaries. This could give us insights into commercialization potential and market trends.\\n\\n4. **Challenges and Limitations**: Understand what remains challenging\\u2014technical barriers, cost issues, material limitations, or policy-related obstacles.\\n\\n5. **Case Studies**: Find examples of successful implementations around the world. This can give concrete insights into what\\u2019s working and what isn\\u2019t.\\n\\n6. **Future Directions**: Look for expert predictions or any forward-looking statements on where the industry is headed.\\n\\nFor the first pass, I'll focus on gathering insights mainly through reputable online sources like academic journals, recent articles from well-known tech publications, and industry news websites. We'll then synthesize this info to identify patterns, gaps, and promising areas to explore next.\\n\\nLet\\u2019s get started!\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:27.142876Z",
+            "attributes": {
+                "completion_tokens": 315,
+                "prompt_tokens": 374,
+                "total_tokens": 689
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "52d3b7ac77f89b64",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:21.912596Z",
+    "end_time": "2026-07-09T19:28:27.143575Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "ThinkingAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a research expert who is managing a research process in iterations. Today's date is 2026-07-09.\n\nYou are given:\n1. The original research query along with some supporting background context\n2. A history of the tasks, actions, findings and thoughts you've made up until this point in the research process (on iteration 1 you will be at the start of the research process, so this will be empty)\n\nYour objective is to reflect on the research process so far and share your latest thoughts.\n\nSpecifically, your thoughts should include reflections on questions such as:\n- What have you learned from the last iteration?\n- What new areas would you like to explore next, or existing topics you'd like to go deeper into?\n- Were you able to retrieve the information you were looking for in the last iteration?\n- If not, should we change our approach or move to the next topic?\n- Is there any info that is contradictory or conflicting?\n\nGuidelines:\n- Share you stream of consciousness on the above questions as raw text\n- Keep your response concise and informal\n- Focus most of your thoughts on the most recent iteration and how that influences this next iteration\n- Our aim is to do very deep and thorough research - bear this in mind when reflecting on the research process\n- DO NOT produce a draft of the final report. This is not your job.\n- If this is the first iteration (i.e. no data from prior iterations), provide thoughts on what info we need to gather in the first iteration to get started\n",
+        "last.inference": "82e56e849563dc99:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "7abe80fafc5a32f4749afca94c6a773f",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": ""
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:21.912648Z",
+            "attributes": {
+                "input": [
+                    "\n        You are starting iteration 1 of your research process.\n\n        ORIGINAL QUERY:\n        What are the latest advances in grid-scale energy storage?\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:27.143550Z",
+            "attributes": {
+                "response": "Alright, diving into grid-scale energy storage! First things first, we need to gather a broad range of information to get a solid foundation. Here\u2019s what I\u2019m thinking:\n\n1. **Technology Overview**: Look into the different types of technologies currently being developed or recently improved for grid-scale energy storage. This would include batteries (like lithium-ion and emerging alternatives), pumped hydro, compressed air, and newer technologies like flow batteries and thermal storage.\n\n2. **Recent Breakthroughs**: Pinpoint any recent breakthroughs or innovations. This could be in efficiency, cost reduction, scalability, or sustainability. Checking academic journals, conference papers, and industry reports from the last couple of years should help.\n\n3. **Industry Leaders**: Identify key players in the industry. Large companies, startups, or academic institutions pushing the boundaries. This could give us insights into commercialization potential and market trends.\n\n4. **Challenges and Limitations**: Understand what remains challenging\u2014technical barriers, cost issues, material limitations, or policy-related obstacles.\n\n5. **Case Studies**: Find examples of successful implementations around the world. This can give concrete insights into what\u2019s working and what isn\u2019t.\n\n6. **Future Directions**: Look for expert predictions or any forward-looking statements on where the industry is headed.\n\nFor the first pass, I'll focus on gathering insights mainly through reputable online sources like academic journals, recent articles from well-known tech publications, and industry news websites. We'll then synthesize this info to identify patterns, gaps, and promising areas to explore next.\n\nLet\u2019s get started!"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:27.143556Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "e84c2bf446a93800",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "a93af77a436d7f09",
+    "start_time": "2026-07-09T19:28:27.145323Z",
+    "end_time": "2026-07-09T19:28:28.676433Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "d876ea708baf1dd327c6424178548d28",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:27.145393Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a Research State Evaluator. Today's date is 2026-07-09.\\nYour job is to critically analyze the current state of a research report, \\nidentify what knowledge gaps still exist and determine the best next step to take.\\n\\nYou will be given:\\n1. The original user query and any relevant background context to the query\\n2. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\\n\\nYour task is to:\\n1. Carefully review the findings and thoughts, particularly from the latest iteration, and assess their completeness in answering the original query\\n2. Determine if the findings are sufficiently complete to end the research loop\\n3. If not, identify up to 3 knowledge gaps that need to be addressed in sequence in order to continue with research - these should be relevant to the original query\\n\\nBe specific in the gaps you identify and include relevant information as this will be passed onto another agent to process without additional context.\\n\\nOnly output JSON and follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Output from the Knowledge Gap Agent', 'properties': {'research_complete': {'description': 'Whether the research and findings are complete enough to end the research loop', 'title': 'Research Complete', 'type': 'boolean'}, 'outstanding_gaps': {'description': 'List of knowledge gaps that still need to be addressed', 'items': {'type': 'string'}, 'title': 'Outstanding Gaps', 'type': 'array'}}, 'required': ['research_complete', 'outstanding_gaps'], 'title': 'KnowledgeGapOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"\\n        Current Iteration Number: 1\\n        Time Elapsed: 0.09 minutes of maximum 3 minutes\\n\\n        ORIGINAL QUERY:\\n        What are the latest advances in grid-scale energy storage?\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n<thought>\\nAlright, diving into grid-scale energy storage! First things first, we need to gather a broad range of information to get a solid foundation. Here\\u2019s what I\\u2019m thinking:\\n\\n1. **Technology Overview**: Look into the different types of technologies currently being developed or recently improved for grid-scale energy storage. This would include batteries (like lithium-ion and emerging alternatives), pumped hydro, compressed air, and newer technologies like flow batteries and thermal storage.\\n\\n2. **Recent Breakthroughs**: Pinpoint any recent breakthroughs or innovations. This could be in efficiency, cost reduction, scalability, or sustainability. Checking academic journals, conference papers, and industry reports from the last couple of years should help.\\n\\n3. **Industry Leaders**: Identify key players in the industry. Large companies, startups, or academic institutions pushing the boundaries. This could give us insights into commercialization potential and market trends.\\n\\n4. **Challenges and Limitations**: Understand what remains challenging\\u2014technical barriers, cost issues, material limitations, or policy-related obstacles.\\n\\n5. **Case Studies**: Find examples of successful implementations around the world. This can give concrete insights into what\\u2019s working and what isn\\u2019t.\\n\\n6. **Future Directions**: Look for expert predictions or any forward-looking statements on where the industry is headed.\\n\\nFor the first pass, I'll focus on gathering insights mainly through reputable online sources like academic journals, recent articles from well-known tech publications, and industry news websites. We'll then synthesize this info to identify patterns, gaps, and promising areas to explore next.\\n\\nLet\\u2019s get started!\\n</thought>\\n\\n        \\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:28.676377Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"research_complete\\\":false,\\\"outstanding_gaps\\\":[\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"Detailed case studies on successful implementations of grid-scale energy storage systems\\\",\\\"Analysis of the current challenges and limitations facing different types of grid-scale energy storage technologies\\\"]}\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:28.676405Z",
+            "attributes": {
+                "completion_tokens": 58,
+                "prompt_tokens": 845,
+                "total_tokens": 903
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "a93af77a436d7f09",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:27.144704Z",
+    "end_time": "2026-07-09T19:28:28.676992Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "KnowledgeGapAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a Research State Evaluator. Today's date is 2026-07-09.\nYour job is to critically analyze the current state of a research report, \nidentify what knowledge gaps still exist and determine the best next step to take.\n\nYou will be given:\n1. The original user query and any relevant background context to the query\n2. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\n\nYour task is to:\n1. Carefully review the findings and thoughts, particularly from the latest iteration, and assess their completeness in answering the original query\n2. Determine if the findings are sufficiently complete to end the research loop\n3. If not, identify up to 3 knowledge gaps that need to be addressed in sequence in order to continue with research - these should be relevant to the original query\n\nBe specific in the gaps you identify and include relevant information as this will be passed onto another agent to process without additional context.\n\nOnly output JSON and follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Output from the Knowledge Gap Agent', 'properties': {'research_complete': {'description': 'Whether the research and findings are complete enough to end the research loop', 'title': 'Research Complete', 'type': 'boolean'}, 'outstanding_gaps': {'description': 'List of knowledge gaps that still need to be addressed', 'items': {'type': 'string'}, 'title': 'Outstanding Gaps', 'type': 'array'}}, 'required': ['research_complete', 'outstanding_gaps'], 'title': 'KnowledgeGapOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ThinkingAgent",
+        "entity.1.from_agent_span_id": "52d3b7ac77f89b64",
+        "last.inference": "e84c2bf446a93800:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "d876ea708baf1dd327c6424178548d28",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "82e56e849563dc99"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:27.144753Z",
+            "attributes": {
+                "input": [
+                    "\n        Current Iteration Number: 1\n        Time Elapsed: 0.09 minutes of maximum 3 minutes\n\n        ORIGINAL QUERY:\n        What are the latest advances in grid-scale energy storage?\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n<thought>\nAlright, diving into grid-scale energy storage! First things first, we need to gather a broad range of information to get a solid foundation. Here\u2019s what I\u2019m thinking:\n\n1. **Technology Overview**: Look into the different types of technologies currently being developed or recently improved for grid-scale energy storage. This would include batteries (like lithium-ion and emerging alternatives), pumped hydro, compressed air, and newer technologies like flow batteries and thermal storage.\n\n2. **Recent Breakthroughs**: Pinpoint any recent breakthroughs or innovations. This could be in efficiency, cost reduction, scalability, or sustainability. Checking academic journals, conference papers, and industry reports from the last couple of years should help.\n\n3. **Industry Leaders**: Identify key players in the industry. Large companies, startups, or academic institutions pushing the boundaries. This could give us insights into commercialization potential and market trends.\n\n4. **Challenges and Limitations**: Understand what remains challenging\u2014technical barriers, cost issues, material limitations, or policy-related obstacles.\n\n5. **Case Studies**: Find examples of successful implementations around the world. This can give concrete insights into what\u2019s working and what isn\u2019t.\n\n6. **Future Directions**: Look for expert predictions or any forward-looking statements on where the industry is headed.\n\nFor the first pass, I'll focus on gathering insights mainly through reputable online sources like academic journals, recent articles from well-known tech publications, and industry news websites. We'll then synthesize this info to identify patterns, gaps, and promising areas to explore next.\n\nLet\u2019s get started!\n</thought>\n\n        \n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:28.676961Z",
+            "attributes": {
+                "response": "research_complete=False outstanding_gaps=['Specific recent breakthroughs in grid-scale energy storage technologies from the last two years', 'Detailed case studies on successful implementations of grid-scale energy storage systems', 'Analysis of the current challenges and limitations facing different types of grid-scale energy storage technologies']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:28.676967Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "07753b3699465acf",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "3d38ee5028bb27ba",
+    "start_time": "2026-07-09T19:28:28.679708Z",
+    "end_time": "2026-07-09T19:28:30.554543Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "9dc912bb879c7a74de9eddf5c7e55688",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:28.679806Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are an Tool Selector responsible for determining which specialized agents should address a knowledge gap in a research project.\\nToday's date is 2026-07-09.\\n\\nYou will be given:\\n1. The original user query\\n2. A knowledge gap identified in the research\\n3. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\\n\\nYour task is to decide:\\n1. Which specialized agents are best suited to address the gap\\n2. What specific queries should be given to the agents (keep this short - 3-6 words)\\n\\nAvailable specialized agents:\\n- WebSearchAgent: General web search for broad topics (can be called multiple times with different queries)\\n- SiteCrawlerAgent: Crawl the pages of a specific website to retrieve information about it - use this if you want to find out something about a particular company, entity or product\\n\\nGuidelines:\\n- Aim to call at most 3 agents at a time in your final output\\n- You can list the WebSearchAgent multiple times with different queries if needed to cover the full scope of the knowledge gap\\n- Be specific and concise (3-6 words) with the agent queries - they should target exactly what information is needed\\n- If you know the website or domain name of an entity being researched, always include it in the query\\n- If a gap doesn't clearly match any agent's capability, default to the WebSearchAgent\\n- Use the history of actions / tool calls as a guide - try not to repeat yourself if an approach didn't work previously\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'$defs': {'AgentTask': {'description': 'A task for a specific agent to address knowledge gaps', 'properties': {'gap': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The knowledge gap being addressed', 'title': 'Gap'}, 'agent': {'description': 'The name of the agent to use', 'title': 'Agent', 'type': 'string'}, 'query': {'description': 'The specific query for the agent', 'title': 'Query', 'type': 'string'}, 'entity_website': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The website of the entity being researched, if known', 'title': 'Entity Website'}}, 'required': ['agent', 'query'], 'title': 'AgentTask', 'type': 'object'}}, 'description': 'Plan for which agents to use for knowledge gaps', 'properties': {'tasks': {'description': 'List of agent tasks to address knowledge gaps', 'items': {'$ref': '#/$defs/AgentTask'}, 'title': 'Tasks', 'type': 'array'}}, 'required': ['tasks'], 'title': 'AgentSelectionPlan', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"\\n        ORIGINAL QUERY:\\n        What are the latest advances in grid-scale energy storage?\\n\\n        KNOWLEDGE GAP TO ADDRESS:\\n        Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\n\\n        \\n\\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\\n        [ITERATION 1]\\n\\n<thought>\\nAlright, diving into grid-scale energy storage! First things first, we need to gather a broad range of information to get a solid foundation. Here\\u2019s what I\\u2019m thinking:\\n\\n1. **Technology Overview**: Look into the different types of technologies currently being developed or recently improved for grid-scale energy storage. This would include batteries (like lithium-ion and emerging alternatives), pumped hydro, compressed air, and newer technologies like flow batteries and thermal storage.\\n\\n2. **Recent Breakthroughs**: Pinpoint any recent breakthroughs or innovations. This could be in efficiency, cost reduction, scalability, or sustainability. Checking academic journals, conference papers, and industry reports from the last couple of years should help.\\n\\n3. **Industry Leaders**: Identify key players in the industry. Large companies, startups, or academic institutions pushing the boundaries. This could give us insights into commercialization potential and market trends.\\n\\n4. **Challenges and Limitations**: Understand what remains challenging\\u2014technical barriers, cost issues, material limitations, or policy-related obstacles.\\n\\n5. **Case Studies**: Find examples of successful implementations around the world. This can give concrete insights into what\\u2019s working and what isn\\u2019t.\\n\\n6. **Future Directions**: Look for expert predictions or any forward-looking statements on where the industry is headed.\\n\\nFor the first pass, I'll focus on gathering insights mainly through reputable online sources like academic journals, recent articles from well-known tech publications, and industry news websites. We'll then synthesize this info to identify patterns, gaps, and promising areas to explore next.\\n\\nLet\\u2019s get started!\\n</thought>\\n\\n<task>\\nAddress this knowledge gap: Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\n</task>\\n\\n\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:30.554474Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"tasks\\\":[{\\\"gap\\\":\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"recent breakthroughs grid-scale storage\\\",\\\"entity_website\\\":null},{\\\"gap\\\":\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"2025 grid-scale storage innovations\\\",\\\"entity_website\\\":null},{\\\"gap\\\":\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"latest grid storage technologies 2024\\\",\\\"entity_website\\\":null}]}\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:30.554512Z",
+            "attributes": {
+                "completion_tokens": 120,
+                "prompt_tokens": 1248,
+                "total_tokens": 1368
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "3d38ee5028bb27ba",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:28.678677Z",
+    "end_time": "2026-07-09T19:28:30.555245Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "ToolSelectorAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are an Tool Selector responsible for determining which specialized agents should address a knowledge gap in a research project.\nToday's date is 2026-07-09.\n\nYou will be given:\n1. The original user query\n2. A knowledge gap identified in the research\n3. A full history of the tasks, actions, findings and thoughts you've made up until this point in the research process\n\nYour task is to decide:\n1. Which specialized agents are best suited to address the gap\n2. What specific queries should be given to the agents (keep this short - 3-6 words)\n\nAvailable specialized agents:\n- WebSearchAgent: General web search for broad topics (can be called multiple times with different queries)\n- SiteCrawlerAgent: Crawl the pages of a specific website to retrieve information about it - use this if you want to find out something about a particular company, entity or product\n\nGuidelines:\n- Aim to call at most 3 agents at a time in your final output\n- You can list the WebSearchAgent multiple times with different queries if needed to cover the full scope of the knowledge gap\n- Be specific and concise (3-6 words) with the agent queries - they should target exactly what information is needed\n- If you know the website or domain name of an entity being researched, always include it in the query\n- If a gap doesn't clearly match any agent's capability, default to the WebSearchAgent\n- Use the history of actions / tool calls as a guide - try not to repeat yourself if an approach didn't work previously\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'$defs': {'AgentTask': {'description': 'A task for a specific agent to address knowledge gaps', 'properties': {'gap': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The knowledge gap being addressed', 'title': 'Gap'}, 'agent': {'description': 'The name of the agent to use', 'title': 'Agent', 'type': 'string'}, 'query': {'description': 'The specific query for the agent', 'title': 'Query', 'type': 'string'}, 'entity_website': {'anyOf': [{'type': 'string'}, {'type': 'null'}], 'default': None, 'description': 'The website of the entity being researched, if known', 'title': 'Entity Website'}}, 'required': ['agent', 'query'], 'title': 'AgentTask', 'type': 'object'}}, 'description': 'Plan for which agents to use for knowledge gaps', 'properties': {'tasks': {'description': 'List of agent tasks to address knowledge gaps', 'items': {'$ref': '#/$defs/AgentTask'}, 'title': 'Tasks', 'type': 'array'}}, 'required': ['tasks'], 'title': 'AgentSelectionPlan', 'type': 'object'}\n",
+        "entity.1.from_agent": "KnowledgeGapAgent",
+        "entity.1.from_agent_span_id": "a93af77a436d7f09",
+        "last.inference": "07753b3699465acf:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "9dc912bb879c7a74de9eddf5c7e55688",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "e84c2bf446a93800"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:28.678736Z",
+            "attributes": {
+                "input": [
+                    "\n        ORIGINAL QUERY:\n        What are the latest advances in grid-scale energy storage?\n\n        KNOWLEDGE GAP TO ADDRESS:\n        Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\n\n        \n\n        HISTORY OF ACTIONS, FINDINGS AND THOUGHTS:\n        [ITERATION 1]\n\n<thought>\nAlright, diving into grid-scale energy storage! First things first, we need to gather a broad range of information to get a solid foundation. Here\u2019s what I\u2019m thinking:\n\n1. **Technology Overview**: Look into the different types of technologies currently being developed or recently improved for grid-scale energy storage. This would include batteries (like lithium-ion and emerging alternatives), pumped hydro, compressed air, and newer technologies like flow batteries and thermal storage.\n\n2. **Recent Breakthroughs**: Pinpoint any recent breakthroughs or innovations. This could be in efficiency, cost reduction, scalability, or sustainability. Checking academic journals, conference papers, and industry reports from the last couple of years should help.\n\n3. **Industry Leaders**: Identify key players in the industry. Large companies, startups, or academic institutions pushing the boundaries. This could give us insights into commercialization potential and market trends.\n\n4. **Challenges and Limitations**: Understand what remains challenging\u2014technical barriers, cost issues, material limitations, or policy-related obstacles.\n\n5. **Case Studies**: Find examples of successful implementations around the world. This can give concrete insights into what\u2019s working and what isn\u2019t.\n\n6. **Future Directions**: Look for expert predictions or any forward-looking statements on where the industry is headed.\n\nFor the first pass, I'll focus on gathering insights mainly through reputable online sources like academic journals, recent articles from well-known tech publications, and industry news websites. We'll then synthesize this info to identify patterns, gaps, and promising areas to explore next.\n\nLet\u2019s get started!\n</thought>\n\n<task>\nAddress this knowledge gap: Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\n</task>\n\n\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:30.555203Z",
+            "attributes": {
+                "response": "tasks=[AgentTask(gap='Specific recent breakthroughs in grid-scale energy storage technologies from the last two years', agent='WebSearchAgent', query='recent breakthroughs grid-scale storage', entity_website=None), AgentTask(gap='Specific recent breakthroughs in grid-scale energy storage technologies from the last two years', agent='WebSearchAgent', query='2025 grid-scale storage innovations', entity_website=None), AgentTask(gap='Specific recent breakthroughs in grid-scale energy storage technologies from the last two years', agent='WebSearchAgent', query='latest grid storage technologies 2024', entity_website=None)]"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:30.555212Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "1546df4cc6cf2694",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "1dca53625e36e9ce",
+    "start_time": "2026-07-09T19:28:30.560733Z",
+    "end_time": "2026-07-09T19:28:37.976056Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "9862773de34d759587349b35563f332d",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:30.560842Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"recent breakthroughs grid-scale storage\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:37.976015Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing their capacity, efficiency, and integration into power grids.\\\\n\\\\n**Record Growth in Energy Storage Deployments**\\\\n\\\\nIn 2024, the United States set a new record by deploying 12.3 gigawatts (GW) of energy storage across all segments, marking a 33% increase from 2023. This growth was driven by a 32% rise in utility-scale storage, reaching 33.7 gigawatt-hours (GWh), and a 64% increase in residential storage, surpassing 3 GWh. The community-scale, commercial, and industrial (CCI) segment also saw an 11% growth, totaling 370 megawatt-hours (MWh). Looking ahead, installations are projected to reach 15 GW in 2025, indicating sustained expansion in the sector. ([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))\\\\n\\\\n**Advancements in Energy Storage Technologies**\\\\n\\\\nThe U.S. Department of Energy's Office of Electricity inaugurated the Grid Storage Launchpad (GSL) in August 2024 at the Pacific Northwest National Laboratory. This facility aims to accelerate the development of next-generation grid energy storage technologies by integrating research capabilities from atomic-level studies to system-wide testing, facilitating the creation of safer, more cost-effective, and higher-performance energy storage systems. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\\\n\\\\nIn February 2025, Quidnet Energy successfully demonstrated its Geomechanical Energy Storage (GES) technology at the megawatt-hour scale. This long-duration storage solution stores excess grid electricity by pressurizing water underground, later releasing it to supply reliable power. The tests confirmed the technology's viability for grid-scale applications, highlighting its potential to provide robust, long-duration energy storage solutions. ([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))\\\\n\\\\n**Collaborations and Policy Developments**\\\\n\\\\nIn July 2025, General Motors (GM) partnered with Redwood Materials, a battery recycling and energy company, to supply U.S.-built batteries for backup energy storage systems. This collaboration aims to meet the growing demand for battery storage solutions that can mitigate power outages and stabilize electricity grids during peak usage times. The move also serves as a strategic response to slower-than-expected electric vehicle (EV) sales by redirecting new and used EV battery packs into alternative energy storage systems. ([axios.com](https://www.axios.com/2025/07/16/gm-batteries-energy-storage?utm_source=openai))\\\\n\\\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, driven by increased deployment, technological innovation, and strategic partnerships, all contributing to a more resilient and sustainable energy infrastructure.\\\",\\\"sources\\\":[\\\"([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))\\\",\\\"([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\\",\\\"([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))\\\",\\\"([axios.com](https://www.axios.com/2025/07/16/gm-batteries-energy-storage?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:37.976036Z",
+            "attributes": {
+                "completion_tokens": 887,
+                "prompt_tokens": 8174,
+                "total_tokens": 9061
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "1dca53625e36e9ce",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:30.559054Z",
+    "end_time": "2026-07-09T19:28:37.976675Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "3d38ee5028bb27ba",
+        "last.inference": "1546df4cc6cf2694:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "9862773de34d759587349b35563f332d",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "07753b3699465acf"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:30.559129Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\",\"agent\":\"WebSearchAgent\",\"query\":\"recent breakthroughs grid-scale storage\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:37.976647Z",
+            "attributes": {
+                "response": "output=\"Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing their capacity, efficiency, and integration into power grids.\\n\\n**Record Growth in Energy Storage Deployments**\\n\\nIn 2024, the United States set a new record by deploying 12.3 gigawatts (GW) of energy storage across all segments, marking a 33% increase from 2023. This growth was driven by a 32% rise in utility-scale storage, reaching 33.7 gigawatt-hours (GWh), and a 64% increase in residential storage, surpassing 3 GWh. The community-scale, commercial, and industrial (CCI) segment also saw an 11% growth, totaling 370 megawatt-hours (MWh). Looking ahead, installations are projected to reach 15 GW in 2025, indicating sustained expansion in the sector. ([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))\\n\\n**Advancements in Energy Storage Technologies**\\n\\nThe U.S. Department of Energy's Office of Electricity inaugurated the Grid Storage Launchpad (GSL) in August 2024 at the Pacific Northwest National Laboratory. This facility aims to accelerate the development of next-generation grid energy storage technologies by integrating research capabilities from atomic-level studies to system-wide testing, facilitating the creation of safer, more cost-effective, and higher-performance energy storage systems. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\n\\nIn February 2025, Quidnet Energy successfully demonstrated its Geomechanical Energy Storage (GES) technology at the megawatt-hour scale. This long-duration storage solution stores excess grid electricity by pressurizing water underground, later releasing it to supply reliable power. The tests confirmed the technology's viability for grid-scale applications, highlighting its potential to provide robust, long-duration energy storage solutions. ([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))\\n\\n**Collaborations and Policy Developments**\\n\\nIn July 2025, General Motors (GM) partnered with Redwood Materials, a battery recycling and energy company, to supply U.S.-built batteries for backup energy storage systems. This collaboration aims to meet the growing demand for battery storage solutions that can mitigate power outages and stabilize electricity grids during peak usage times. The move also serves as a strategic response to slower-than-expected electric vehicle (EV) sales by redirecting new and used EV battery packs into alternative energy storage systems. ([axios.com](https://www.axios.com/2025/07/16/gm-batteries-energy-storage?utm_source=openai))\\n\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, driven by increased deployment, technological innovation, and strategic partnerships, all contributing to a more resilient and sustainable energy infrastructure.\" sources=['([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))', '([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))', '([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))', '([axios.com](https://www.axios.com/2025/07/16/gm-batteries-energy-storage?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:37.976651Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "d5ac2e9f0f252e2d",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "098a874fe15be8b2",
+    "start_time": "2026-07-09T19:28:30.565467Z",
+    "end_time": "2026-07-09T19:28:39.030718Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "8056e01d60de9a49fbd89ce782e2b887",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:30.565568Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"2025 grid-scale storage innovations\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:39.030679Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing the reliability and efficiency of power grids.\\\\n\\\\n**Record Growth in Energy Storage Deployments**\\\\n\\\\nIn 2024, the U.S. energy storage market set a new record with 12.3 gigawatts (GW) of installations across all segments, marking a 33% increase from 2023. This growth was driven by a 32% rise in the utility-scale segment, which reached 33.7 gigawatt-hours (GWh), and a 64% increase in the residential segment, which surpassed 3 GWh. Projections for 2025 anticipate a 25% increase, with 15 GW of storage expected to be installed. ([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))\\\\n\\\\n**Advancements in Long-Duration Energy Storage**\\\\n\\\\nQuidnet Energy has demonstrated its Geomechanical Energy Storage (GES) technology at the megawatt-hour (MWh) scale. This innovative system stores excess grid electricity by pressurizing water underground, later releasing it to supply reliable power. The successful testing of GES technology at MWh scale confirms its potential for providing long-duration energy storage solutions. ([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))\\\\n\\\\n**Establishment of the Grid Storage Launchpad**\\\\n\\\\nIn August 2024, the U.S. Department of Energy inaugurated the Grid Storage Launchpad (GSL) at the Pacific Northwest National Laboratory. This 93,000-square-foot facility integrates advanced tools and expertise to accelerate the development of next-generation grid energy storage technologies, aiming to produce safer, lower-cost, higher-performance, and longer-duration energy storage systems. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\\\n\\\\n**Successful Grid-Connection of Grid-Forming Energy Storage Systems**\\\\n\\\\nIn July 2024, Huawei's Smart Renewable Energy Generator Solution achieved a milestone by successfully completing grid-connection tests for the world's first batch of grid-forming energy storage plants in China. These projects, with capacities ranging from 6 MW/24 MWh to 50 MW/100 MWh, demonstrate the viability of integrating renewable energy sources into power systems, enhancing grid stability and reliability. ([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\\\n\\\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, contributing to more resilient and efficient power grids.\\\",\\\"sources\\\":[\\\"([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))\\\",\\\"([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))\\\",\\\"([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\\",\\\"([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:39.030698Z",
+            "attributes": {
+                "completion_tokens": 837,
+                "prompt_tokens": 8174,
+                "total_tokens": 9011
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "098a874fe15be8b2",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:30.559326Z",
+    "end_time": "2026-07-09T19:28:39.031432Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "3d38ee5028bb27ba",
+        "last.inference": "d5ac2e9f0f252e2d:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "8056e01d60de9a49fbd89ce782e2b887",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "1546df4cc6cf2694"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:30.559368Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\",\"agent\":\"WebSearchAgent\",\"query\":\"2025 grid-scale storage innovations\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:39.031407Z",
+            "attributes": {
+                "response": "output=\"Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing the reliability and efficiency of power grids.\\n\\n**Record Growth in Energy Storage Deployments**\\n\\nIn 2024, the U.S. energy storage market set a new record with 12.3 gigawatts (GW) of installations across all segments, marking a 33% increase from 2023. This growth was driven by a 32% rise in the utility-scale segment, which reached 33.7 gigawatt-hours (GWh), and a 64% increase in the residential segment, which surpassed 3 GWh. Projections for 2025 anticipate a 25% increase, with 15 GW of storage expected to be installed. ([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))\\n\\n**Advancements in Long-Duration Energy Storage**\\n\\nQuidnet Energy has demonstrated its Geomechanical Energy Storage (GES) technology at the megawatt-hour (MWh) scale. This innovative system stores excess grid electricity by pressurizing water underground, later releasing it to supply reliable power. The successful testing of GES technology at MWh scale confirms its potential for providing long-duration energy storage solutions. ([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))\\n\\n**Establishment of the Grid Storage Launchpad**\\n\\nIn August 2024, the U.S. Department of Energy inaugurated the Grid Storage Launchpad (GSL) at the Pacific Northwest National Laboratory. This 93,000-square-foot facility integrates advanced tools and expertise to accelerate the development of next-generation grid energy storage technologies, aiming to produce safer, lower-cost, higher-performance, and longer-duration energy storage systems. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\n\\n**Successful Grid-Connection of Grid-Forming Energy Storage Systems**\\n\\nIn July 2024, Huawei's Smart Renewable Energy Generator Solution achieved a milestone by successfully completing grid-connection tests for the world's first batch of grid-forming energy storage plants in China. These projects, with capacities ranging from 6 MW/24 MWh to 50 MW/100 MWh, demonstrate the viability of integrating renewable energy sources into power systems, enhancing grid stability and reliability. ([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\n\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, contributing to more resilient and efficient power grids.\" sources=['([woodmac.com](https://www.woodmac.com/press-releases/2024-press-releases/energy-storages-meteoric-rise-breaks-another-record/?utm_source=openai))', '([globenewswire.com](https://www.globenewswire.com/news-release/2025/02/26/3033285/0/en/quidnet-energy-demonstrates-long-duration-geomechanical-energy-storage-at-mwh-scale-and-completes-accelerated-lifetime-testing.html?utm_source=openai))', '([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))', '([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:39.031412Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "7da96a7771ea9478",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "1f9faa6679e428fc",
+    "start_time": "2026-07-09T19:28:30.563895Z",
+    "end_time": "2026-07-09T19:28:40.126772Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o-mini",
+        "entity.2.type": "model.llm.gpt-4o-mini",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "323c9ae4da48e1604668364e81dbab87",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:30.563991Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"You are a research assistant that specializes in retrieving and summarizing information from the web.\\n\\nOBJECTIVE:\\nGiven an AgentTask, follow these steps:\\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\\n- Enter the optimized search term into the web_search tool\\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\\n\\nGUIDELINES:\\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\\n- The summary should always quote detailed facts, figures and numbers where these are available\\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \\\"No relevant results found\\\"\\n- Use headings and bullets to organize the summary if needed\\n- Include citations/URLs in brackets next to all associated information in your summary\\n- Do not make additional searches\\n\\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\\n\"}",
+                    "{\"user\": \"{\\\"gap\\\":\\\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\\\",\\\"agent\\\":\\\"WebSearchAgent\\\",\\\"query\\\":\\\"latest grid storage technologies 2024\\\",\\\"entity_website\\\":null}\"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:40.126676Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"{\\\"output\\\":\\\"Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing the efficiency, sustainability, and integration of renewable energy sources.\\\\n\\\\n**Establishment of the Grid Storage Launchpad**\\\\n\\\\nIn August 2024, the U.S. Department of Energy inaugurated the Grid Storage Launchpad (GSL) at the Pacific Northwest National Laboratory (PNNL) in Richland, Washington. This 93,000-square-foot facility is dedicated to accelerating the development of next-generation energy storage systems by integrating research, testing, and collaboration under one roof. The GSL aims to validate new storage technologies, reduce costs, and improve performance, thereby supporting the transition to a cleaner and more resilient energy grid. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\\\n\\\\n**Advancements in Grid-Forming Energy Storage Systems**\\\\n\\\\nIn July 2024, Huawei's Smart Renewable Energy Generator Solution achieved a milestone by successfully completing grid-connection tests for the world's first batch of grid-forming energy storage plants in China. These projects, including a 25 MW/100 MWh installation in Hami and a 50 MW/100 MWh facility in Golmud, demonstrated the capability of energy storage systems to operate stably and provide support during both stable and transient states in utility-scale projects. The successful integration of these systems marks a significant step toward enhancing grid stability and reliability through advanced energy storage solutions. ([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\\\n\\\\n**Surge in U.S. Grid-Scale Energy Storage Installations**\\\\n\\\\nThe U.S. energy storage market experienced substantial growth in the second quarter of 2024, setting a new record with 2,773 MW and 9,982 MWh deployed in the grid-scale segment. This surge reflects a 74% increase from the same period in 2023, indicating a strong commitment to integrating large-scale energy storage solutions to support renewable energy adoption and grid reliability. ([cleanpower.org](https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai))\\\\n\\\\n**Introduction of Second-Life Battery Storage Projects**\\\\n\\\\nIn November 2024, Element Energy commissioned the world's largest second-life, grid-connected battery storage installation in West Central Texas. This 53 MWh project repurposes 900 electric vehicle batteries, demonstrating a sustainable approach to energy storage by extending the lifecycle of EV batteries and reducing environmental impact. The system has been operational since May 2024, storing and dispatching power to the ERCOT grid, and represents a significant advancement in utilizing existing resources for energy storage. ([prnewswire.com](https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai))\\\\n\\\\n**Development of Hybrid Energy Storage Systems**\\\\n\\\\nIn February 2024, the EU-funded SMHYLES project, coordinated by the Fondazione Bruno Kessler in Italy, launched an initiative to develop novel salt- and water-based hybrid energy storage systems on an industrial scale. These systems aim to combine the advantages of long-duration capacity and high power density, utilizing low-critical raw materials to enhance Europe's energy independence and contribute to the transition to climate-neutral energy sources. ([ict.fraunhofer.de](https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai))\\\\n\\\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, highlighting efforts to improve performance, sustainability, and integration with renewable energy sources.\\\",\\\"sources\\\":[\\\"([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\\",\\\"([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\\",\\\"([cleanpower.org](https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai))\\\",\\\"([prnewswire.com](https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai))\\\",\\\"([ict.fraunhofer.de](https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai))\\\"]} \"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:40.126721Z",
+            "attributes": {
+                "completion_tokens": 993,
+                "prompt_tokens": 8174,
+                "total_tokens": 9167
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "1f9faa6679e428fc",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:30.559204Z",
+    "end_time": "2026-07-09T19:28:40.127752Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WebSearchAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "You are a research assistant that specializes in retrieving and summarizing information from the web.\n\nOBJECTIVE:\nGiven an AgentTask, follow these steps:\n- Convert the 'query' into an optimized SERP search term for Google, limited to 3-5 words\n- If an 'entity_website' is provided, make sure to include the domain name in your optimized Google search term\n- Enter the optimized search term into the web_search tool\n- After using the web_search tool, write a 3+ paragraph summary that captures the main points from the search results\n\nGUIDELINES:\n- In your summary, try to comprehensively answer/address the 'gap' provided (which is the objective of the search)\n- The summary should always quote detailed facts, figures and numbers where these are available\n- If the search results are not relevant to the search term or do not address the 'gap', simply write \"No relevant results found\"\n- Use headings and bullets to organize the summary if needed\n- Include citations/URLs in brackets next to all associated information in your summary\n- Do not make additional searches\n\nOnly output JSON. Follow the JSON schema below. Do not output anything else. I will be parsing this with Pydantic so output valid JSON only:\n{'description': 'Standard output for all tool agents', 'properties': {'output': {'title': 'Output', 'type': 'string'}, 'sources': {'items': {'type': 'string'}, 'title': 'Sources', 'type': 'array'}}, 'required': ['output'], 'title': 'ToolAgentOutput', 'type': 'object'}\n",
+        "entity.1.from_agent": "ToolSelectorAgent",
+        "entity.1.from_agent_span_id": "3d38ee5028bb27ba",
+        "last.inference": "7da96a7771ea9478:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "323c9ae4da48e1604668364e81dbab87",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "d5ac2e9f0f252e2d"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:30.559271Z",
+            "attributes": {
+                "input": [
+                    "{\"gap\":\"Specific recent breakthroughs in grid-scale energy storage technologies from the last two years\",\"agent\":\"WebSearchAgent\",\"query\":\"latest grid storage technologies 2024\",\"entity_website\":null}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:40.127690Z",
+            "attributes": {
+                "response": "output=\"Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing the efficiency, sustainability, and integration of renewable energy sources.\\n\\n**Establishment of the Grid Storage Launchpad**\\n\\nIn August 2024, the U.S. Department of Energy inaugurated the Grid Storage Launchpad (GSL) at the Pacific Northwest National Laboratory (PNNL) in Richland, Washington. This 93,000-square-foot facility is dedicated to accelerating the development of next-generation energy storage systems by integrating research, testing, and collaboration under one roof. The GSL aims to validate new storage technologies, reduce costs, and improve performance, thereby supporting the transition to a cleaner and more resilient energy grid. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\n\\n**Advancements in Grid-Forming Energy Storage Systems**\\n\\nIn July 2024, Huawei's Smart Renewable Energy Generator Solution achieved a milestone by successfully completing grid-connection tests for the world's first batch of grid-forming energy storage plants in China. These projects, including a 25 MW/100 MWh installation in Hami and a 50 MW/100 MWh facility in Golmud, demonstrated the capability of energy storage systems to operate stably and provide support during both stable and transient states in utility-scale projects. The successful integration of these systems marks a significant step toward enhancing grid stability and reliability through advanced energy storage solutions. ([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\n\\n**Surge in U.S. Grid-Scale Energy Storage Installations**\\n\\nThe U.S. energy storage market experienced substantial growth in the second quarter of 2024, setting a new record with 2,773 MW and 9,982 MWh deployed in the grid-scale segment. This surge reflects a 74% increase from the same period in 2023, indicating a strong commitment to integrating large-scale energy storage solutions to support renewable energy adoption and grid reliability. ([cleanpower.org](https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai))\\n\\n**Introduction of Second-Life Battery Storage Projects**\\n\\nIn November 2024, Element Energy commissioned the world's largest second-life, grid-connected battery storage installation in West Central Texas. This 53 MWh project repurposes 900 electric vehicle batteries, demonstrating a sustainable approach to energy storage by extending the lifecycle of EV batteries and reducing environmental impact. The system has been operational since May 2024, storing and dispatching power to the ERCOT grid, and represents a significant advancement in utilizing existing resources for energy storage. ([prnewswire.com](https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai))\\n\\n**Development of Hybrid Energy Storage Systems**\\n\\nIn February 2024, the EU-funded SMHYLES project, coordinated by the Fondazione Bruno Kessler in Italy, launched an initiative to develop novel salt- and water-based hybrid energy storage systems on an industrial scale. These systems aim to combine the advantages of long-duration capacity and high power density, utilizing low-critical raw materials to enhance Europe's energy independence and contribute to the transition to climate-neutral energy sources. ([ict.fraunhofer.de](https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai))\\n\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, highlighting efforts to improve performance, sustainability, and integration with renewable energy sources.\" sources=['([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))', '([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))', '([cleanpower.org](https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai))', '([prnewswire.com](https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai))', '([ict.fraunhofer.de](https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai))']"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:40.127700Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "openai.resources.responses.AsyncResponses.create",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "109d67d157b01941",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "0a4482a268a4428f",
+    "start_time": "2026-07-09T19:28:40.131013Z",
+    "end_time": "2026-07-09T19:28:46.938096Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/models/openai_responses.py:702",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "inference.openai",
+        "entity.1.provider_name": "api.openai.com",
+        "entity.1.inference_endpoint": "https://api.openai.com/v1/",
+        "entity.2.name": "gpt-4o",
+        "entity.2.type": "model.llm.gpt-4o",
+        "span.type": "inference",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "91d2a1d9cd09b5a8f545de196550c129",
+        "entity.count": 2,
+        "span.subtype": "turn_end"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:40.131234Z",
+            "attributes": {
+                "input": [
+                    "{\"system\": \"\\nYou are a senior researcher tasked with comprehensively answering a research query. \\nToday's date is 2026-07-09.\\nYou will be provided with the original query along with research findings put together by a research assistant.\\nYour objective is to generate the final response in markdown format.\\nThe response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.\\nIn your final output, include references to the source URLs for all information and data gathered. \\nThis should be formatted in the form of a numbered square bracket next to the relevant information, \\nfollowed by a list of URLs at the end of the response, per the example below.\\n\\nEXAMPLE REFERENCE FORMAT:\\nThe company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].\\n\\nReferences:\\n[1] https://example.com/first-source-url\\n[2] https://example.com/second-source-url\\n\\nGUIDELINES:\\n* Answer the query directly, do not include unrelated or tangential information.\\n* Adhere to any instructions on the length of your final response if provided in the user prompt.\\n* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.\\n\"}",
+                    "{\"user\": \"\\n        Provide a response based on the query and findings below with as much detail as possible. GUIDELINES:\\n* The full response should be approximately 2 paragraphs.\\n\\n        QUERY: What are the latest advances in grid-scale energy storage?\\n\\n        FINDINGS:\\n        Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing the efficiency, sustainability, and integration of renewable energy sources.\\n\\n**Establishment of the Grid Storage Launchpad**\\n\\nIn August 2024, the U.S. Department of Energy inaugurated the Grid Storage Launchpad (GSL) at the Pacific Northwest National Laboratory (PNNL) in Richland, Washington. This 93,000-square-foot facility is dedicated to accelerating the development of next-generation energy storage systems by integrating research, testing, and collaboration under one roof. The GSL aims to validate new storage technologies, reduce costs, and improve performance, thereby supporting the transition to a cleaner and more resilient energy grid. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\\n\\n**Advancements in Grid-Forming Energy Storage Systems**\\n\\nIn July 2024, Huawei's Smart Renewable Energy Generator Solution achieved a milestone by successfully completing grid-connection tests for the world's first batch of grid-forming energy storage plants in China. These projects, including a 25 MW/100 MWh installation in Hami and a 50 MW/100 MWh facility in Golmud, demonstrated the capability of energy storage systems to operate stably and provide support during both stable and transient states in utility-scale projects. The successful integration of these systems marks a significant step toward enhancing grid stability and reliability through advanced energy storage solutions. ([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\\n\\n**Surge in U.S. Grid-Scale Energy Storage Installations**\\n\\nThe U.S. energy storage market experienced substantial growth in the second quarter of 2024, setting a new record with 2,773 MW and 9,982 MWh deployed in the grid-scale segment. This surge reflects a 74% increase from the same period in 2023, indicating a strong commitment to integrating large-scale energy storage solutions to support renewable energy adoption and grid reliability. ([cleanpower.org](https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai))\\n\\n**Introduction of Second-Life Battery Storage Projects**\\n\\nIn November 2024, Element Energy commissioned the world's largest second-life, grid-connected battery storage installation in West Central Texas. This 53 MWh project repurposes 900 electric vehicle batteries, demonstrating a sustainable approach to energy storage by extending the lifecycle of EV batteries and reducing environmental impact. The system has been operational since May 2024, storing and dispatching power to the ERCOT grid, and represents a significant advancement in utilizing existing resources for energy storage. ([prnewswire.com](https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai))\\n\\n**Development of Hybrid Energy Storage Systems**\\n\\nIn February 2024, the EU-funded SMHYLES project, coordinated by the Fondazione Bruno Kessler in Italy, launched an initiative to develop novel salt- and water-based hybrid energy storage systems on an industrial scale. These systems aim to combine the advantages of long-duration capacity and high power density, utilizing low-critical raw materials to enhance Europe's energy independence and contribute to the transition to climate-neutral energy sources. ([ict.fraunhofer.de](https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai))\\n\\nThese developments underscore the rapid progress in grid-scale energy storage technologies, highlighting efforts to improve performance, sustainability, and integration with renewable energy sources.\\n        \"}"
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:46.938042Z",
+            "attributes": {
+                "error_code": "completed",
+                "response": "{\"assistant\": \"Recent advancements in grid-scale energy storage have significantly contributed to the efficiency, sustainability, and integration of renewable energy sources. One prominent development is the inauguration of the Grid Storage Launchpad (GSL) in August 2024 by the U.S. Department of Energy at the Pacific Northwest National Laboratory. This state-of-the-art facility aims to accelerate the development of next-generation energy storage systems through integrated research, testing, and collaboration. By validating new technologies and reducing costs, the GSL supports the transition to a cleaner and more resilient energy grid [1]. Additionally, Huawei made breakthroughs with their grid-forming energy storage systems, completing grid-connection tests in China. These systems demonstrated stable operation and grid support, marking a significant milestone in enhancing grid stability through advanced energy storage solutions [2].\\n\\nThe U.S. energy storage market also saw remarkable growth, with a 74% increase in grid-scale deployments in the second quarter of 2024, reaching 2,773 MW and 9,982 MWh. This surge reflects a strong commitment to supporting renewable energy adoption and grid reliability [3]. Meanwhile, Element Energy commissioned the world's largest second-life battery storage project in Texas, repurposing 900 EV batteries to store and dispatch power. This innovative approach emphasizes sustainability by extending battery life and reducing environmental impact [4]. In Europe, the SMHYLES project has been developing hybrid energy storage systems using salt- and water-based technologies. These systems aim to combine long-duration capacity with high power density and use low-critical raw materials, supporting Europe's transition to climate-neutral energy sources [5].\\n\\nReferences:\\n[1] https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai\\n[2] https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai\\n[3] https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai\\n[4] https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai\\n[5] https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai\"}"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:46.938070Z",
+            "attributes": {
+                "completion_tokens": 477,
+                "prompt_tokens": 1085,
+                "total_tokens": 1562
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "agents.run.run_single_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "0a4482a268a4428f",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "ff68ce2b51867deb",
+    "start_time": "2026-07-09T19:28:40.129959Z",
+    "end_time": "2026-07-09T19:28:46.938587Z",
+    "status": {
+        "status_code": "OK"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "<repo>/.venv/lib/python3.11/site-packages/agents/run.py:1197",
+        "workflow.name": "openai-agents-deep-research",
+        "entity.1.type": "agent.openai_agents",
+        "entity.1.name": "WriterAgent",
+        "entity.1.description": "None",
+        "entity.1.instructions": "\nYou are a senior researcher tasked with comprehensively answering a research query. \nToday's date is 2026-07-09.\nYou will be provided with the original query along with research findings put together by a research assistant.\nYour objective is to generate the final response in markdown format.\nThe response should be as lengthy and detailed as possible with the information provided, focusing on answering the original query.\nIn your final output, include references to the source URLs for all information and data gathered. \nThis should be formatted in the form of a numbered square bracket next to the relevant information, \nfollowed by a list of URLs at the end of the response, per the example below.\n\nEXAMPLE REFERENCE FORMAT:\nThe company has XYZ products [1]. It operates in the software services market which is expected to grow at 10% per year [2].\n\nReferences:\n[1] https://example.com/first-source-url\n[2] https://example.com/second-source-url\n\nGUIDELINES:\n* Answer the query directly, do not include unrelated or tangential information.\n* Adhere to any instructions on the length of your final response if provided in the user prompt.\n* If any additional guidelines are provided in the user prompt, follow them exactly and give them precedence over these system instructions.\n",
+        "entity.1.from_agent": "WebSearchAgent",
+        "entity.1.from_agent_span_id": "1f9faa6679e428fc",
+        "last.inference": "109d67d157b01941:*",
+        "span.type": "agentic.invocation",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "scope.agentic.invocation": "91d2a1d9cd09b5a8f545de196550c129",
+        "entity.count": 1,
+        "span.subtype": "content_processing",
+        "monocle.last.agent.invocation.id": "",
+        "monocle.last.agent.name": "",
+        "inference.decision.span.id": "7da96a7771ea9478"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:40.130056Z",
+            "attributes": {
+                "input": [
+                    "\n        Provide a response based on the query and findings below with as much detail as possible. GUIDELINES:\n* The full response should be approximately 2 paragraphs.\n\n        QUERY: What are the latest advances in grid-scale energy storage?\n\n        FINDINGS:\n        Over the past two years, several significant advancements have been made in grid-scale energy storage technologies, enhancing the efficiency, sustainability, and integration of renewable energy sources.\n\n**Establishment of the Grid Storage Launchpad**\n\nIn August 2024, the U.S. Department of Energy inaugurated the Grid Storage Launchpad (GSL) at the Pacific Northwest National Laboratory (PNNL) in Richland, Washington. This 93,000-square-foot facility is dedicated to accelerating the development of next-generation energy storage systems by integrating research, testing, and collaboration under one roof. The GSL aims to validate new storage technologies, reduce costs, and improve performance, thereby supporting the transition to a cleaner and more resilient energy grid. ([energy.gov](https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai))\n\n**Advancements in Grid-Forming Energy Storage Systems**\n\nIn July 2024, Huawei's Smart Renewable Energy Generator Solution achieved a milestone by successfully completing grid-connection tests for the world's first batch of grid-forming energy storage plants in China. These projects, including a 25 MW/100 MWh installation in Hami and a 50 MW/100 MWh facility in Golmud, demonstrated the capability of energy storage systems to operate stably and provide support during both stable and transient states in utility-scale projects. The successful integration of these systems marks a significant step toward enhancing grid stability and reliability through advanced energy storage solutions. ([solar.huawei.com](https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai))\n\n**Surge in U.S. Grid-Scale Energy Storage Installations**\n\nThe U.S. energy storage market experienced substantial growth in the second quarter of 2024, setting a new record with 2,773 MW and 9,982 MWh deployed in the grid-scale segment. This surge reflects a 74% increase from the same period in 2023, indicating a strong commitment to integrating large-scale energy storage solutions to support renewable energy adoption and grid reliability. ([cleanpower.org](https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai))\n\n**Introduction of Second-Life Battery Storage Projects**\n\nIn November 2024, Element Energy commissioned the world's largest second-life, grid-connected battery storage installation in West Central Texas. This 53 MWh project repurposes 900 electric vehicle batteries, demonstrating a sustainable approach to energy storage by extending the lifecycle of EV batteries and reducing environmental impact. The system has been operational since May 2024, storing and dispatching power to the ERCOT grid, and represents a significant advancement in utilizing existing resources for energy storage. ([prnewswire.com](https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai))\n\n**Development of Hybrid Energy Storage Systems**\n\nIn February 2024, the EU-funded SMHYLES project, coordinated by the Fondazione Bruno Kessler in Italy, launched an initiative to develop novel salt- and water-based hybrid energy storage systems on an industrial scale. These systems aim to combine the advantages of long-duration capacity and high power density, utilizing low-critical raw materials to enhance Europe's energy independence and contribute to the transition to climate-neutral energy sources. ([ict.fraunhofer.de](https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai))\n\nThese developments underscore the rapid progress in grid-scale energy storage technologies, highlighting efforts to improve performance, sustainability, and integration with renewable energy sources.\n        "
+                ]
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:46.938554Z",
+            "attributes": {
+                "response": "Recent advancements in grid-scale energy storage have significantly contributed to the efficiency, sustainability, and integration of renewable energy sources. One prominent development is the inauguration of the Grid Storage Launchpad (GSL) in August 2024 by the U.S. Department of Energy at the Pacific Northwest National Laboratory. This state-of-the-art facility aims to accelerate the development of next-generation energy storage systems through integrated research, testing, and collaboration. By validating new technologies and reducing costs, the GSL supports the transition to a cleaner and more resilient energy grid [1]. Additionally, Huawei made breakthroughs with their grid-forming energy storage systems, completing grid-connection tests in China. These systems demonstrated stable operation and grid support, marking a significant milestone in enhancing grid stability through advanced energy storage solutions [2].\n\nThe U.S. energy storage market also saw remarkable growth, with a 74% increase in grid-scale deployments in the second quarter of 2024, reaching 2,773 MW and 9,982 MWh. This surge reflects a strong commitment to supporting renewable energy adoption and grid reliability [3]. Meanwhile, Element Energy commissioned the world's largest second-life battery storage project in Texas, repurposing 900 EV batteries to store and dispatch power. This innovative approach emphasizes sustainability by extending battery life and reducing environmental impact [4]. In Europe, the SMHYLES project has been developing hybrid energy storage systems using salt- and water-based technologies. These systems aim to combine long-duration capacity with high power density and use low-critical raw materials, supporting Europe's transition to climate-neutral energy sources [5].\n\nReferences:\n[1] https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai\n[2] https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai\n[3] https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai\n[4] https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai\n[5] https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai"
+            }
+        },
+        {
+            "name": "metadata",
+            "timestamp": "2026-07-09T19:28:46.938560Z",
+            "attributes": {}
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "research_turn",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "ff68ce2b51867deb",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": "3b9b5b35a2e1bb8f",
+    "start_time": "2026-07-09T19:28:21.898857Z",
+    "end_time": "2026-07-09T19:28:46.938880Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "scope.agentic.turn": "6395eba38a7b45c44ec4d26e495bc0fa",
+        "workflow.name": "openai-agents-deep-research",
+        "span.type": "agentic.turn",
+        "entity.1.name": "What are the latest advances in grid-scale energy storage?",
+        "monocle.last.agent.invocation.id": "0a4482a268a4428f",
+        "monocle.last.agent.name": "WriterAgent",
+        "last.inference": "109d67d157b01941:*"
+    },
+    "events": [
+        {
+            "name": "data.input",
+            "timestamp": "2026-07-09T19:28:21.898871Z",
+            "attributes": {
+                "input": "What are the latest advances in grid-scale energy storage?"
+            }
+        },
+        {
+            "name": "data.output",
+            "timestamp": "2026-07-09T19:28:46.938865Z",
+            "attributes": {
+                "response": "Recent advancements in grid-scale energy storage have significantly contributed to the efficiency, sustainability, and integration of renewable energy sources. One prominent development is the inauguration of the Grid Storage Launchpad (GSL) in August 2024 by the U.S. Department of Energy at the Pacific Northwest National Laboratory. This state-of-the-art facility aims to accelerate the development of next-generation energy storage systems through integrated research, testing, and collaboration. By validating new technologies and reducing costs, the GSL supports the transition to a cleaner and more resilient energy grid [1]. Additionally, Huawei made breakthroughs with their grid-forming energy storage systems, completing grid-connection tests in China. These systems demonstrated stable operation and grid support, marking a significant milestone in enhancing grid stability through advanced energy storage solutions [2].\n\nThe U.S. energy storage market also saw remarkable growth, with a 74% increase in grid-scale deployments in the second quarter of 2024, reaching 2,773 MW and 9,982 MWh. This surge reflects a strong commitment to supporting renewable energy adoption and grid reliability [3]. Meanwhile, Element Energy commissioned the world's largest second-life battery storage project in Texas, repurposing 900 EV batteries to store and dispatch power. This innovative approach emphasizes sustainability by extending battery life and reducing environmental impact [4]. In Europe, the SMHYLES project has been developing hybrid energy storage systems using salt- and water-based technologies. These systems aim to combine long-duration capacity with high power density and use low-critical raw materials, supporting Europe's transition to climate-neutral energy sources [5].\n\nReferences:\n[1] https://www.energy.gov/oe/articles/grid-storage-launchpad-has-commenced-liftoff?utm_source=openai\n[2] https://solar.huawei.com/news-room/en/2024/news-20240723?utm_source=openai\n[3] https://cleanpower.org/news/u-s-energy-storage-monitor-q3-2024/?utm_source=openai\n[4] https://www.prnewswire.com/news-releases/element-energy-announces-commissioning-of-worlds-largest-second-life-battery-storage-project-302312877.html?utm_source=openai\n[5] https://www.ict.fraunhofer.de/en/press_releases/2024/2024-02-272.html?utm_source=openai"
+            }
+        }
+    ],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+,{
+    "name": "workflow",
+    "context": {
+        "trace_id": "1d870c9d5c73be705232773ad40be343",
+        "span_id": "3b9b5b35a2e1bb8f",
+        "trace_state": "[]"
+    },
+    "kind": "SpanKind.INTERNAL",
+    "parent_id": null,
+    "start_time": "2026-07-09T19:28:21.898785Z",
+    "end_time": "2026-07-09T19:28:46.938897Z",
+    "status": {
+        "status_code": "UNSET"
+    },
+    "attributes": {
+        "monocle_apptrace.version": "0.8.8",
+        "monocle_apptrace.language": "python",
+        "span_source": "",
+        "scope.agentic.session": "a2fee03253fbd777a02cf69e78135033",
+        "workflow.name": "openai-agents-deep-research",
+        "span.type": "workflow",
+        "entity.1.name": "openai-agents-deep-research",
+        "entity.1.type": "workflow.generic",
+        "entity.2.type": "app_hosting.generic",
+        "entity.2.name": "generic"
+    },
+    "events": [],
+    "links": [],
+    "resource": {
+        "attributes": {
+            "service.name": "openai-agents-deep-research"
+        },
+        "schema_url": ""
+    }
+}
+]
