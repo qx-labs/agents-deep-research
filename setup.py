@@ -36,6 +36,12 @@ setup(
         'dev': [
             'pytest',
             'pytest-asyncio'
+        ],
+        # Optional agent observability via Monocle. Install with:
+        #   pip install deep-researcher[monocle]
+        # and enable at runtime with MONOCLE_TRACING=true (see README).
+        'monocle': [
+            'monocle_apptrace'
         ]
     },
     entry_points={

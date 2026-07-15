@@ -1,11 +1,17 @@
 import asyncio
 import argparse
+from contextlib import AsyncExitStack
 from .iterative_research import IterativeResearcher
 from .deep_research import DeepResearcher
 from typing import Literal
 from dotenv import load_dotenv
+from .utils.telemetry import setup_telemetry, trace_span, trace_scope, current_span
 
 load_dotenv(override=True)
+
+# Optional Monocle telemetry: a no-op unless MONOCLE_TRACING is truthy AND the
+# optional monocle_apptrace package is installed (pip install deep-researcher[monocle]).
+setup_telemetry(workflow_name="openai-agents-deep-research")
 
 
 async def main() -> None:
@@ -34,26 +40,46 @@ async def main() -> None:
     print(f"Starting deep research on: {query}")
     print(f"Max iterations: {args.max_iterations}, Max time: {args.max_time} minutes")
     
-    if args.model == "deep":
-        manager = DeepResearcher(
-            max_iterations=args.max_iterations,
-            max_time_minutes=args.max_time,
-            verbose=args.verbose,
-            tracing=args.tracing
-        )
-        report = await manager.run(query)
-    else:
-        manager = IterativeResearcher(
-            max_iterations=args.max_iterations,
-            max_time_minutes=args.max_time,
-            verbose=args.verbose,
-            tracing=args.tracing
-        )
-        report = await manager.run(
-            query, 
-            output_length=args.output_length, 
-            output_instructions=args.output_instructions
-        )
+    # Under Monocle we shape the whole run as ONE trace, per the recipe:
+    #   workflow -> agentic.turn (this user request) -> agentic.invocation (each agent).
+    # The orchestrator fires many independent Runner.run calls; without an enclosing
+    # span each starts its own trace. A single workflow root + one agentic.turn here
+    # collapses each Runner.run into that turn as an invocation. All helpers are
+    # no-ops when telemetry is disabled/absent, so the run is unchanged.
+    report = ""
+    async with AsyncExitStack() as stack:
+        await stack.enter_async_context(trace_scope("agentic.session"))
+        await stack.enter_async_context(trace_span(span_name="openai-agents-deep-research"))
+        await stack.enter_async_context(trace_scope("agentic.turn"))
+        await stack.enter_async_context(trace_span(
+            span_name="research_turn",
+            attributes={"span.type": "agentic.turn", "entity.1.name": query[:128]},
+            events=[{"name": "data.input", "attributes": {"input": query}}],
+        ))
+        if args.model == "deep":
+            manager = DeepResearcher(
+                max_iterations=args.max_iterations,
+                max_time_minutes=args.max_time,
+                verbose=args.verbose,
+                tracing=args.tracing
+            )
+            report = await manager.run(query)
+        else:
+            manager = IterativeResearcher(
+                max_iterations=args.max_iterations,
+                max_time_minutes=args.max_time,
+                verbose=args.verbose,
+                tracing=args.tracing
+            )
+            report = await manager.run(
+                query,
+                output_length=args.output_length,
+                output_instructions=args.output_instructions
+            )
+        # record the turn's final output on the agentic.turn span before it closes
+        turn_span = current_span()
+        if turn_span is not None:
+            turn_span.add_event("data.output", {"response": report})
 
     print("\n=== Final Report ===")
     print(report)
