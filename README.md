@@ -252,6 +252,24 @@ LLMs are configured and managed in the `deep_researcher/llm_config.py` file.
 
 The Deep Research assistant integrates with OpenAI's trace monitoring system. Each research session generates a trace ID that can be used to monitor the execution flow and agent interactions in real-time through the OpenAI platform.
 
+### Monocle Tracing
+
+This project also supports [Monocle](https://github.com/monocle2ai/monocle), an OpenTelemetry-based tracer for agentic applications. It records each run end-to-end: LLM calls, agent steps, and tool invocations, with inputs, outputs, timings, and token counts.
+
+Monocle is an optional extra. Install it and add the following to your `.env` file:
+
+```bash
+pip install "deep-researcher[monocle]"
+```
+
+```bash
+MONOCLE_TRACING=true
+MONOCLE_EXPORTERS=file          # file, console, okahu, s3, blob, gcs (default: file)
+OKAHU_API_KEY=okh_xxxxxxxx      # required only for the `okahu` exporter
+```
+
+Each run writes one trace file to `.monocle/`; open it in the [Monocle VS Code extension](https://marketplace.visualstudio.com/items?itemName=OkahuAI.monocle-apptrace). Connect to [Okahu](https://www.okahu.ai) to analyze traces across runs (via the `okahu` exporter).
+
 ## Observations and Limitations
 
 ### Rate Limits
